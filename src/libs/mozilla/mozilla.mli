@@ -21,596 +21,34 @@
 module XPCOM :
 sig
   type class_
-  type 'a interface
+  type interface
   type result
 
-  class type supports =
-  object
-    method _QueryInterface : 'a interface -> 'a
-  end
-
-  class type supportsWeakReference =
-  object
-  end
-
-  class type iDRef =
-  object
-    method equals : 'a interface -> bool
-  end
-
-  class type ['a] out =
-  object
-    method _get_value : 'a
-    method _set_value : 'a -> unit
-  end
-
-  class type inputStream =
-  object
-  end
-
-  class type appStartup =
-  object
-    method quit : int -> unit
-  end
-
-  class type badCertListener =
-  object
-  end
-
-  class type bufferedInputStream =
-  object
-    inherit inputStream
-    method init : #inputStream -> int -> unit
-  end
-
-  class type uRI =
-  object
-    method _get_spec : string
-    method _set_spec : string -> unit
-    method _get_host : string
-    method _set_host : string -> unit
-    method resolve : string -> string
-  end
-
-  class type interfaceRequestor =
-  object
-    inherit supports
-    method getInterface : #iDRef -> 'a
-  end
-
-  class type channel =
-  object
-    inherit supports
-    method _get_URI : uRI
-    method _set_notificationCallbacks : #interfaceRequestor -> unit
-  end
-
-  class type consoleService =
-  object
-    method logStringMessage : string -> unit
-  end
-
-  class type cookie =
-  object
-    method _get_name : string
-    method _get_value : string
-    method _get_host : string
-    method _get_path : string
-  end
-
-  class type ['a] simpleEnumerator =
-  object
-    method hasMoreElements : bool
-    method getNext : 'a
-  end
-
-  class type cookieManager =
-  object
-    method remove : string -> string -> string -> bool -> unit
-    method _get_enumerator : supports simpleEnumerator
-  end
-
-  class type dOMNode =
-  object
-    inherit supports
-    method _get_nodeName : string
-    method _get_nodeValue : string
-    method _get_nodeType : int
-    method _get_parentNode : dOMNode
-    method _get_childNodes : dOMNode array
-    method _get_firstChild : dOMNode
-    method _get_lastChild : dOMNode
-    method _get_previousSibling : dOMNode
-    method _get_nextSibling : dOMNode
-  end
-
-  class type dOMElement =
-  object
-    inherit dOMNode
-    method getAttribute : string -> string
-    method setAttribute : string -> string -> unit
-  end
-
-  class type dOMEvent =
-  object
-    inherit supports
-    method _get_bubbles : bool
-    method _get_cancelable : bool
-    method _get_eventPhase : int
-      (* method _get_target : dOMEventTarget *)
-    method _get_timeStamp : float
-    method _get_type : string
-
-    method initEvent : string -> bool -> bool -> unit
-    method preventDefault : unit
-    method stopPropagation : unit
-  end
-
-  class type dOMEventListener =
-  object
-    inherit supports
-    method handleEvent : #dOMEvent -> unit
-  end
-
-  class type dOMEventTarget =
-  object
-    inherit supports
-    method addEventListener : string -> #dOMEventListener -> bool -> unit
-    method removeEventListener : string -> #dOMEventListener -> bool -> unit
-    method dispatchEvent : #dOMEvent -> bool
-  end
-
-  class type dOMAbstractView =
-  object
-    inherit supports
-  end
-
-  class type dOMDocumentView =
-  object
-    inherit supports
-    method _get_defaultView : dOMAbstractView
-  end
-
-  class type dOMUIEvent =
-  object
-    inherit dOMEvent
-    method initUIEvent : string -> bool -> bool -> #dOMAbstractView -> int -> unit
-  end
-
-  class type dOMKeyEvent =
-  object
-    inherit dOMUIEvent
-    method initKeyEvent : string -> bool -> bool -> #dOMAbstractView -> bool -> bool -> bool -> bool -> int -> int
-  end
-
-  class type dOMMouseEvent =
-  object
-    inherit dOMUIEvent
-    method _get_screenX : int
-    method _get_screenY : int
-    method _get_clientX : int
-    method _get_clientY : int
-    method _get_ctrlKey : bool
-    method _get_shiftKey : bool
-    method _get_altKey : bool
-    method _get_metaKey : bool
-    method _get_button : int
-    method _get_relatedTarget : #dOMEventTarget
-    method initMouseEvent :
-      string -> bool -> bool -> #dOMAbstractView -> int ->
-      int -> int -> int -> int ->
-      bool -> bool -> bool -> bool ->
-      int -> #dOMEventTarget ->
-      unit
-  end
-
-  class type dOMDocument =
-  object
-    inherit dOMNode
-    method getElementById : string -> #dOMElement
-  end
-
-  class type dOMXMLDocument =
-  object
-    inherit dOMDocument
-  end
-
-  class type dOMLocation =
-  object
-    inherit supports
-    method _get_href : string
-    method _set_href : string -> unit
-  end
-
-  class type dOMNSDocument =
-  object
-    inherit supports
-    method _get_location : dOMLocation
-  end
-
-  class type dOMSerializer =
-  object
-    method serializeToString : #dOMNode -> string
-  end
-
-  class type dOMDocumentEvent =
-  object
-    inherit supports
-    method createEvent : string -> #dOMEvent
-  end
-
-  class type dOMWindow =
-  object
-    inherit supports
-    method _get_document : dOMDocument
-  end
-
-  class type dOMWindow2 =
-  object
-    inherit dOMWindow
-  end
-
-  class type dOMWindowInternal =
-  object
-    inherit dOMWindow2
-    method alert : string -> unit
-    method back : unit
-    method close : unit
-    method _get_location : string
-    method _set_location : string -> unit
-  end
-
-  class type dOMJSWindow =
-  object
-    inherit supports
-    method setTimeout : (unit -> unit) Ocamljs.jsfun -> float -> int
-    method clearTimeout : int -> unit
-    method setInterval : (unit -> unit) Ocamljs.jsfun -> float -> int
-    method clearInterval : int -> unit
-    method openDialog : string -> string -> string -> unit
-  end
-
-  class type dOMXPathNSResolver =
-  object
-    inherit supports
-    method lookupNamespaceURI : string -> string
-  end
-
-  class type dOMXPathEvaluator =
-  object
-    inherit supports
-    method evaluate : string -> #dOMNode -> #dOMXPathNSResolver -> int -> #supports -> #supports
-  end
-
-  class type dOMXPathResult =
-  object
-    method iterateNext : #dOMNode
-    method _get_singleNodeValue : #dOMNode
-    method _get_ANY_TYPE : int
-    method _get_FIRST_ORDERED_NODE_TYPE : int
-    method _get_ORDERED_NODE_ITERATOR_TYPE : int
-  end
-
-  class type externalProtocolService =
-  object
-    inherit supports
-    method externalProtocolHandlerExists : string -> bool
-    method isExposedProtocol : string -> bool
-    method loadUrl : uRI -> unit
-    method loadURI : uRI -> supports (* XXX *) -> unit
-    method getApplicationDescription : string -> string
-  end
-
-  class type file =
-  object
-    method remove : bool -> unit
-    method append : string -> unit
-  end
-
-  class type fileInputStream =
-  object
-    inherit inputStream
-    method init : #file -> int -> int -> int -> unit
-  end
-
-  class type outputStream =
-  object
-    method write : string -> int -> unit
-    method close : unit
-  end
-
-  class type fileOutputStream =
-  object
-    inherit outputStream
-    method init : #file -> int -> int -> int -> unit
-  end
-
-  class type httpChannel =
-  object
-    inherit channel
-    method setRequestHeader : string -> string -> bool -> unit
-  end
-
-  class type request =
-  object
-    inherit supports
-    method _get_name : string
-    method isPending : bool
-    method _get_status : int
-    method cancel : int -> unit
-    method suspend : unit
-    method resume : unit
-  end
-
-  class type requestObserver =
-  object
-    inherit supports
-    method onStartRequest : #request -> #supports -> unit
-    method onStopRequest : #request -> #supports -> int -> unit
-  end
-
-  class type streamListener =
-  object
-    inherit requestObserver
-    method onDataAvailable : #request -> #supports -> #inputStream -> float -> float -> unit
-  end
-
-  class type inputStreamPump =
-  object
-    inherit request
-    method init : #inputStream -> float -> float -> float -> float -> bool -> unit
-    method asyncRead : #streamListener -> #supports -> unit
-  end
-
-  class type iOService =
-  object
-    inherit supports
-    method newURI : string -> string -> uRI -> uRI
-  end
-
-  class type localFile =
-  object
-    inherit file
-    method setRelativeDescriptor : localFile -> string -> unit
-  end
-
-  class type mIMEInputStream =
-  object
-    inherit inputStream
-    method _set_addContentLength : bool -> unit
-    method addHeader : string -> string -> unit
-    method setData : #inputStream -> unit
-  end
-
-  class type multiplexInputStream =
-  object
-    inherit inputStream
-    method appendStream : #inputStream -> unit
-  end
-
-  class type observer =
-  object
-    method observe : #supports -> string -> string -> unit
-  end
-
-  class type observerService =
-  object
-    method addObserver : observer -> string -> bool -> unit
-    method removeObserver : observer -> string -> unit
-  end
-
-  class type commandLine =
-  object
-    method getArgument : int -> string
-    method findFlag : string -> bool -> int
-    method removeAruguments : int -> int -> unit
-    method handleFlag : string -> bool -> bool
-    method handleFlagWithParam : string -> bool -> string
-  end
-
-  class type passwordManager =
-  object
-    method addUser : string -> string -> string -> unit
-    method removeUser : string -> string -> unit
-    method addReject : string -> unit
-    method removeReject : string -> unit
-  end
-
-  class type passwordManagerInternal =
-  object
-    method findPasswordEntry : string -> string -> string -> string out -> string out -> string out -> unit
-    method addUserFull : string -> string -> string -> string -> string -> unit
-  end
-
-  class type loginInfo =
-  object
-    inherit supports
-    method init : string -> string -> string -> string -> string -> string -> string -> unit
-    method equals : loginInfo -> bool
-    method equalsIngnorePassword : loginInfo -> bool
-    method _get_hostname : string
-    method _get_formSubmitURL : string
-    method _get_httpRealm : string
-    method _get_username : string
-    method _get_usernameField : string
-    method _get_password : string
-    method _get_passwordField : string
-  end
-
-  class type loginManager =
-  object
-    method addLogin : loginInfo -> unit
-    method removeLogin : loginInfo -> unit
-    method modifyLogin : loginInfo -> loginInfo -> unit
-    method getLoginSavingEnabled : string -> bool
-    method setLoginSavingEnabled : string -> bool -> unit
-    method findLogins : int out -> string -> string -> string -> loginInfo array
-  end
-
-  class type permissionManager =
-  object
-    inherit supports
-    method add : uRI -> string -> int -> unit
-    method remove : string -> string -> unit
-  end
-
-  class type prefBranch =
-  object
-    method _get_PREF_BOOL : int
-    method _get_PREF_INT : int
-    method _get_PREF_STRING : int
-    method getPrefType : string -> int
-    method getBoolPref : string -> bool
-    method getCharPref : string -> string
-    method getIntPref : string -> int
-    method setBoolPref : string -> bool -> unit
-    method setCharPref : string -> string -> unit
-    method setIntPref : string -> int -> unit
-  end
-
-  class type prefBranch2 =
-  object
-    inherit prefBranch
-    method addObserver : string -> observer -> bool -> unit
-    method removeObserver : string -> observer -> unit
-  end
-
-  class type prefService =
-  object
-    method readUserPrefs   : file -> unit
-    method resetPrefs      : unit -> unit
-    method resetUserPrefs  : unit -> unit
-    method savePrefFile    : file -> unit
-    method getBranch       : string -> prefBranch
-    method getDefaultBranch: string -> prefBranch
-  end
-
-  class type properties =
-  object
-    method get : string -> 'a interface -> 'a
-  end
-
-  class type scriptableInputStream =
-  object
-    inherit inputStream
-    method init : #inputStream -> unit
-    method close : unit
-    method available : float
-    method read : float -> string
-  end
-
-  class type transport =
-  object
-    method close : int -> unit
-    method openInputStream : int -> int -> int -> inputStream
-    method openOutputStream : int -> int -> int -> outputStream
-  end
-
-  class type serverSocket =
-  object
-    method asyncListen : serverSocketListener -> unit
-    method close : unit
-    method init : int -> bool -> int -> unit
-  end
-
-  and serverSocketListener =
-  object
-    method onSocketAccepted : serverSocket -> #transport -> unit
-    method onStopListening : serverSocket -> int -> unit
-  end
-
-  class type stringInputStream =
-  object
-    inherit inputStream
-    method setData : string -> int -> unit
-  end
-
-  class type uRIContentListener =
-  object
-    inherit supports
-    method onStartURIOpen : #uRI -> bool
-    method doContent : string -> bool -> #request -> streamListener out -> bool
-    method isPreferred : string -> string out -> bool
-    method canHandleContent : string -> bool -> string out
-    (* loadCookie, parentContentListener *)
-  end
-
-  class type uRILoader =
-  object
-    inherit supports
-    method registerContentListener : #uRIContentListener -> unit
-    method unRegisterContentListener : #uRIContentListener -> unit
-  end
-
-  class type windowMediator =
-  object
-    method getEnumerator : string -> #dOMWindow simpleEnumerator
-    method getMostRecentWindow : string -> #dOMWindow
-  end
-
-  class type xMLHttpRequest =
-  object
-    inherit supports
-    method _set_onreadystatechange : (unit -> unit) Ocamljs.jsfun -> unit
-    method _set_onload : (unit -> unit) Ocamljs.jsfun -> unit
-    method _open : string -> string -> bool -> unit
-    method setRequestHeader : string -> string -> unit
-    method getResponseHeader : string -> string
-    method overrideMimeType : string -> unit
-    method send : #inputStream -> unit
-    method _get_readyState : int
-    method _get_responseText : string
-    method _get_responseXML : #dOMXMLDocument
-    method _get_channel : channel
-    method abort : unit
-    method _get_status : int
-  end
-
-  external createInstance : class_ -> 'a interface -> 'a = "#createInstance"
-  external getService : class_ -> 'a interface -> 'a = "#getService"
-  val _set_returnCode : result -> unit
-
-  val appStartup : appStartup interface
-  val badCertListener : badCertListener interface
-  val bufferedInputStream : bufferedInputStream interface
-  val channel : channel interface
-  val consoleService : consoleService interface
-  val cookie : cookie interface
-  val cookieManager : cookieManager interface
-  val dOMSerializer : dOMSerializer interface
-  val externalProtocolService : externalProtocolService interface
-  val file : file interface
-  val fileInputStream : fileInputStream interface
-  val fileOutputStream : fileOutputStream interface
-  val httpChannel : httpChannel interface
-  val inputStreamPump : inputStreamPump interface
-  val iOService : iOService interface
-  val localFile : localFile interface
-  val loginInfo : loginInfo interface
-  val loginManager : loginManager interface
-  val mIMEInputStream : mIMEInputStream interface
-  val multiplexInputStream : multiplexInputStream interface
-  val observer : observer interface
-  val observerService : observerService interface
-  val commandLine : commandLine interface
-  val passwordManager : passwordManager interface
-  val passwordManagerInternal : passwordManagerInternal interface
-  val permissionManager : permissionManager interface
-  val prefService : prefService interface
-  val prefBranch2 : prefBranch2 interface
-  val properties : properties interface
-  val requestObserver : requestObserver interface
-  val scriptableInputStream : scriptableInputStream interface
-  val serverSocket : serverSocket interface
-  val streamListener : streamListener interface
-  val stringInputStream : stringInputStream interface
-  val supports : supports interface
-  val supportsWeakReference : supportsWeakReference interface
-  val uRI : uRI interface
-  val uRIContentListener : uRIContentListener interface
-  val uRILoader : uRILoader interface
-  val windowMediator : windowMediator interface
-  val xMLHttpRequest : xMLHttpRequest interface
+  external createInstance : class_ -> interface -> 'a = "#createInstance"
+  external getService : class_ -> interface -> 'a = "#getService"
+
+  val bufferedInputStream : interface
+  val consoleService : interface
+  val cookie : interface
+  val cookieManager : interface
+  val dOMJSWindow : interface
+  val file : interface
+  val fileInputStream : interface
+  val fileOutputStream : interface
+  val httpChannel : interface
+  val localFile : interface
+  val mIMEInputStream : interface
+  val multiplexInputStream : interface
+  val observer : interface
+  val observerService : interface
+  val passwordManager : interface
+  val passwordManagerInternal : interface
+  val prefBranch : interface
+  val properties : interface
+  val scriptableInputStream : interface
+  val stringInputStream : interface
+  val supports : interface
+  val windowMediator : interface
 
   val appshell_window_mediator : class_
   val consoleservice : class_
@@ -619,305 +57,392 @@ sig
   val file_local : class_
   val io_multiplex_input_stream : class_
   val io_string_input_stream : class_
-  val loginmanager : class_
   val network_buffered_input_stream : class_
   val network_file_input_stream : class_
   val network_file_output_stream : class_
-  val network_input_stream_pump : class_
-  val network_io_service : class_
   val network_mime_input_stream : class_
-  val network_server_socket : class_
-  val network_simple_uri : class_
   val observer_service : class_
   val passwordmanager : class_
-  val permissionmanager : class_
   val preferences_service : class_
   val scriptableinputstream : class_
-  val toolkit_app_startup : class_
-  val uriloader : class_
-  val uriloader_external_protocol_service : class_
-  val xmlextras_xmlhttprequest : class_
-  val xmlextras_xmlserializer : class_
 
   val nOINTERFACE : result
 
-  val getService_appshell_window_mediator : unit -> windowMediator
-  val getService_consoleservice : unit -> consoleService
-  val getService_cookiemanager : unit -> cookieManager
-  val getService_uriloader_external_protocol_service : unit -> externalProtocolService
-  val getService_file_directory_service : unit -> properties
-  val getService_loginManager : unit -> loginManager
-  val getService_network_io_service : unit -> iOService
-  val getService_observer_service : unit -> observerService
-  val getService_passwordmanager_passwordManager : unit -> passwordManager
-  val getService_passwordmanager_passwordManagerInternal : unit -> passwordManagerInternal
-  val getService_permissionmanager : unit -> permissionManager
-  val getService_preferences_service: unit -> prefService
-  val getService_preferences_branch : unit -> prefBranch2
-  val getService_toolkit_app_startup : unit -> appStartup
-  val getService_uriloader : unit -> uRILoader
+  (*
+    We write the type of an object supporting interfaces Foo and Bar as
+    <foo:i; bar:i> t, and the type of a function arg that takes an object
+    supporting interface Foo as <foo:i; ..> t.
 
-  val createInstance_file_local : unit -> localFile
-  val createInstance_loginInfo : unit -> loginInfo
-  val createInstance_network_buffered_input_stream : unit -> bufferedInputStream
-  val createInstance_network_file_input_stream : unit -> fileInputStream
-  val createInstance_network_file_output_stream : unit -> fileOutputStream
-  val createInstance_network_mime_input_stream : unit -> mIMEInputStream
-  val createInstance_io_multiplex_input_stream : unit -> multiplexInputStream
-  val createInstance_io_string_input_stream : unit -> stringInputStream
-  val createInstance_scriptableinputstream : unit -> scriptableInputStream
-  val createInstance_network_input_stream_pump : unit -> inputStreamPump
-  val createInstance_network_server_socket : unit -> serverSocket
-  val createInstance_network_simple_uri : unit -> uRI
-  val createInstance_xmlextras_xmlhttprequest : unit -> xMLHttpRequest
-  val createInstance_xmlextras_xmlserializer : unit -> dOMSerializer
+    There is no notion of subtyping among object fields, so if Baz is a
+    subinterface of Bar you must write the type of an object supporting
+    Baz as <bar:i; baz> t rather than just <baz:i> t if you want to call
+    Bar methods on the object.
+  *)
 
-  val make_out : 'a -> 'a out
+  type i
+  type (+'a) t
+
+  val getService_appshell_window_mediator : unit -> <windowMediator:i> t
+  val getService_consoleservice : unit -> <consoleService:i> t
+  val getService_cookiemanager : unit -> <cookieManager:i> t
+  val getService_file_directory_service : unit -> <properties:i> t
+  val getService_observer_service : unit -> <observerService:i> t
+  val getService_passwordmanager_passwordManager : unit -> <passwordManager:i> t
+  val getService_passwordmanager_passwordManagerInternal : unit -> <passwordManagerInternal:i> t
+  val getService_preferences_service : unit -> <prefBranch:i> t
+
+  val createInstance_file_local : unit -> <file:i; localFile:i> t
+  val createInstance_network_buffered_input_stream : unit -> <inputStream:i; bufferedInputStream:i> t
+  val createInstance_network_file_input_stream : unit -> <inputStream:i; fileInputStream:i> t
+  val createInstance_network_file_output_stream : unit -> <outputStream:i; fileOutputStream:i> t
+  val createInstance_network_mime_input_stream : unit -> <inputStream:i; mIMEInputStream:i> t
+  val createInstance_io_multiplex_input_stream : unit -> <inputStream:i; multiplexInputStream:i> t
+  val createInstance_io_string_input_stream : unit -> <inputStream:i; stringInputStream:i> t
+  val createInstance_scriptableinputstream : unit -> <inputStream:i; scriptableInputStream:i> t
+
+  type 'a out
+
+  val out : 'a -> 'a out
+  external outv : 'a out -> 'a = ".value"
+end
+
+module BufferedInputStream :
+sig
+  open XPCOM
+
+  external init : <bufferedInputStream:i; ..> t -> <inputStream:i; ..> t -> int -> unit = "#init"
+end
+
+module Channel :
+sig
+  open XPCOM
+
+  external uRI : <channel:i; ..> t -> <uRI:i> t = ".URI"
+end
+
+module ConsoleService :
+sig
+  open XPCOM
+
+  external logStringMessage : <consoleService:i; ..> t -> string -> unit = "#logStringMessage"
+end
+
+module CookieManager :
+sig
+  open XPCOM
+
+  external remove : <cookieManager:i; ..> t -> string -> string -> string -> bool -> unit = "#remove"
+  external enumerator : <cookieManager:i; ..> t -> <simpleEnumerator:<supports:i> t> t = ".enumerator"
+end
+
+module Cookie :
+sig
+  open XPCOM
+
+  external name : <cookie:i; ..> t -> string = ".name"
+  external value : <cookie:i; ..> t -> string = ".value"
+  external host : <cookie:i; ..> t -> string = ".host"
+  external path : <cookie:i; ..> t -> string = ".path"
+end
+
+module DOMJSWindow :
+sig
+  open XPCOM
+
+  val w : <dOMJSWindow:i> t
+
+  type timeout
+  type interval
+
+  val setTimeout : <dOMJSWindow:i; ..> t -> (unit -> unit) -> int -> timeout
+  external clearTimeout : <dOMJSWindow:i; ..> t -> timeout -> unit = "#clearTimeout"
+  val setInterval : <dOMJSWindow:i; ..> t -> (unit -> unit) -> int -> interval
+  external clearInterval : <dOMJSWindow:i; ..> t -> interval -> unit = "#clearInterval"
+end
+
+module FileInputStream :
+sig
+  open XPCOM
+
+  external init : <fileInputStream:i; ..> t -> <file:i; ..> t -> int -> int -> int -> unit = "#init"
+end
+
+module File :
+sig
+  open XPCOM
+
+  external remove : <file:i; ..> t -> bool -> unit = "#remove"
+  external append : <file:i; ..> t -> string -> unit = "#append"
+end
+
+module FileOutputStream :
+sig
+  open XPCOM
+
+  external init : <fileOutputStream:i; ..> t -> <file:i; ..> t -> int -> int -> int -> unit = "#init"
+end
+
+module HttpChannel :
+sig
+  open XPCOM
+
+  external setRequestHeader : <httpChannel:i; ..> t -> string -> string -> bool -> unit = "#setRequestHeader"
+end
+
+module InputStream :
+sig
+  open XPCOM
+
+  val coerce : <inputStream:i; ..> t -> <inputStream:i> t
+end
+
+module LocalFile :
+sig
+  open XPCOM
+
+  external setRelativeDescriptor : <localFile:i; ..> t -> <localFile:i; ..> t -> string -> unit = "#setRelativeDescriptor"
+end
+
+module MIMEInputStream :
+sig
+  open XPCOM
+
+  external set_addContentLength : <mIMEInputStream:i; ..> t -> bool -> unit = "=addContentLength"
+  external addHeader : <mIMEInputStream:i; ..> t -> string -> string -> unit = "#addHeader"
+  external setData : <mIMEInputStream:i; ..> t -> <inputStream:i; ..> t -> unit = "#setData"
+end
+
+module MultiplexInputStream :
+sig
+  open XPCOM
+
+  external appendStream : <multiplexInputStream:i; ..> t -> <inputStream:i; ..> t -> unit = "#appendStream"
+end
+
+module ObserverService :
+sig
+  open XPCOM
+
+  (*
+    we wrap up the observation function in an object; this object must
+    be passed to removeObserver. so we return it from addObserver and
+    take it in removeObserver.
+
+    it appears to be not OK to add/remove an observer inside an observer
+    callback.
+  *)
+
+  type tp
+  type 'a o
+
+  val addObserver : <observerService:i; ..> t -> (<supports:i> t -> string -> string -> unit) -> string -> < > o
+  val addObserver_http_on_modify_request : <observerService:i; ..> t -> (<httpChannel:i> t -> string -> unit) -> <httpOnModifyRequest:tp> o
+
+  external removeObserver : <observerService:i; ..> t -> < ..> o -> string -> unit = "#removeObserver"
+  val removeObserver_http_on_modify_request : <observerService:i; ..> t -> <httpOnModifyRequest:tp; ..> o -> unit
+end
+
+module OutputStream :
+sig
+  open XPCOM
+
+  external write : <outputStream:i; ..> t -> string -> int -> unit = "#write"
+  external close : <outputStream:i; ..> t -> unit = "#close"
+end
+
+module PasswordManagerInternal :
+sig
+  open XPCOM
+
+  external findPasswordEntry : <passwordManagerInternal:i; ..> t -> string -> string -> string -> string out -> string out -> string out -> unit = "#findPasswordEntry"
+  external addUserFull : <passwordManagerInternal:i; ..> t -> string -> string -> string -> string -> string -> unit = "#addUserFull"
+
+  val findEntry : <passwordManagerInternal:i; ..> t -> string -> string -> string -> (string * string * string) option
+  val addEntry : <passwordManagerInternal:i; ..> t -> string -> string -> string -> unit
+end
+
+module PasswordManager :
+sig
+  open XPCOM
+
+  external addUser : <passwordManager:i; ..> t -> string -> string -> string -> unit = "#addUser"
+  external removeUser : <passwordManager:i; ..> t -> string -> string -> unit = "#removeUser"
+  external addReject : <passwordManager:i; ..> t -> string -> unit = "#addReject"
+  external removeReject : <passwordManager:i; ..> t -> string -> unit = "#removeReject"
+end
+
+module PrefBranch :
+sig
+  open XPCOM
+
+  external pREF_BOOL : <prefBranch:i; ..> t -> int = ".PREF_BOOL"
+  external pREF_INT : <prefBranch:i; ..> t -> int = ".PREF_INT"
+  external pREF_STRING : <prefBranch:i; ..> t -> int = ".PREF_STRING"
+  external getPrefType : <prefBranch:i; ..> t -> string -> int = "#getPrefType"
+  external getBoolPref : <prefBranch:i; ..> t -> string -> bool = "#getBoolPref"
+  external getCharPref : <prefBranch:i; ..> t -> string -> string = "#getCharPref"
+  external getIntPref : <prefBranch:i; ..> t -> string -> int = "#getIntPref"
+  external setBoolPref : <prefBranch:i; ..> t -> string -> bool -> unit = "#setBoolPref"
+  external setCharPref : <prefBranch:i; ..> t -> string -> string -> unit = "#setCharPref"
+  external setIntPref : <prefBranch:i; ..> t -> string -> int -> unit = "#setIntPref"
+
+  external getStringPref : <prefBranch:i; ..> t -> string -> string = "#getCharPref"
+
+  type pref = Bool of bool | Int of int | String of string | None
+  val getPref : <prefBranch:i; ..> t -> string -> pref
+end
+
+module Properties :
+sig
+  open XPCOM
+
+  external get : <properties:i; ..> t -> string -> interface -> 'a = "#get"
+  val getFile : <properties:i; ..> t -> string -> <file:i; ..> t
+end
+
+module ScriptableInputStream :
+sig
+  open XPCOM
+
+  external init : <scriptableInputStream:i; ..> t -> <inputStream:i; ..> t -> unit = "#init"
+end
+
+module SimpleEnumerator :
+sig
+  open XPCOM
+
+  external hasMoreElements : <simpleEnumerator:'a; ..> t -> bool = "#hasMoreElements"
+  external getNext : <simpleEnumerator:'a; ..> t -> 'a = "#getNext"
+end
+
+module StringInputStream :
+sig
+  open XPCOM
+
+  external setData : <stringInputStream:i; ..> t -> string -> int -> unit = "#setData"
+end
+
+module Supports :
+sig
+  open XPCOM
+
+  external queryInterface : <supports:i; ..> t -> interface -> 'a = "#QueryInterface"
+
+  val queryInterface_httpChannel : <supports:i; ..> t -> <httpChannel:i> t
+  val queryInterface_cookie : <supports:i; ..> t -> <cookie:i> t
+end
+
+module URI :
+sig
+  open XPCOM
+
+  external spec : <uRI:i; ..> t -> string = ".spec"
+end
+
+module WindowMediator :
+sig
+  open XPCOM
+
+  val getEnumerator : <windowMediator:i; ..> t -> string option -> <simpleEnumerator:<supports:i> t> t
+end
+
+module XMLHttpRequest :
+sig
+  open XPCOM
+
+  external new_ : unit -> <xMLHttpRequest:i> t = "$new" "XMLHttpRequest"
+  val set_onreadystatechange : <xMLHttpRequest:i; ..> t -> (unit -> unit) -> unit
+  val set_onload : <xMLHttpRequest:i; ..> t -> (unit -> unit) -> unit
+  external open_ : <xMLHttpRequest:i; ..> t -> string -> string -> bool -> unit = "#open"
+  external setRequestHeader : <xMLHttpRequest:i; ..> t -> string -> string -> unit = "#setRequestHeader"
+  external getResponseHeader : <xMLHttpRequest:i; ..> t -> string -> string = "#getResponseHeader"
+  external overrideMimeType : <xMLHttpRequest:i; ..> t -> string -> unit = "#overrideMimeType"
+  external send : <xMLHttpRequest:i; ..> t -> <inputStream:i; ..> t -> unit = "#send"
+  external readyState : <xMLHttpRequest:i; ..> t -> int = ".readyState"
+  external responseText : <xMLHttpRequest:i; ..> t -> string = ".responseText"
+  external channel : <xMLHttpRequest:i; ..> t -> <supports:i; channel:i> t = ".channel"
+  external abort : <xMLHttpRequest:i; ..> t -> unit = "#abort"
+  external status : <xMLHttpRequest:i; ..> t -> int = ".status"
 end
 
 module DOM :
 sig
-  class type style =
-  object
-    method _get_color : string
-    method _set_color : string -> unit
-    method _get_display : string
-    method _set_display : string -> unit
-    method _get_visibility : string
-    method _set_visibility : string -> unit
-    method _get_width : string
-    method _set_width : string -> unit
-    method _get_maxWidth : string
-    method _set_maxWidth : string -> unit
-  end
+  type i
+  type (+'a) t
+end
 
-  class type event =
-  object
-    inherit XPCOM.dOMEvent
-  end
+module Document :
+sig
+  open DOM
 
-  class type eventTarget =
-  object
-    inherit XPCOM.dOMEventTarget
-    method addEventListener_fun_ : string -> (#event -> unit) Ocamljs.jsfun -> bool -> unit
-    method removeEventListener_fun_ : string -> (#event -> unit) Ocamljs.jsfun -> bool -> unit
-  end
+  val d : <document:i> t
 
-  class type node =
-  object
-    inherit XPCOM.dOMNode
-  end
+  external getElementById : <document:i; ..> t -> string -> <element:i> t = "#getElementById"
 
-  class type element =
-  object
-    inherit XPCOM.dOMElement
-    inherit eventTarget
-    method _get_hidden : bool
-    method _set_hidden : bool -> unit
-    method _get_style : style
-    method _get_innerHTML : string
-    method _set_innerHTML : string -> unit
-  end
+  external getElementById_dialog : <document:i; ..> t -> string -> <element:i; dialog:i> t = "#getElementById"
+  external getElementById_menuItem : <document:i; ..> t -> string -> <element:i; menuItem:i> t = "#getElementById"
+  external getElementById_menuList : <document:i; ..> t -> string -> <element:i; menuList:i> t = "#getElementById"
+  external getElementById_statusBarPanel : <document:i; ..> t -> string -> <element:i; statusBarPanel:i> t = "#getElementById"
+  external getElementById_textBox : <document:i; ..> t -> string -> <element:i; textBox:i> t = "#getElementById"
+end
 
-  class type document =
-  object
-    inherit XPCOM.dOMNSDocument
-    inherit XPCOM.dOMDocumentEvent
-    inherit XPCOM.dOMDocumentView
-    inherit XPCOM.dOMEventTarget
-    inherit XPCOM.dOMDocument
-    inherit XPCOM.dOMXPathEvaluator
-  end
+module Element :
+sig
+  open DOM
 
-  class type a =
-  object
-    inherit element
-    method _get_href : string
-  end
+  type e
+  type 'a l
 
-  class type area =
-  object
-    inherit element
-  end
+  val addEventListener : <element:i; ..> t -> string -> (< ..> -> bool) -> bool -> < > l
 
-  class type uRI =
-  object
-    inherit XPCOM.uRI
-  end
+  val addEventListener_command : <element:i; ..> t -> (<event:i> t -> bool) -> bool -> <command:e> l
+  val addEventListener_click : <element:i; ..> t -> (<event:i; mouseEvent:i> t -> bool) -> bool -> <click:e> l
+  val addEventListener_dialogaccept : <element:i; ..> t -> (<event:i> t -> bool) -> bool -> <dialogaccept:e> l
+  val addEventListener_load : <element:i; ..> t -> (<event:i> t -> bool) -> bool -> <load:e> l
+  val addEventListener_unload : <element:i; ..> t -> (<event:i> t -> bool) -> bool -> <unload:e> l
 
-  class type browser =
-  object
-    inherit element
-    method loadURI : string -> uRI -> string -> unit
-    method stop : unit -> unit
-    method goBack : unit
-    method _get_contentDocument : document
-  end
+  external removeEventListener : <element:i; ..> t -> string -> < ..> l -> bool -> unit = "#removeEventListener"
 
-  class type button =
-  object
-    inherit element
-    method _get_disabled : bool
-    method _set_disabled : bool -> unit
-    method _get_label : string
-    method _set_label : string -> unit
-  end
+  val removeEventListener_command : <element:i; ..> t -> <command:e; ..> l -> bool -> unit
+  val removeEventListener_click : <element:i; ..> t -> <click:e; ..> l -> bool -> unit
+  val removeEventListener_dialogaccept : <element:i; ..> t -> <dialogaccept:e; ..> l -> bool -> unit
+  val removeEventListener_load : <element:i; ..> t -> <load:e; ..> l -> bool -> unit
+  val removeEventListener_unload : <element:i; ..> t -> <unload:e; ..> l -> bool -> unit
 
-  class type deck =
-  object
-    inherit element
-    method _get_selectedIndex : int
-    method _set_selectedIndex : int -> unit
-  end
+  external setAttribute : <element:i; ..> t -> string -> 'a -> unit = "#setAttribute"
+end
 
-  class type dialog =
-  object
-    inherit element
-  end
+module MenuList :
+sig
+  open DOM
 
-  class type form =
-  object
-    inherit element
-    method _get_method : string
-    method _set_method : string -> unit
-    method _get_action : string
-    method _set_action : string -> unit
-    method submit : unit
-  end
+  external selectedIndex : <menuList:i; ..> t -> int = ".selectedIndex"
+  external set_selectedIndex : <menuList:i; ..> t -> int -> unit = "=selectedIndex"
+  external value : <menuList:i; ..> t -> string = ".value"
+  external set_value : <menuList:i; ..> t -> string -> unit = "=value"
+end
 
-  class type input =
-  object
-    inherit element
-  end
+module MouseEvent :
+sig
+  open DOM
 
-  class type input_text =
-  object
-    inherit input
-    method _get_value : string
-    method _set_value : string -> unit
-  end
+  external button : <mouseEvent:i> t -> int = ".button"
+end
 
-  class type input_image =
-  object
-    inherit input
-    method click : unit
-  end
+module TextBox :
+sig
+  open DOM
 
-  class type label =
-  object
-    method _get_value : string
-    method _set_value : string -> unit
-  end
+  external value : <textBox:i; ..> t -> string = ".value"
+  external set_value : <textBox:i; ..> t -> string -> unit = "=value"
+end
 
-  class type map =
-  object
-    inherit element
-    method _get_areas : area array
-  end
+module Window :
+sig
+  open DOM
 
-  class type menuItem =
-  object
-    inherit element
-  end
+  val w : <element:i; window:i> t
 
-  class type menuList =
-  object
-    inherit element
-    method _get_selectedIndex : int
-    method _set_selectedIndex : int -> unit
-    method _get_value : string
-    method _set_value : string -> unit
-  end
-
-  class type keyEvent =
-  object
-    inherit XPCOM.dOMKeyEvent
-  end
-
-  class type mouseEvent =
-  object
-    inherit XPCOM.dOMMouseEvent
-  end
-
-  class type option =
-  object
-    inherit element
-    method _get_text : string
-    method _get_value : string
-  end
-
-  class type radio =
-  object
-    inherit element
-    method _get_selected : int
-    method _set_selected : int -> unit
-  end
-
-  class type select =
-  object
-    inherit element
-    method _get_options : option array
-    method _get_selectedIndex : int
-    method _set_selectedIndex : int -> unit
-    method _get_value : string
-    method _set_value : string -> unit
-  end
-
-  class type statusBarPanel =
-  object
-    inherit element
-  end
-
-  class type stringBundle =
-  object
-    method getString : string -> string
-  end
-
-  class type tab =
-  object
-    inherit element
-    method _get_linkedBrowser : browser
-  end
-
-  class type tabBrowser =
-  object
-    inherit element
-    method addTab : string -> tab
-    method removeTab : tab -> unit
-    method _get_selectedTab : tab
-    method _set_selectedTab : #tab -> unit
-  end
-
-  class type textBox =
-  object
-    inherit element
-    method _get_value : string
-    method _set_value : string -> unit
-  end
-
-  class type window =
-  object
-    inherit XPCOM.dOMWindow
-    inherit XPCOM.dOMJSWindow
-    inherit XPCOM.dOMWindowInternal
-    inherit eventTarget
-    inherit XPCOM.dOMAbstractView
-
-    method getBrowser : tabBrowser
-    method _get_arguments : 'a array
-  end
-
-  class type xMLDocument =
-  object
-    inherit document
-    inherit XPCOM.dOMXMLDocument
-  end
-
-  class type xPathResult =
-  object
-    inherit XPCOM.dOMXPathResult
-  end
-
-  val document : document
-  val window : window
+  external openDialog : <window:i; ..> t -> string -> string -> string -> unit = "#openDialog"
+  external location : <window:i; ..> t -> string = ".location"
 end

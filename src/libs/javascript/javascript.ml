@@ -34,10 +34,10 @@ module Date =
     external _new_noargs : string -> t = "$new"
 
     let new_ () = _new_noargs "Date"
-    external new_milliseconds : float -> t = "$new" "Date"
+    external new_milliseconds : int -> t = "$new" "Date"
     external new_parts : int -> int -> int -> int -> int -> int -> int -> t = "$new" "Date"
 
-    external getTime : t -> float = "#getTime"
+    external getTime : t -> int = "#getTime"
     external getDate : t -> int = "#getDate"
     external getMonth : t -> int = "#getMonth"
     external getHours : t -> int = "#getHours"
@@ -50,8 +50,6 @@ module Date =
     external setMinutes : t -> int -> unit = "#setMinutes"
 
     external toString : t -> string = "#toString"
-    external toDateString : t -> string = "#toDateString"
-    external toLocaleString : t -> string = "#toLocaleString"
 
   end
 
@@ -78,6 +76,5 @@ module String =
     let match_ s r = Ocamljs.option_of_nullable (_match s r)
     external split : t -> string -> string array = "#split"
     external indexOf : t -> string -> int = "#indexOf"
-    external replace : t -> RegExp.t -> t -> t = "#replace"
 
   end

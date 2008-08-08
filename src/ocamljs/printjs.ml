@@ -264,8 +264,7 @@ and stmt ppf = function
       fprintf ppf "@[var %s =@;<1 2>%a@]" i (expp pAssignment) e
   | Jfuns (i, is, ss) ->
       fprintf ppf "@[<hv>function %s (@[%a@]) %a@]" i ids is block ss
-  | Jbreak -> fprintf ppf "break"
-  | Jreturn e -> fprintf ppf "@[<h>return %a@]" (expp p) e
+  | Jreturn e -> fprintf ppf "@[return %a@]" (expp p) e
   | (Jites (i, t, []) | Jites (i, t, [Jempty])) ->
       fprintf ppf
 	"@[<hv>if (%a)%a@]"
@@ -289,10 +288,10 @@ and stmt ppf = function
 	      if !spc then fprintf ppf "@ " else spc := true;
 	      fprintf ppf "@[<hv>default:@;<1 2>@[%a@]@]" stmts fss in
       fprintf ppf
-	"@[<hv>switch (%a) {@,@[%a@]}@]"
+	"@[<hv>switch (%a) {%a}@]"
 	(expp p) e cases (cs, fss)
   | Jthrow e -> fprintf ppf "@[throw %a@]" (expp p) e
-  | Jexps (Jcall (Jfun _, _) as e) -> fprintf ppf "@[(%a)@]" (expp p) e
+  | Jexps (Jfun _ as e) -> fprintf ppf "@[%a@]" (expp p) e
   | Jexps e -> fprintf ppf "@[%a@]" (expp p) e
   | Jtrycatch (s1, i, s2) ->
       fprintf ppf "@[<hv>try %a catch (%s) %a@]" block s1 i block s2
@@ -302,9 +301,6 @@ and stmt ppf = function
 
   | Jwhile (e, ss) ->
       fprintf ppf "@[<hv>while (%a) %a@]" (expp p) e maybe_block ss
-
-  | Jlabel (i, ss) -> fprintf ppf "@[<hv>%s: %a@]" i maybe_block ss
-  | Jbreakto i     -> fprintf ppf "@[break %s@]" i
 
 and maybe_block ppf = function
   | [] -> fprintf ppf "@;<1 2>;@ "
@@ -317,7 +313,7 @@ and maybe_block ppf = function
 and block ppf ss = fprintf ppf "{@;<1 2>%a@ }" stmts ss
 
 and st_needs_sc = function
-  | (Jfuns _ | Jites _ | Jfor _ | Jwhile _ | Jswitch _ | Jtrycatch _ | Jlabel _) -> false
+  | (Jfuns _ | Jites _ | Jfor _ | Jwhile _ | Jswitch _ | Jtrycatch _) -> false
   | _ -> true
 
 and stmts ppf ss =

@@ -39,7 +39,6 @@ module Make_options (F :
      val _o : string -> unit
      val _output_obj : unit -> unit
      val _pack : unit -> unit
-     val _patch : unit -> unit
      val _pp : string -> unit
      val _principal : unit -> unit
      val _rectypes : unit -> unit
@@ -107,8 +106,6 @@ struct
            " Output a C object file instead of an executable";
     "-pack", Arg.Unit F._pack,
            " Package the given .cmo files into one .cmo";
-    "-patch", Arg.Unit F._patch,
-           " Link a patch instead of an executable";
     "-pp", Arg.String F._pp,
            "<command>  Pipe sources through preprocessor <command>";
     "-principal", Arg.Unit F._principal,

@@ -62,15 +62,16 @@ let jsident_of_ident id =
   done;
   Buffer.contents b
 
-let label_raise lab = "r$" ^ string_of_int lab
-let flag_raised lab = "$r" ^ string_of_int lab
-let raise_arg lab i = "$r" ^ string_of_int lab ^ "_" ^ string_of_int i
-
 let makeblock tag ces =
   match tag with
     | 0 -> jcall "$" ces
     | (1|2|3|4|5|6|7|8|9) -> jcall ("$" ^ string_of_int tag) ces
     | _ -> jcall "$N" [jnum_of_int tag; Jarray ces]
+
+let makexblock tag ces =
+  match ces with
+    | [] -> jcall "$xM" [jnum_of_int tag]
+    | _ -> jcall "$xN" [jnum_of_int tag; Jarray ces]
 
 let exp_of_stmts ss = Jcall (Jfun ([], ss), [])
 
@@ -242,28 +243,8 @@ let comp_prim p es =
        Pcvtbint _, [e]) ->
 	e
 
-    | Pduprecord _, [e] -> jcall "caml_obj_dup" [e]
-
     | _ ->
 	raise (Unimplemented "comp_prim") (* Jstring "comp_prim" *)
-(*
-        let b = Buffer.create 16 in
-        let f = Format.formatter_of_buffer b in
-        Printlambda.primitive f p;
-        Format.pp_print_flush f ();
-        let p = Buffer.contents b in
-	raise (Unimplemented ("comp_prim: " ^ p)) (* Jstring "comp_prim" *)
-*)
-
-let starts_with s sw =
-  let sl = String.length s in
-  let swl = String.length sw in
-  sl >= swl && String.sub s 0 swl = sw
-
-let drop s n =
-  let sl = String.length s in
-  if sl <= n then s
-  else String.sub s n (sl - n)
 
 (* compile a lambda as a Js.exp *)
 (* tail is true if the expression is in tail position *)
@@ -282,7 +263,7 @@ let rec comp_expr tail expr =
 
     | Lapply(e, es) ->
 	let app = if tail then "__" else "_" in
-	jcall app [comp_expr false e; Jarray (List.map (comp_expr false) es)]
+	jmcall (comp_expr false e) app (List.map (comp_expr false) es)
 
     | Lifthenelse (i, t, e) -> Jite (comp_expr false i, comp_expr tail t,  comp_expr tail e)
 
@@ -293,39 +274,6 @@ let rec comp_expr tail expr =
     | Lassign (i, e) -> Jassign (Jvar (jsident_of_ident i), comp_expr false e)
 
     | Lprim (p, args) -> comp_prim p (List.map (comp_expr false) args)
-
-    | Lsend (_, Lconst(Const_immstring m), o, args) ->
-	let app = if tail then "__m" else "_m" in
-        let co = comp_expr false o in
-        let cargs = List.map (comp_expr false) args in
-        let op, m = match m with
-          | _ when starts_with m "_get_" -> (`Get, drop m 5)
-          | _ when starts_with m "_set_" -> (`Set, drop m 5)
-          | _ when starts_with m "_" -> (`Call, drop m 1)
-          | _ -> (`Call, m) in
-        (* drop trailing _foo_ *)
-        let m =
-          let ml = String.length m in
-          if ml >= 2 && m.[ml - 1] = '_'
-          then
-            try String.sub m 0 (String.rindex_from m (ml - 2) '_')
-            with Not_found -> m
-          else m in
-        begin
-          match op, cargs with
-            | `Get, [] -> Jfieldref (co, m)
-            | `Set, [e] -> Jassign (Jfieldref (co, m), e)
-            | `Call, es ->
-                begin
-                  match co with
-                    | Jvar _ -> jcall app [Jfieldref(co, m); co; Jarray es]
-                    | _ ->
-                        let i = jsident_of_ident (Ident.create "v") in
-                        (* here we bind i to avoid multiply evaluating co *)
-                        exp_of_stmts [ Jvars (i, co); Jreturn (jcall app [Jfieldref(Jvar i, m); Jvar i; Jarray es]) ]
-                end
-            | _ -> raise (Failure "bad method call")
-        end
 
     | _ ->  Jstring "comp_expr"
 
@@ -351,15 +299,6 @@ and comp_expr_st tail expr k =
     | Lwhile (e1, e2) ->
 	[ Jwhile (comp_expr false e1, comp_expr_st false e2 keffect) ]
 
-    (*
-      special case some constructs that arise from the compilation of pattern matching,
-      to avoid deep nesting in generated Javascript
-    *)
-    | Lifthenelse (i, t, (Lstaticraise _ as e)) ->
-	(Jites (Jnot (comp_expr false i), comp_expr_st tail e k, [])) :: (comp_expr_st tail t k)
-    | Lifthenelse (i, (Lstaticraise _ as t), e) ->
-	(Jites (comp_expr false i, comp_expr_st tail t k, [])) :: (comp_expr_st tail e k)
-
     | Lifthenelse (i, t, e) ->
 	[ Jites (comp_expr false i, comp_expr_st tail t k, comp_expr_st tail e k) ]
 
@@ -376,25 +315,7 @@ and comp_expr_st tail expr k =
 		let i = jsident_of_ident (Ident.create "s") in
 		let cse = comp_expr false se in
 		((fun x -> Jvars (i, cse) :: x), Jvar i) in
-	let cc (i, e) =
-          (* true if the sequence returns or throws; otherwise we need a break *)
-          let rec exits stmts =
-            match stmts with
-              | [] -> false
-              | _ ->
-                  match List.nth stmts (List.length stmts - 1) with
-                    | Jbreakto _ -> true
-                    | Jreturn _ -> true
-                    | Jthrow _ -> true
-                    | Jites (_, t, e) -> exits t && exits e
-                    | _ -> false in
-          let i = jnum_of_int i in
-          let stmts = comp_expr_st tail e k in
-          let stmts =
-            if exits stmts
-            then stmts
-            else stmts @ [ Jbreak ] in
-        (i, stmts) in
+	let cc (i, e) = (jnum_of_int i, comp_expr_st tail e k) in
 	let fss = match fe with None -> Some [k Jnull] | Some e -> Some (comp_expr_st tail e k) in
 	let cswitch = Jswitch (cse, List.map cc cs, fss) in
 	let bswitch = Jswitch (jcall "$t" [cse], List.map cc bs, fss) in
@@ -413,44 +334,23 @@ and comp_expr_st tail expr k =
     | Lprim (Pignore, [e]) -> comp_expr_st false e keffect
 
     | Lstaticcatch (e1, (lab, args), e2) ->
-        (* The raised flag indicates whether e1 exits normally or via
-           a static-raise. This variable can be eliminated with
-           the introduction of another block label, which would also double
-           the nesting depth. *)
-        let raised = flag_raised lab in
-        (* e2 expects the names of its arguments as named in args. Here we use
-           raise_args, a set of variables whose names are derived predictably
-           from the label, to pass the argument values from the static-raise
-           to e2. We could either eliminate these raise_args, by adding
-           a contextual parameter to comp_expr(_st) so that the static-raise
-           knows the names of args, or eliminate the args in e2, by
-           alpha-renaming them to raise_args. *)
-        let rec with_raise_arg i l =
-          if i <= 0 then l
-          else with_raise_arg (i-1) (Jvars(raise_arg lab (i-1), Jnull)::l) in
-        let _, dest_raise_args =
-          List.fold_left
-            (fun (i,l) v ->
-              i+1, Jvars (jsident_of_ident v, Jvar (raise_arg lab i)) :: l)
-            (0,[]) args in
-        with_raise_arg (List.length args)
-          [ Jvars (raised, Jbool false);
-            Jlabel (label_raise lab, comp_expr_st tail e1 k);
-            Jites (Jvar raised,
-                  List.rev_append dest_raise_args
-                    (comp_expr_st tail e2 k),
-                  []) ]
+	[ Jtrycatch
+	    (comp_expr_st tail e1 k,
+	    "$x",
+	    Jites (Jneq (jnum_of_int lab, jcall "$xt" [Jvar "$x"]),
+		  [Jthrow (Jvar "$x")], [])
+	    ::
+	      (* if no args, no need to build a function to call *)
+	      match args with
+		  [] -> comp_expr_st tail e2 k
+		| _ ->
+		    [ k (Jcall (Jfieldref
+				   (Jfun (List.map jsident_of_ident args, comp_expr_st tail e2 kreturn),
+				   "apply"),
+			       [ Jnull; Jvar "$x" ])) ])]
 
     | Lstaticraise (lab, args) ->
-        let _, cons_raise_args =
-          List.fold_left
-            (fun (i,l) v ->
-              i+1, Jexps (Jassign (Jvar (raise_arg lab i),
-                                  (comp_expr false v))) :: l)
-            (0, []) args in
-        List.rev_append cons_raise_args
-          [ Jexps (Jassign (Jvar (flag_raised lab), Jbool true));
-            Jbreakto (label_raise lab) ]
+	[ Jthrow (makexblock lab (List.map (comp_expr false) args)) ]
 
     | Ltrywith (e1, i, e2) ->
 	[ Jtrycatch (comp_expr_st false e1 k, jsident_of_ident i, comp_expr_st tail e2 k) ]

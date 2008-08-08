@@ -142,26 +142,15 @@ let debug_info = ref ([] : (int * string) list)
 
 (* Link in a compilation unit *)
 
-let patch = ref false
-
 let link_compunit output_fun inchan file_name compunit =
-  if not !patch
-  then check_consistency file_name compunit;
+  check_consistency file_name compunit;
   seek_in inchan compunit.cu_pos;
   let code_block = (input_value inchan : Js.stmt) in
-  let code_block =
-    if !patch
-    then
-      match code_block with
-        | Js.Jvars (id, exp) -> Js.Jexps (Js.Jassign (Js.Jvar id, exp))
-        | _ -> code_block
-    else code_block in
 
   (* we don't need to do any relocation, but as a side effect this
      checks that we have the right globals and primitives *)
   let dummy = "1234" in
-  if not !patch
-  then Symtable.patch_object dummy compunit.cu_reloc;
+  Symtable.patch_object dummy compunit.cu_reloc;
 
   let buf = Buffer.create 1024 in
   let ppf = Format.formatter_of_buffer buf in
@@ -291,7 +280,6 @@ let link_js_exec tolink exec_name =
     let output_fun = output_string outchan in
     output_fun ("// compiled by ocamlc " ^ version ^ ", ocamljs " ^ jsversion ^ "\n");
 
-    output_fun "var ocamljs$caml_named_value = (function (){\n";
     (* exceptions *)
     List.iter
       (fun (n, i) ->
@@ -299,8 +287,6 @@ let link_js_exec tolink exec_name =
       Predef.builtin_values;
 
     List.iter (link_file output_fun) tolink;
-    output_fun "return caml_named_value;\n";
-    output_fun "})();\n";
     close_out outchan
   with x ->
     close_out outchan;
@@ -309,29 +295,12 @@ let link_js_exec tolink exec_name =
 
 (* Main entry point *)
 
-let link_patch tolink exec_name =
-  Misc.remove_file exec_name; (* avoid permission problems, cf PR#1911 *)
-  let outchan =
-    open_out_gen [Open_wronly; Open_trunc; Open_creat; Open_binary]
-                 0o666 exec_name in
-  try
-    let output_fun = output_string outchan in
-    output_fun ("// compiled by ocamlc " ^ version ^ ", ocamljs " ^ jsversion ^ "\n");
-    List.iter (link_file output_fun) tolink;
-    close_out outchan
-  with x ->
-    close_out outchan;
-    remove_file exec_name;
-    raise x
-
 let link objfiles output_name =
   let objfiles =
-    if !Clflags.nopervasives || !patch then objfiles
+    if !Clflags.nopervasives then objfiles
     else ["support.js"; "primitives.js"; "stdlib.cmjsa" ] @ objfiles @ ["std_exit.cmjs"] in
   let tolink = List.fold_right scan_file objfiles [] in
-  if !patch
-  then link_patch tolink output_name
-  else link_js_exec tolink output_name
+  link_js_exec tolink output_name
 
 (* Error report *)
 

@@ -62,7 +62,6 @@ and stmt =
     | Jempty
     | Jvars of ident * exp
     | Jfuns of ident * ident list * stmt list
-    | Jbreak
     | Jreturn of exp
     | Jswitch of exp * (exp * stmt list) list * stmt list option
     | Jites of exp * stmt list * stmt list
@@ -71,8 +70,6 @@ and stmt =
     | Jtrycatch of stmt list * ident * stmt list
     | Jfor of stmt * exp * stmt * stmt list
     | Jwhile of exp * stmt list
-    | Jlabel of ident * stmt list
-    | Jbreakto of ident
 
 let jnum_of_int i = Jnum (float_of_int i)
 let jcall f es = Jcall (Jvar f, es)
