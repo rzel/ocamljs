@@ -1,0 +1,3 @@
+#summary Introduction to ocamljs
+
+Ocamljs is a Javascript back-end for the OCaml compiler. It includes bindings to the browser DOM and several other support libraries. It also works with orpc for RPC over HTTP.
