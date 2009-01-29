@@ -1,0 +1,22 @@
+#summary How to install and use ocamljs
+
+===Installing ocamljs===
+
+  # Prerequisites: OCaml 3.10.2, findlib, ulex
+  # Unpack the OCaml 3.10.2 distribution and run ./configure only, with the same options you gave when you built OCaml, then symlink it to ocamljs-0.2/ocaml
+  # 'make' builds ocamljs and the associated libraries
+  # 'make test' runs the test suite; you will need SpiderMonkey or other Javascript interpreter
+  # 'make install' installs ocamljs and the associated libraries
+  # 'make examples' builds all the examples
+
+===Using ocamljs===
+
+The command 'ocamljs' may be used just like ocamlc or ocamlopt. It
+generates .cmjs/.cmjsa files instead of .cmo/.cma. A linked file (.js)
+consists of Javascript source, which may be run through a standalone
+Javascript interpreter, or embedded in a web page or Firefox
+extension. See the examples for details.
+
+See tools/myocambuild.ml for some useful ocamlbuild rules.
+
+There is also [Findlib findlib support].

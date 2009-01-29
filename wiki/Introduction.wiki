@@ -20,6 +20,7 @@ and Haoyang Wang.
   * [Mozilla] binding to Mozilla API
   * [Froc] library for functional reactive OCaml
   * [Froc_dom] library to use Froc with browser DOM
+  * [Lwt_js] library for cooperative multithreading
   * [Jslib] library for working with Javascript using Camlp4
 
 ==Contributing==
