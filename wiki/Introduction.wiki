@@ -13,14 +13,14 @@ and Haoyang Wang.
   * [Interfacing interfacing with native code]
   * [Findlib findlib support]
 
-  * [Ocamljs ocamljs support library]
-  * [Stdlib OCaml standard library]
-  * [Javascript binding to built-in Javascript libraries]
-  * [Dom binding to browser DOM]
-  * [Mozilla binding to Mozilla API]
-  * [Froc library for functional reactive OCaml]
-  * [FrocDom library to use Froc with browser DOM]
-  * [Jslib library for working with Javascript using Camlp4]
+  * [Ocamljs] the ocamljs support library
+  * [Stdlib] the OCaml standard library in ocamljs
+  * [Javascript] binding to built-in Javascript libraries
+  * [Dom] binding to browser DOM
+  * [Mozilla] binding to Mozilla API
+  * [Froc] library for functional reactive OCaml
+  * [Froc_dom] library to use Froc with browser DOM
+  * [Jslib] library for working with Javascript using Camlp4
 
 ==Contributing==
 
