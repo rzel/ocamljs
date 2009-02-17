@@ -13,22 +13,21 @@ and Haoyang Wang.
   * [Interfacing interfacing with native code]
   * [Findlib findlib support]
 
-  * [Ocamljs] the ocamljs support library
-  * [Stdlib] the OCaml standard library in ocamljs
+  * [Ocamljs] ocamljs support library
+  * [Stdlib] OCaml standard library in ocamljs
   * [Javascript] binding to built-in Javascript libraries
   * [Dom] binding to browser DOM
   * [Mozilla] binding to Mozilla API
   * [Froc] library for functional reactive OCaml
   * [Froc_dom] library to use Froc with browser DOM
-  * [Lwt_js] library for cooperative multithreading
+  * [Lwt_js] library for cooperative threading
   * [Jslib] library for working with Javascript using Camlp4
 
-==Contributing==
+  * [Plans plans for the future]
+
+===Contributing===
 
 If you find a bug, it would be very helpful to get a test case that
-produces different behavior from regular OCaml (see test/jscomp for
-examples). Other contributions are very welcome as well. For now I'd
-like to shoot for getting as much of OCaml and the standard library
-working as possible, then focus on performance.
-
-See the [http://groups.google.com/group/ocamljs-discuss mailing list].
+produces different behavior from regular OCaml (see `test/jscomp` for
+examples). Other contributions are very welcome as well. See also the
+[http://groups.google.com/group/ocamljs-discuss mailing list].
