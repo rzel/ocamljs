@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="Up" href="Jslib_parse.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of class types" rel=Appendix href="index_class_types.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Dom" rel="Chapter" href="Dom.html">
+<link title="Froc" rel="Chapter" href="Froc.html">
+<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
+<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
+<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
+<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
+<link title="Gears" rel="Chapter" href="Gears.html">
+<link title="Javascript" rel="Chapter" href="Javascript.html">
+<link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
+<link title="Jslib_lexer" rel="Chapter" href="Jslib_lexer.html">
+<link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
+<link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
+<link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
+<link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
+<link title="Mozilla" rel="Chapter" href="Mozilla.html">
+<link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Jslib_parse.Gram</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a href="Jslib_parse.html">Up</a>
+&nbsp;</div>
+<center><h1>Module <a href="type_Jslib_parse.Gram.html">Jslib_parse.Gram</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Gram: <code class="code">sig</code> <a href="Jslib_parse.Gram.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span class="keyword">module</span> <a href="Jslib_parse.Gram.Loc.html">Loc</a>: <code class="code">sig</code> <a href="Jslib_parse.Gram.Loc.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">module</span> <a href="Jslib_parse.Gram.Action.html">Action</a>: <code class="code">sig</code> <a href="Jslib_parse.Gram.Action.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">module</span> <a href="Jslib_parse.Gram.Token.html">Token</a>: <code class="code">sig</code> <a href="Jslib_parse.Gram.Token.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">type</span> <a name="TYPEgram"></a><code class="type"></code>gram = <code class="type">Camlp4.Struct.Grammar.Static.Make(Jslib_lexer).gram</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEinternal_entry"></a><code class="type"></code>internal_entry = <code class="type">Camlp4.Struct.Grammar.Static.Make(Jslib_lexer).internal_entry</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEtree"></a><code class="type"></code>tree = <code class="type">Camlp4.Struct.Grammar.Static.Make(Jslib_lexer).tree</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEtoken_pattern"></a><code class="type"></code>token_pattern = <code class="type">(<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> -> bool) * string</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEsymbol"></a><code class="type"></code>symbol = <code class="type">Camlp4.Struct.Grammar.Static.Make(Jslib_lexer).symbol</code> = </pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Smeta</span> <span class="keyword">of</span> <code class="type">string * <a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> list * <a href="Jslib_parse.Gram.Action.html#TYPEt">Action.t</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Snterm</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEinternal_entry">internal_entry</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Snterml</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEinternal_entry">internal_entry</a> * string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Slist0</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Slist0sep</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> * <a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Slist1</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Slist1sep</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> * <a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Sopt</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Sself</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Snext</span></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Stoken</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEtoken_pattern">token_pattern</a></code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Skeyword</span> <span class="keyword">of</span> <code class="type">string</code></code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code><span class="keyword">|</span></code></td>
+<td align="left" valign="top" >
+<code><span class="constructor">Stree</span> <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.html#TYPEtree">tree</a></code></code></td>
+
+</tr></table>
+
+
+<pre><span class="keyword">type</span> <a name="TYPEproduction_rule"></a><code class="type"></code>production_rule = <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> list * <a href="Jslib_parse.Gram.Action.html#TYPEt">Action.t</a></code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEsingle_extend_statment"></a><code class="type"></code>single_extend_statment = <code class="type">string option * Camlp4.Sig.Grammar.assoc option *<br>       <a href="Jslib_parse.Gram.html#TYPEproduction_rule">production_rule</a> list</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEextend_statment"></a><code class="type"></code>extend_statment = <code class="type">Camlp4.Sig.Grammar.position option *<br>       <a href="Jslib_parse.Gram.html#TYPEsingle_extend_statment">single_extend_statment</a> list</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEdelete_statment"></a><code class="type"></code>delete_statment = <code class="type"><a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> list</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEfold"></a><code class="type">('a, 'b, 'c)</code> fold = <code class="type"><a href="Jslib_parse.Gram.html#TYPEinternal_entry">internal_entry</a> -><br>       <a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> list -> ('a Stream.t -> 'b) -> 'a Stream.t -> 'c</code> </pre>
+
+<pre><span class="keyword">type</span> <a name="TYPEfoldsep"></a><code class="type">('a, 'b, 'c)</code> foldsep = <code class="type"><a href="Jslib_parse.Gram.html#TYPEinternal_entry">internal_entry</a> -><br>       <a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> list -><br>       ('a Stream.t -> 'b) -> ('a Stream.t -> unit) -> 'a Stream.t -> 'c</code> </pre>
+
+<pre><span class="keyword">module</span> <a href="Jslib_parse.Gram.Entry.html">Entry</a>: <code class="code">sig</code> <a href="Jslib_parse.Gram.Entry.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALget_filter"></a>get_filter : <code class="type">unit -> <a href="Jslib_parse.Gram.Token.Filter.html#TYPEt">Token.Filter.t</a></code></pre><pre><span class="keyword">type</span> <a name="TYPEnot_filtered"></a><code class="type">'a</code> not_filtered = <code class="type">'a Camlp4.Struct.Grammar.Static.Make(Jslib_lexer).not_filtered</code> </pre>
+
+<pre><span class="keyword">val</span> <a name="VALextend"></a>extend : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -> <a href="Jslib_parse.Gram.html#TYPEextend_statment">extend_statment</a> -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALdelete_rule"></a>delete_rule : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -> <a href="Jslib_parse.Gram.html#TYPEdelete_statment">delete_statment</a> -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALsrules"></a>srules : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -><br>       (<a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a> list * <a href="Jslib_parse.Gram.Action.html#TYPEt">Action.t</a>) list -><br>       <a href="Jslib_parse.Gram.html#TYPEsymbol">symbol</a></code></pre><pre><span class="keyword">val</span> <a name="VALsfold0"></a>sfold0 : <code class="type">('a -> 'b -> 'b) -> 'b -> ('c, 'a, 'b) <a href="Jslib_parse.Gram.html#TYPEfold">fold</a></code></pre><pre><span class="keyword">val</span> <a name="VALsfold1"></a>sfold1 : <code class="type">('a -> 'b -> 'b) -> 'b -> ('c, 'a, 'b) <a href="Jslib_parse.Gram.html#TYPEfold">fold</a></code></pre><pre><span class="keyword">val</span> <a name="VALsfold0sep"></a>sfold0sep : <code class="type">('a -> 'b -> 'b) -> 'b -> ('c, 'a, 'b) <a href="Jslib_parse.Gram.html#TYPEfoldsep">foldsep</a></code></pre><pre><span class="keyword">val</span> <a name="VALlex"></a>lex : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a> -><br>       char Stream.t -><br>       (<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> * <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a>) Stream.t<br>       <a href="Jslib_parse.Gram.html#TYPEnot_filtered">not_filtered</a></code></pre><pre><span class="keyword">val</span> <a name="VALlex_string"></a>lex_string : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a> -><br>       string -><br>       (<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> * <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a>) Stream.t<br>       <a href="Jslib_parse.Gram.html#TYPEnot_filtered">not_filtered</a></code></pre><pre><span class="keyword">val</span> <a name="VALfilter"></a>filter : <code class="type">(<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> * <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a>) Stream.t<br>       <a href="Jslib_parse.Gram.html#TYPEnot_filtered">not_filtered</a> -><br>       (<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> * <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a>) Stream.t</code></pre><pre><span class="keyword">val</span> <a name="VALparse"></a>parse : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a> -> char Stream.t -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALparse_string"></a>parse_string : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a> -> string -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALparse_tokens_before_filter"></a>parse_tokens_before_filter : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -><br>       (<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> * <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a>) Stream.t<br>       <a href="Jslib_parse.Gram.html#TYPEnot_filtered">not_filtered</a> -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALparse_tokens_after_filter"></a>parse_tokens_after_filter : <code class="type">'a <a href="Jslib_parse.Gram.Entry.html#TYPEt">Entry.t</a> -><br>       (<a href="Jslib_parse.Gram.Token.html#TYPEt">Token.t</a> * <a href="Jslib_parse.Gram.Loc.html#TYPEt">Loc.t</a>) Stream.t -> 'a</code></pre></body></html>

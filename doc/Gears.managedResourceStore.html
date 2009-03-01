@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Gears.httpRequest.html">
+<link rel="next" href="Gears.resourceStore.html">
+<link rel="Up" href="Gears.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of class types" rel=Appendix href="index_class_types.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Dom" rel="Chapter" href="Dom.html">
+<link title="Froc" rel="Chapter" href="Froc.html">
+<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
+<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
+<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
+<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
+<link title="Gears" rel="Chapter" href="Gears.html">
+<link title="Javascript" rel="Chapter" href="Javascript.html">
+<link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
+<link title="Jslib_lexer" rel="Chapter" href="Jslib_lexer.html">
+<link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
+<link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
+<link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
+<link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
+<link title="Mozilla" rel="Chapter" href="Mozilla.html">
+<link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Gears.managedResourceStore</title>
+</head>
+<body>
+<div class="navbar"><a href="Gears.httpRequest.html">Previous</a>
+&nbsp;<a href="Gears.html">Up</a>
+&nbsp;<a href="Gears.resourceStore.html">Next</a>
+</div>
+<center><h1>Class type <a href="type_Gears.managedResourceStore.html">Gears.managedResourceStore</a></h1></center>
+<br>
+<pre><span class="keyword">class type</span> <a name="TYPEmanagedResourceStore"></a>managedResourceStore = <code class="code">object</code> <a href="Gears.managedResourceStore.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span class="keyword">method</span> <a name="METHOD_get_name"></a>_get_name : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_requiredCookie"></a>_get_requiredCookie : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_enabled"></a>_get_enabled : <code class="type">bool</code></pre><pre><span class="keyword">method</span> <a name="METHOD_set_enabled"></a>_set_enabled : <code class="type">bool -> unit</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_manifestUrl"></a>_get_manifestUrl : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHOD_set_manifestUrl"></a>_set_manifestUrl : <code class="type">string -> unit</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_lastUpdateCheckTime"></a>_get_lastUpdateCheckTime : <code class="type">int</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_updateStatus"></a>_get_updateStatus : <code class="type">int</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_lastErrorMessage"></a>_get_lastErrorMessage : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_currentVersion"></a>_get_currentVersion : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHOD_set_oncomplete"></a>_set_oncomplete : <code class="type">(< _get_newVersion : string > -> unit) <a href="Ocamljs.html#TYPEjsfun">Ocamljs.jsfun</a> -> unit</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_oncomplete"></a>_get_oncomplete : <code class="type">(< _get_newVersion : string > -> unit) <a href="Ocamljs.html#TYPEjsfun">Ocamljs.jsfun</a></code></pre><pre><span class="keyword">method</span> <a name="METHOD_set_onerror"></a>_set_onerror : <code class="type">(< _get_message : string > -> unit) <a href="Ocamljs.html#TYPEjsfun">Ocamljs.jsfun</a> -> unit</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_onerror"></a>_get_onerror : <code class="type">(< _get_message : string > -> unit) <a href="Ocamljs.html#TYPEjsfun">Ocamljs.jsfun</a></code></pre><pre><span class="keyword">method</span> <a name="METHOD_set_onprogress"></a>_set_onprogress : <code class="type">(< _get_filesComplete : int; _get_filesTotal : int > -> unit) <a href="Ocamljs.html#TYPEjsfun">Ocamljs.jsfun</a> -><br>       unit</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_onprogress"></a>_get_onprogress : <code class="type">(< _get_filesComplete : int; _get_filesTotal : int > -> unit) <a href="Ocamljs.html#TYPEjsfun">Ocamljs.jsfun</a></code></pre><pre><span class="keyword">method</span> <a name="METHODcheckForUpdate"></a>checkForUpdate : <code class="type">unit</code></pre></body></html>

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="next" href="Jslib_parse.Gram.Action.html">
+<link rel="Up" href="Jslib_parse.Gram.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of class types" rel=Appendix href="index_class_types.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Dom" rel="Chapter" href="Dom.html">
+<link title="Froc" rel="Chapter" href="Froc.html">
+<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
+<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
+<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
+<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
+<link title="Gears" rel="Chapter" href="Gears.html">
+<link title="Javascript" rel="Chapter" href="Javascript.html">
+<link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
+<link title="Jslib_lexer" rel="Chapter" href="Jslib_lexer.html">
+<link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
+<link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
+<link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
+<link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
+<link title="Mozilla" rel="Chapter" href="Mozilla.html">
+<link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Jslib_parse.Gram.Loc</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a href="Jslib_parse.Gram.html">Up</a>
+&nbsp;<a href="Jslib_parse.Gram.Action.html">Next</a>
+</div>
+<center><h1>Module <a href="type_Jslib_parse.Gram.Loc.html">Jslib_parse.Gram.Loc</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Loc: <code class="code">sig</code> <a href="Jslib_parse.Gram.Loc.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span class="keyword">type</span> <a name="TYPEt"></a><code class="type"></code>t = <code class="type">Jslib_lexer.Loc.t</code> </pre>
+
+<pre><span class="keyword">val</span> <a name="VALmk"></a>mk : <code class="type">string -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALghost"></a>ghost : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALof_lexing_position"></a>of_lexing_position : <code class="type">Lexing.position -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALto_ocaml_location"></a>to_ocaml_location : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> Camlp4_import.Location.t</code></pre><pre><span class="keyword">val</span> <a name="VALof_ocaml_location"></a>of_ocaml_location : <code class="type">Camlp4_import.Location.t -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALof_lexbuf"></a>of_lexbuf : <code class="type">Lexing.lexbuf -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALof_tuple"></a>of_tuple : <code class="type">string * int * int * int * int * int * int * bool -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALto_tuple"></a>to_tuple : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> string * int * int * int * int * int * int * bool</code></pre><pre><span class="keyword">val</span> <a name="VALmerge"></a>merge : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALjoin"></a>join : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALmove"></a>move : <code class="type">[ `both | `start | `stop ] -><br>       int -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALshift"></a>shift : <code class="type">int -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALmove_line"></a>move_line : <code class="type">int -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALfile_name"></a>file_name : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> string</code></pre><pre><span class="keyword">val</span> <a name="VALstart_line"></a>start_line : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> int</code></pre><pre><span class="keyword">val</span> <a name="VALstop_line"></a>stop_line : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> int</code></pre><pre><span class="keyword">val</span> <a name="VALstart_bol"></a>start_bol : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> int</code></pre><pre><span class="keyword">val</span> <a name="VALstop_bol"></a>stop_bol : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> int</code></pre><pre><span class="keyword">val</span> <a name="VALstart_off"></a>start_off : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> int</code></pre><pre><span class="keyword">val</span> <a name="VALstop_off"></a>stop_off : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> int</code></pre><pre><span class="keyword">val</span> <a name="VALstart_pos"></a>start_pos : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> Lexing.position</code></pre><pre><span class="keyword">val</span> <a name="VALstop_pos"></a>stop_pos : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> Lexing.position</code></pre><pre><span class="keyword">val</span> <a name="VALis_ghost"></a>is_ghost : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> bool</code></pre><pre><span class="keyword">val</span> <a name="VALghostify"></a>ghostify : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALset_file_name"></a>set_file_name : <code class="type">string -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALstrictly_before"></a>strictly_before : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> bool</code></pre><pre><span class="keyword">val</span> <a name="VALmake_absolute"></a>make_absolute : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a></code></pre><pre><span class="keyword">val</span> <a name="VALprint"></a>print : <code class="type">Format.formatter -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALdump"></a>dump : <code class="type">Format.formatter -> <a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALto_string"></a>to_string : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> string</code></pre><pre><span class="keyword">exception</span> <a name="EXCEPTIONExc_located"></a>Exc_located <span class="keyword">of</span> <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> * exn</code></pre>
+<pre><span class="keyword">val</span> <a name="VALraise"></a>raise : <code class="type"><a href="Jslib_parse.Gram.Loc.html#TYPEt">t</a> -> exn -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALname"></a>name : <code class="type">string Pervasives.ref</code></pre></body></html>

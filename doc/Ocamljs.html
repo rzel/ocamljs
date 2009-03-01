@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<link rel="Start" href="index.html">
+<link rel="previous" href="Mozilla.html">
+<link rel="Up" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of exceptions" rel=Appendix href="index_exceptions.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of class methods" rel=Appendix href="index_methods.html">
+<link title="Index of class types" rel=Appendix href="index_class_types.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Index of module types" rel=Appendix href="index_module_types.html">
+<link title="Dom" rel="Chapter" href="Dom.html">
+<link title="Froc" rel="Chapter" href="Froc.html">
+<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
+<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
+<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
+<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
+<link title="Gears" rel="Chapter" href="Gears.html">
+<link title="Javascript" rel="Chapter" href="Javascript.html">
+<link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
+<link title="Jslib_lexer" rel="Chapter" href="Jslib_lexer.html">
+<link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
+<link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
+<link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
+<link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
+<link title="Mozilla" rel="Chapter" href="Mozilla.html">
+<link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Ocamljs</title>
+</head>
+<body>
+<div class="navbar"><a href="Mozilla.html">Previous</a>
+&nbsp;<a href="index.html">Up</a>
+&nbsp;</div>
+<center><h1>Module <a href="type_Ocamljs.html">Ocamljs</a></h1></center>
+<br>
+<pre><span class="keyword">module</span> Ocamljs: <code class="code">sig</code> <a href="Ocamljs.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span class="keyword">val</span> <a name="VALassign"></a>assign : <code class="type">'a -> 'a -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALfalse_"></a>false_ : <code class="type">unit -> bool</code></pre><pre><span class="keyword">val</span> <a name="VALfieldref"></a>fieldref : <code class="type">'a -> string -> 'b</code></pre><pre><span class="keyword">val</span> <a name="VALfunction_"></a>function_ : <code class="type">'a -> 'b</code></pre><pre><span class="keyword">val</span> <a name="VALhashref"></a>hashref : <code class="type">'a -> 'b -> 'c</code></pre><pre><span class="keyword">val</span> <a name="VALnull"></a>null : <code class="type">unit -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALobj"></a>obj : <code class="type">(string * 'a) list -> 'b</code></pre><pre><span class="keyword">val</span> <a name="VALthis"></a>this : <code class="type">unit -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALthrow"></a>throw : <code class="type">'a -> 'b</code></pre><pre><span class="keyword">val</span> <a name="VALtrue_"></a>true_ : <code class="type">unit -> bool</code></pre><pre><span class="keyword">val</span> <a name="VALvar"></a>var : <code class="type">string -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALcaml_callback"></a>caml_callback : <code class="type">('a -> 'b) -> 'a -> 'b</code></pre><pre><span class="keyword">val</span> <a name="VALcaml_callback2"></a>caml_callback2 : <code class="type">('a -> 'b -> 'c) -> 'a -> 'b -> 'c</code></pre><pre><span class="keyword">val</span> <a name="VALcaml_callback3"></a>caml_callback3 : <code class="type">('a -> 'b -> 'c -> 'd) -> 'a -> 'b -> 'c -> 'd</code></pre><pre><span class="keyword">val</span> <a name="VALoption_of_nullable"></a>option_of_nullable : <code class="type">'a -> 'a option</code></pre><pre><span class="keyword">val</span> <a name="VALnullable_of_option"></a>nullable_of_option : <code class="type">'a option -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALis_null"></a>is_null : <code class="type">'a -> bool</code></pre><pre><span class="keyword">type</span> <a name="TYPEjsfun"></a><code class="type">'a</code> jsfun </pre>
+
+<pre><span class="keyword">val</span> <a name="VALjsfun"></a>jsfun : <code class="type">('a -> 'b) -> ('a -> 'b) <a href="Ocamljs.html#TYPEjsfun">jsfun</a></code></pre><pre><span class="keyword">val</span> <a name="VALjsfun2"></a>jsfun2 : <code class="type">('a -> 'b -> 'c) -> ('a -> 'b -> 'c) <a href="Ocamljs.html#TYPEjsfun">jsfun</a></code></pre><pre><span class="keyword">val</span> <a name="VALjsfun3"></a>jsfun3 : <code class="type">('a -> 'b -> 'c -> 'd) -> ('a -> 'b -> 'c -> 'd) <a href="Ocamljs.html#TYPEjsfun">jsfun</a></code></pre><pre><span class="keyword">val</span> <a name="VALjsfun4"></a>jsfun4 : <code class="type">('a -> 'b -> 'c -> 'd -> 'e) -> ('a -> 'b -> 'c -> 'd -> 'e) <a href="Ocamljs.html#TYPEjsfun">jsfun</a></code></pre><pre><span class="keyword">val</span> <a name="VALjsfun5"></a>jsfun5 : <code class="type">('a -> 'b -> 'c -> 'd -> 'e -> 'f) -><br>       ('a -> 'b -> 'c -> 'd -> 'e -> 'f) <a href="Ocamljs.html#TYPEjsfun">jsfun</a></code></pre><pre><span class="keyword">module</span> <a href="Ocamljs.Inline.html">Inline</a>: <code class="code">sig</code> <a href="Ocamljs.Inline.html">..</a> <code class="code">end</code></pre></body></html>
