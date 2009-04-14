@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="style.css" type="text/css">
 <meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
 <link rel="Start" href="index.html">
-<link rel="previous" href="Dom.eventTarget.html">
+<link rel="previous" href="Dom.abstractView.html">
 <link rel="next" href="Dom.uIEvent.html">
 <link rel="Up" href="Dom.html">
 <link title="Index of types" rel=Appendix href="index_types.html">
@@ -15,11 +15,6 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Index of module types" rel=Appendix href="index_module_types.html">
 <link title="Dom" rel="Chapter" href="Dom.html">
-<link title="Froc" rel="Chapter" href="Froc.html">
-<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
-<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
-<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
-<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
 <link title="Gears" rel="Chapter" href="Gears.html">
 <link title="Javascript" rel="Chapter" href="Javascript.html">
 <link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
@@ -27,18 +22,20 @@
 <link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
 <link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
 <link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_dom" rel="Chapter" href="Lwt_dom.html">
 <link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
 <link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_timeout" rel="Chapter" href="Lwt_timeout.html">
 <link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
 <link title="Mozilla" rel="Chapter" href="Mozilla.html">
 <link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Dom.event</title>
 </head>
 <body>
-<div class="navbar"><a href="Dom.eventTarget.html">Previous</a>
+<div class="navbar"><a href="Dom.abstractView.html">Previous</a>
 &nbsp;<a href="Dom.html">Up</a>
 &nbsp;<a href="Dom.uIEvent.html">Next</a>
 </div>
 <center><h1>Class type <a href="type_Dom.event.html">Dom.event</a></h1></center>
 <br>
 <pre><span class="keyword">class type</span> <a name="TYPEevent"></a>event = <code class="code">object</code> <a href="Dom.event.html">..</a> <code class="code">end</code></pre><hr width="100%">
-<pre><span class="keyword">method</span> <a name="METHOD_get_bubbles"></a>_get_bubbles : <code class="type">bool</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_cancelable"></a>_get_cancelable : <code class="type">bool</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_currentTarget"></a>_get_currentTarget : <code class="type"><a href="Dom.eventTarget.html">eventTarget</a></code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_eventPhase"></a>_get_eventPhase : <code class="type">int</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_target"></a>_get_target : <code class="type"><a href="Dom.eventTarget.html">eventTarget</a></code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_timeStamp"></a>_get_timeStamp : <code class="type">float</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_type"></a>_get_type : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHODinitEvent"></a>initEvent : <code class="type">string -> bool -> bool -> unit</code></pre><pre><span class="keyword">method</span> <a name="METHODpreventDefault"></a>preventDefault : <code class="type">unit</code></pre><pre><span class="keyword">method</span> <a name="METHODstopPropagation"></a>stopPropagation : <code class="type">unit</code></pre></body></html>
+<pre><span class="keyword">method</span> <a name="METHOD_get_bubbles"></a>_get_bubbles : <code class="type">bool</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_cancelable"></a>_get_cancelable : <code class="type">bool</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_currentTarget"></a>_get_currentTarget : <code class="type">'a. < .. > as 'a</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_eventPhase"></a>_get_eventPhase : <code class="type">int</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_target"></a>_get_target : <code class="type">'b. < .. > as 'b</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_timeStamp"></a>_get_timeStamp : <code class="type">float</code></pre><pre><span class="keyword">method</span> <a name="METHOD_get_type"></a>_get_type : <code class="type">string</code></pre><pre><span class="keyword">method</span> <a name="METHODinitEvent"></a>initEvent : <code class="type">string -> bool -> bool -> unit</code></pre><pre><span class="keyword">method</span> <a name="METHODpreventDefault"></a>preventDefault : <code class="type">unit</code></pre><pre><span class="keyword">method</span> <a name="METHODstopPropagation"></a>stopPropagation : <code class="type">unit</code></pre></body></html>

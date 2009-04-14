@@ -11,11 +11,6 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Index of module types" rel=Appendix href="index_module_types.html">
 <link title="Dom" rel="Chapter" href="Dom.html">
-<link title="Froc" rel="Chapter" href="Froc.html">
-<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
-<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
-<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
-<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
 <link title="Gears" rel="Chapter" href="Gears.html">
 <link title="Javascript" rel="Chapter" href="Javascript.html">
 <link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
@@ -23,8 +18,10 @@
 <link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
 <link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
 <link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_dom" rel="Chapter" href="Lwt_dom.html">
 <link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
 <link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_timeout" rel="Chapter" href="Lwt_timeout.html">
 <link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
 <link title="Mozilla" rel="Chapter" href="Mozilla.html">
 <link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Index of modules</title>
@@ -39,7 +36,10 @@
 <tr><td><a href="Mozilla.DOM.html">DOM</a> [<a href="Mozilla.html">Mozilla</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.html">Dom</a> </td>
-<td></td></tr>
+<td><div class="info">
+Browser DOM binding
+</div>
+</td></tr>
 <tr><td align="left"><br>E</td></tr>
 <tr><td><a href="Jslib_parse.Gram.Entry.html">Entry</a> [<a href="Jslib_parse.Gram.html">Jslib_parse.Gram</a>]</td>
 <td></td></tr>
@@ -52,28 +52,12 @@
 <tr><td align="left"><br>F</td></tr>
 <tr><td><a href="Jslib_parse.Gram.Token.Filter.html">Filter</a> [<a href="Jslib_parse.Gram.Token.html">Jslib_parse.Gram.Token</a>]</td>
 <td></td></tr>
-<tr><td><a href="Froc.html">Froc</a> </td>
-<td><div class="info">
-Functional reactive programming
-</div>
-</td></tr>
-<tr><td><a href="Froc_afp.html">Froc_afp</a> </td>
-<td><div class="info">
-Adaptive functional programming
-</div>
-</td></tr>
-<tr><td><a href="Froc_ddg.html">Froc_ddg</a> </td>
-<td><div class="info">
-Dynamic dependency graph underlying <code class="code">Froc</code> and <code class="code">Froc_afp</code>.
-</div>
-</td></tr>
-<tr><td><a href="Froc_dom.html">Froc_dom</a> </td>
-<td></td></tr>
-<tr><td><a href="Froc_dom_anim.html">Froc_dom_anim</a> </td>
-<td></td></tr>
 <tr><td align="left"><br>G</td></tr>
 <tr><td><a href="Gears.html">Gears</a> </td>
-<td></td></tr>
+<td><div class="info">
+Google Gears binding
+</div>
+</td></tr>
 <tr><td><a href="Jslib_parse.Gram.html">Gram</a> [<a href="Jslib_parse.html">Jslib_parse</a>]</td>
 <td></td></tr>
 <tr><td align="left"><br>I</td></tr>
@@ -81,7 +65,10 @@ Dynamic dependency graph underlying <code class="code">Froc</code> and <code cla
 <td></td></tr>
 <tr><td align="left"><br>J</td></tr>
 <tr><td><a href="Javascript.html">Javascript</a> </td>
-<td></td></tr>
+<td><div class="info">
+Javascript standard library binding
+</div>
+</td></tr>
 <tr><td><a href="Javascript.Js_string.html">Js_string</a> [<a href="Javascript.html">Javascript</a>]</td>
 <td></td></tr>
 <tr><td><a href="Ocamljs.Inline.Jslib_ast.html">Jslib_ast</a> [<a href="Ocamljs.Inline.html">Ocamljs.Inline</a>]</td>
@@ -106,11 +93,22 @@ Dynamic dependency graph underlying <code class="code">Froc</code> and <code cla
 Module <code class="code">Lwt</code>: cooperative light-weight threads.
 </div>
 </td></tr>
+<tr><td><a href="Lwt_dom.html">Lwt_dom</a> </td>
+<td><div class="info">
+<code class="code">sleep d</code> is a threads which remain suspended for <code class="code">d</code> seconds
+          (letting other threads run) and then terminates.
+</div>
+</td></tr>
 <tr><td><a href="Lwt_mutex.html">Lwt_mutex</a> </td>
 <td></td></tr>
 <tr><td><a href="Lwt_pool.html">Lwt_pool</a> </td>
 <td><div class="info">
 Creating pools (for example pools of connections to a database).
+</div>
+</td></tr>
+<tr><td><a href="Lwt_timeout.html">Lwt_timeout</a> </td>
+<td><div class="info">
+set the default handler for exception occurring after a timeout.
 </div>
 </td></tr>
 <tr><td><a href="Lwt_util.html">Lwt_util</a> </td>

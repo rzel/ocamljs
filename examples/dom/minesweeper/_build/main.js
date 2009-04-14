@@ -1,4 +1,4 @@
-// compiled by ocamlc 3.10.2, ocamljs 0.1
+// compiled by ocamlc 3.10.2, ocamljs 0.2
 var ocamljs$caml_named_value = (function (){
 var Match_failure$16g = "Match_failure";
 var Out_of_memory$17g = "Out_of_memory";
@@ -14,7 +14,7 @@ var Assert_failure$26g = "Assert_failure";
 var Undefined_recursive_module$27g = "Undefined_recursive_module";
 /*
  * This file is part of ocamljs, OCaml to Javascript compiler
- * Copyright (C) 2007 Skydeck, Inc
+ * Copyright (C) 2007-9 Skydeck, Inc
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -273,7 +273,7 @@ var caml_sys_open = function () { throw "caml_sys_open"; }
 var caml_sys_random_seed = function() { throw "caml_sys_random_seed"; }
 /*
  * This file is part of ocamljs, OCaml to Javascript compiler
- * Copyright (C) 2007 Skydeck, Inc
+ * Copyright (C) 2007-9 Skydeck, Inc
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -724,257 +724,606 @@ window.XMLHttpRequest = function() { return new ActiveXObject('Microsoft.XMLHTTP
 @end @*/
 var oc$Pervasives$ =
   function () {
-    var failwith$38 = _f(function (s$39) { throw $(Failure$19g, s$39); });
-    var invalid_arg$40 = _f(function (s$41) { throw $(Invalid_argument$18g, s$41); });
-    var Exit$42 = $("Pervasives.Exit");
-    var min$50 = _f(function (x$51, y$52) { if (caml_lessequal(x$51, y$52)) return x$51;
-                                            return y$52; });
-    var max$53 = _f(function (x$54, y$55) { if (caml_greaterequal(x$54, y$55)) return x$54;
-                                            return y$55; });
-    var abs$71 = _f(function (x$72) { if (x$72 >= 0) return x$72;
-                                      return -x$72; });
-    var lnot$76 = _f(function (x$77) { return x$77 ^ -1; });
-    var min_int$81 = 1 << (1 << 31 === 0 ? 30 : 62);
-    var max_int$82 = min_int$81 - 1;
-    var infinity$115 = caml_int64_float_of_bits("9218868437227405312");
-    var neg_infinity$116 = caml_int64_float_of_bits("-4503599627370496");
-    var nan$117 = caml_int64_float_of_bits("9218868437227405313");
-    var max_float$118 = caml_int64_float_of_bits("9218868437227405311");
-    var min_float$119 = caml_int64_float_of_bits("4503599627370496");
-    var epsilon_float$120 = caml_int64_float_of_bits("4372995238176751616");
-    var $5E$136 =
-      _f(function (s1$137, s2$138) {
-           var l1$139 = s1$137.length;
-           var l2$140 = s2$138.length;
-           var s$141 = oc$$cms(l1$139 + l2$140);
-           caml_blit_string(s1$137, 0, s$141, 0, l1$139);
-           caml_blit_string(s2$138, 0, s$141, l1$139, l2$140);
-           return s$141;
-         });
-    var char_of_int$144 =
-      _f(function (n$145) { if (n$145 < 0 || n$145 > 255) return __(invalid_arg$40, ["char_of_int"]);
-                            return n$145; });
-    var string_of_bool$151 = _f(function (b$152) { if (b$152) return "true";
+    var failwith$54 = _f(function (s$55) { throw $(Failure$19g, s$55); });
+    var invalid_arg$56 = _f(function (s$57) { throw $(Invalid_argument$18g, s$57); });
+    var Exit$58 = $("Pervasives.Exit");
+    var min$66 = _f(function (x$67, y$68) { if (caml_lessequal(x$67, y$68)) return x$67;
+                                            return y$68; });
+    var max$69 = _f(function (x$70, y$71) { if (caml_greaterequal(x$70, y$71)) return x$70;
+                                            return y$71; });
+    var abs$87 = _f(function (x$88) { if (x$88 >= 0) return x$88;
+                                      return -x$88; });
+    var lnot$92 = _f(function (x$93) { return x$93 ^ -1; });
+    var min_int$97 = 1 << (1 << 31 === 0 ? 30 : 62);
+    var max_int$98 = min_int$97 - 1;
+    var infinity$131 = caml_int64_float_of_bits("9218868437227405312");
+    var neg_infinity$132 = caml_int64_float_of_bits("-4503599627370496");
+    var nan$133 = caml_int64_float_of_bits("9218868437227405313");
+    var max_float$134 = caml_int64_float_of_bits("9218868437227405311");
+    var min_float$135 = caml_int64_float_of_bits("4503599627370496");
+    var epsilon_float$136 = caml_int64_float_of_bits("4372995238176751616");
+    var $5E$152 = _f(function (s1$153, s2$154) { return s1$153.toString() + s2$154.toString(); });
+    var char_of_int$157 =
+      _f(function (n$158) { if (n$158 < 0 || n$158 > 255) return __(invalid_arg$56, ["char_of_int"]);
+                            return n$158; });
+    var string_of_bool$164 = _f(function (b$165) { if (b$165) return "true";
                                                    return "false"; });
-    var bool_of_string$153 =
-      _f(function (param$415) {
-           if (!oc$$sneq(param$415, "false")) return 0;
-           if (oc$$sneq(param$415, "true")) return __(invalid_arg$40, ["bool_of_string"]);
+    var bool_of_string$166 =
+      _f(function (param$428) {
+           if (!oc$$sneq(param$428, "false")) return 0;
+           if (oc$$sneq(param$428, "true")) return __(invalid_arg$56, ["bool_of_string"]);
            return 1;
          });
-    var string_of_int$154 = _f(function (n$155) { return caml_format_int("%d", n$155); });
-    var String$158 = $();
-    var valid_float_lexem$159 =
-      _f(function (s$160) {
-           var l$161 = s$160.length;
-           var loop$162 =
-             _f(function (i$163) {
-                  if (i$163 >= l$161) return __($5E$136, [s$160, "."]);
-                  var match$414 = oc$$srefs(s$160, i$163);
+    var string_of_int$167 = _f(function (n$168) { return caml_format_int("%d", n$168); });
+    var String$171 = $();
+    var valid_float_lexem$172 =
+      _f(function (s$173) {
+           var l$174 = s$173.length;
+           var loop$175 =
+             _f(function (i$176) {
+                  if (i$176 >= l$174) return __($5E$152, [s$173, "."]);
+                  var match$427 = oc$$srefs(s$173, i$176);
                   var $r58 = false;
                   r$58: {
-                    if (!(match$414 >= 48)) { if (!(match$414 !== 45)) { $r58 = true;
+                    if (!(match$427 >= 48)) { if (!(match$427 !== 45)) { $r58 = true;
                                                                     break r$58; }
-                                              return s$160; }
-                    if (!(match$414 >= 58)) { $r58 = true;
+                                              return s$173; }
+                    if (!(match$427 >= 58)) { $r58 = true;
                                               break r$58; }
-                    return s$160;
+                    return s$173;
                   }
-                  if ($r58) return __(loop$162, [i$163 + 1]);
+                  if ($r58) return __(loop$175, [i$176 + 1]);
                 });
-           return __(loop$162, [0]);
+           return __(loop$175, [0]);
          });
-    var string_of_float$164 = _f(function (f$165) { return __(valid_float_lexem$159, [oc$$sprintf("%.12g", f$165)]); });
-    var $40$167 =
-      _f(function (l1$168, l2$169) { if (l1$168) return $(l1$168[0], _($40$167, [l1$168[1], l2$169]));
-                                     return l2$169; });
-    var stdin$176 = caml_ml_open_descriptor_in(0);
-    var stdout$177 = caml_ml_open_descriptor_out(1);
-    var stderr$178 = caml_ml_open_descriptor_out(2);
-    var open_out_gen$199 =
-      _f(function (mode$200, perm$201, name$202) {
-           return caml_ml_open_descriptor_out(caml_sys_open(name$202, mode$200, perm$201));
+    var string_of_float$177 = _f(function (f$178) { return __(valid_float_lexem$172, [oc$$sprintf("%.12g", f$178)]); });
+    var $40$180 =
+      _f(function (l1$181, l2$182) { if (l1$181) return $(l1$181[0], _($40$180, [l1$181[1], l2$182]));
+                                     return l2$182; });
+    var stdin$189 = caml_ml_open_descriptor_in(0);
+    var stdout$190 = caml_ml_open_descriptor_out(1);
+    var stderr$191 = caml_ml_open_descriptor_out(2);
+    var open_out_gen$212 =
+      _f(function (mode$213, perm$214, name$215) {
+           return caml_ml_open_descriptor_out(caml_sys_open(name$215, mode$213, perm$214));
          });
-    var open_out$203 = _f(function (name$204) { return __(open_out_gen$199, [$(1, $(3, $(4, $(7, 0)))), 438, name$204]); });
-    var open_out_bin$205 = _f(function (name$206) { return __(open_out_gen$199, [$(1, $(3, $(4, $(6, 0)))), 438, name$206]); });
-    var flush_all$209 =
-      _f(function (param$411) {
-           var iter$210 =
-             _f(function (param$412) {
-                  if (param$412)
+    var open_out$216 = _f(function (name$217) { return __(open_out_gen$212, [$(1, $(3, $(4, $(7, 0)))), 438, name$217]); });
+    var open_out_bin$218 = _f(function (name$219) { return __(open_out_gen$212, [$(1, $(3, $(4, $(6, 0)))), 438, name$219]); });
+    var flush_all$222 =
+      _f(function (param$424) {
+           var iter$223 =
+             _f(function (param$425) {
+                  if (param$425)
                   {
-                    try { caml_ml_flush(param$412[0]); } catch (exn$413) { ; }
-                    return __(iter$210, [param$412[1]]);
+                    try { caml_ml_flush(param$425[0]); } catch (exn$426) { ; }
+                    return __(iter$223, [param$425[1]]);
                   }
                   return 0;
                 });
-           return __(iter$210, [caml_ml_out_channels_list(0)]);
+           return __(iter$223, [caml_ml_out_channels_list(0)]);
          });
-    var output_string$215 = _f(function (oc$216, s$217) { return caml_ml_output(oc$216, s$217, 0, s$217.length); });
-    var output$218 =
-      _f(function (oc$219, s$220, ofs$221, len$222) {
-           if (ofs$221 < 0 || (len$222 < 0 || ofs$221 > s$220.length - len$222)) return __(invalid_arg$40, ["output"]);
-           return caml_ml_output(oc$219, s$220, ofs$221, len$222);
+    var output_string$228 = _f(function (oc$229, s$230) { return caml_ml_output(oc$229, s$230, 0, s$230.length); });
+    var output$231 =
+      _f(function (oc$232, s$233, ofs$234, len$235) {
+           if (ofs$234 < 0 || (len$235 < 0 || ofs$234 > s$233.length - len$235)) return __(invalid_arg$56, ["output"]);
+           return caml_ml_output(oc$232, s$233, ofs$234, len$235);
          });
-    var output_value$226 = _f(function (chan$227, v$228) { return caml_output_value(chan$227, v$228, 0); });
-    var close_out$233 = _f(function (oc$234) { caml_ml_flush(oc$234);
-                                               return caml_ml_close_channel(oc$234); });
-    var close_out_noerr$235 =
-      _f(function (oc$236) {
-           try { caml_ml_flush(oc$236); } catch (exn$410) { ; }
-           try { return caml_ml_close_channel(oc$236); } catch (exn$409) { return 0; }
+    var output_value$239 = _f(function (chan$240, v$241) { return caml_output_value(chan$240, v$241, 0); });
+    var close_out$246 = _f(function (oc$247) { caml_ml_flush(oc$247);
+                                               return caml_ml_close_channel(oc$247); });
+    var close_out_noerr$248 =
+      _f(function (oc$249) {
+           try { caml_ml_flush(oc$249); } catch (exn$423) { ; }
+           try { return caml_ml_close_channel(oc$249); } catch (exn$422) { return 0; }
          });
-    var open_in_gen$238 =
-      _f(function (mode$239, perm$240, name$241) {
-           return caml_ml_open_descriptor_in(caml_sys_open(name$241, mode$239, perm$240));
+    var open_in_gen$251 =
+      _f(function (mode$252, perm$253, name$254) {
+           return caml_ml_open_descriptor_in(caml_sys_open(name$254, mode$252, perm$253));
          });
-    var open_in$242 = _f(function (name$243) { return __(open_in_gen$238, [$(0, $(7, 0)), 0, name$243]); });
-    var open_in_bin$244 = _f(function (name$245) { return __(open_in_gen$238, [$(0, $(6, 0)), 0, name$245]); });
-    var input$248 =
-      _f(function (ic$249, s$250, ofs$251, len$252) {
-           if (ofs$251 < 0 || (len$252 < 0 || ofs$251 > s$250.length - len$252)) return __(invalid_arg$40, ["input"]);
-           return caml_ml_input(ic$249, s$250, ofs$251, len$252);
+    var open_in$255 = _f(function (name$256) { return __(open_in_gen$251, [$(0, $(7, 0)), 0, name$256]); });
+    var open_in_bin$257 = _f(function (name$258) { return __(open_in_gen$251, [$(0, $(6, 0)), 0, name$258]); });
+    var input$261 =
+      _f(function (ic$262, s$263, ofs$264, len$265) {
+           if (ofs$264 < 0 || (len$265 < 0 || ofs$264 > s$263.length - len$265)) return __(invalid_arg$56, ["input"]);
+           return caml_ml_input(ic$262, s$263, ofs$264, len$265);
          });
-    var unsafe_really_input$253 =
-      _f(function (ic$254, s$255, ofs$256, len$257) {
-           if (len$257 <= 0) return 0;
-           var r$258 = caml_ml_input(ic$254, s$255, ofs$256, len$257);
-           if (r$258 === 0) throw $(End_of_file$22g);
-           return __(unsafe_really_input$253, [ic$254, s$255, ofs$256 + r$258, len$257 - r$258]);
+    var unsafe_really_input$266 =
+      _f(function (ic$267, s$268, ofs$269, len$270) {
+           if (len$270 <= 0) return 0;
+           var r$271 = caml_ml_input(ic$267, s$268, ofs$269, len$270);
+           if (r$271 === 0) throw $(End_of_file$22g);
+           return __(unsafe_really_input$266, [ic$267, s$268, ofs$269 + r$271, len$270 - r$271]);
          });
-    var really_input$259 =
-      _f(function (ic$260, s$261, ofs$262, len$263) {
-           if (ofs$262 < 0 || (len$263 < 0 || ofs$262 > s$261.length - len$263)) return __(invalid_arg$40, ["really_input"]);
-           return __(unsafe_really_input$253, [ic$260, s$261, ofs$262, len$263]);
+    var really_input$272 =
+      _f(function (ic$273, s$274, ofs$275, len$276) {
+           if (ofs$275 < 0 || (len$276 < 0 || ofs$275 > s$274.length - len$276)) return __(invalid_arg$56, ["really_input"]);
+           return __(unsafe_really_input$266, [ic$273, s$274, ofs$275, len$276]);
          });
-    var input_line$265 =
-      _f(function (chan$266) {
-           var build_result$267 =
-             _f(function (buf$268, pos$269, param$408) {
-                  if (param$408)
+    var input_line$278 =
+      _f(function (chan$279) {
+           var build_result$280 =
+             _f(function (buf$281, pos$282, param$421) {
+                  if (param$421)
                   {
-                    var hd$270 = param$408[0];
-                    var len$272 = hd$270.length;
-                    caml_blit_string(hd$270, 0, buf$268, pos$269 - len$272, len$272);
-                    return __(build_result$267, [buf$268, pos$269 - len$272, param$408[1]]);
+                    var hd$283 = param$421[0];
+                    var len$285 = hd$283.length;
+                    caml_blit_string(hd$283, 0, buf$281, pos$282 - len$285, len$285);
+                    return __(build_result$280, [buf$281, pos$282 - len$285, param$421[1]]);
                   }
-                  return buf$268;
+                  return buf$281;
                 });
-           var scan$273 =
-             _f(function (accu$274, len$275) {
-                  var n$276 = caml_ml_input_scan_line(chan$266);
-                  if (!(n$276 === 0))
+           var scan$286 =
+             _f(function (accu$287, len$288) {
+                  var n$289 = caml_ml_input_scan_line(chan$279);
+                  if (!(n$289 === 0))
                   {
-                    if (n$276 > 0)
+                    if (n$289 > 0)
                     {
-                      var res$277 = oc$$cms(n$276 - 1);
-                      caml_ml_input(chan$266, res$277, 0, n$276 - 1);
+                      var res$290 = oc$$cms(n$289 - 1);
+                      caml_ml_input(chan$279, res$290, 0, n$289 - 1);
                       ;
-                      caml_ml_input_char(chan$266);
+                      caml_ml_input_char(chan$279);
                       ;
-                      if (accu$274)
+                      if (accu$287)
                       {
-                        var len$278 = len$275 + n$276 - 1;
-                        return __(build_result$267, [oc$$cms(len$278), len$278, $(res$277, accu$274)]);
+                        var len$291 = len$288 + n$289 - 1;
+                        return __(build_result$280, [oc$$cms(len$291), len$291, $(res$290, accu$287)]);
                       }
-                      return res$277;
+                      return res$290;
                     }
-                    var beg$279 = oc$$cms(-n$276);
-                    caml_ml_input(chan$266, beg$279, 0, -n$276);
+                    var beg$292 = oc$$cms(-n$289);
+                    caml_ml_input(chan$279, beg$292, 0, -n$289);
                     ;
-                    return __(scan$273, [$(beg$279, accu$274), len$275 - n$276]);
+                    return __(scan$286, [$(beg$292, accu$287), len$288 - n$289]);
                   }
-                  if (accu$274) return __(build_result$267, [oc$$cms(len$275), len$275, accu$274]);
+                  if (accu$287) return __(build_result$280, [oc$$cms(len$288), len$288, accu$287]);
                   throw $(End_of_file$22g);
                 });
-           return __(scan$273, [0, 0]);
+           return __(scan$286, [0, 0]);
          });
-    var close_in_noerr$287 = _f(function (ic$288) { try { return caml_ml_close_channel(ic$288); } catch (exn$407) { return 0; } });
-    var print_char$290 = _f(function (c$291) { return caml_ml_output_char(stdout$177, c$291); });
-    var print_string$292 = _f(function (s$293) { return __(output_string$215, [stdout$177, s$293]); });
-    var print_int$294 = _f(function (i$295) { return __(output_string$215, [stdout$177, _(string_of_int$154, [i$295])]); });
-    var print_float$296 = _f(function (f$297) { return __(output_string$215, [stdout$177, _(string_of_float$164, [f$297])]); });
-    var print_endline$298 =
-      _f(function (s$299) {
-           _(output_string$215, [stdout$177, s$299]);
-           caml_ml_output_char(stdout$177, 10);
-           return caml_ml_flush(stdout$177);
+    var close_in_noerr$300 = _f(function (ic$301) { try { return caml_ml_close_channel(ic$301); } catch (exn$420) { return 0; } });
+    var print_char$303 = _f(function (c$304) { return caml_ml_output_char(stdout$190, c$304); });
+    var print_string$305 = _f(function (s$306) { return __(output_string$228, [stdout$190, s$306]); });
+    var print_int$307 = _f(function (i$308) { return __(output_string$228, [stdout$190, _(string_of_int$167, [i$308])]); });
+    var print_float$309 = _f(function (f$310) { return __(output_string$228, [stdout$190, _(string_of_float$177, [f$310])]); });
+    var print_endline$311 =
+      _f(function (s$312) {
+           _(output_string$228, [stdout$190, s$312]);
+           caml_ml_output_char(stdout$190, 10);
+           return caml_ml_flush(stdout$190);
          });
-    var print_newline$300 = _f(function (param$406) { caml_ml_output_char(stdout$177, 10);
-                                                      return caml_ml_flush(stdout$177); });
-    var prerr_char$301 = _f(function (c$302) { return caml_ml_output_char(stderr$178, c$302); });
-    var prerr_string$303 = _f(function (s$304) { return __(output_string$215, [stderr$178, s$304]); });
-    var prerr_int$305 = _f(function (i$306) { return __(output_string$215, [stderr$178, _(string_of_int$154, [i$306])]); });
-    var prerr_float$307 = _f(function (f$308) { return __(output_string$215, [stderr$178, _(string_of_float$164, [f$308])]); });
-    var prerr_endline$309 =
-      _f(function (s$310) {
-           _(output_string$215, [stderr$178, s$310]);
-           caml_ml_output_char(stderr$178, 10);
-           return caml_ml_flush(stderr$178);
+    var print_newline$313 = _f(function (param$419) { caml_ml_output_char(stdout$190, 10);
+                                                      return caml_ml_flush(stdout$190); });
+    var prerr_char$314 = _f(function (c$315) { return caml_ml_output_char(stderr$191, c$315); });
+    var prerr_string$316 = _f(function (s$317) { return __(output_string$228, [stderr$191, s$317]); });
+    var prerr_int$318 = _f(function (i$319) { return __(output_string$228, [stderr$191, _(string_of_int$167, [i$319])]); });
+    var prerr_float$320 = _f(function (f$321) { return __(output_string$228, [stderr$191, _(string_of_float$177, [f$321])]); });
+    var prerr_endline$322 =
+      _f(function (s$323) {
+           _(output_string$228, [stderr$191, s$323]);
+           caml_ml_output_char(stderr$191, 10);
+           return caml_ml_flush(stderr$191);
          });
-    var prerr_newline$311 = _f(function (param$405) { caml_ml_output_char(stderr$178, 10);
-                                                      return caml_ml_flush(stderr$178); });
-    var read_line$312 = _f(function (param$404) { caml_ml_flush(stdout$177);
-                                                  return __(input_line$265, [stdin$176]); });
-    var read_int$313 = _f(function (param$403) { return caml_int_of_string(_(read_line$312, [0])); });
-    var read_float$314 = _f(function (param$402) { return caml_float_of_string(_(read_line$312, [0])); });
-    var LargeFile$321 = $();
-    var $5E$5E$336 = _f(function (fmt1$337, fmt2$338) { return _($5E$136, [fmt1$337, fmt2$338]); });
-    var string_of_format$339 =
-      _f(function (fmt$340) {
-           var s$341 = fmt$340;
-           var l$342 = s$341.length;
-           var r$343 = oc$$cms(l$342);
-           caml_blit_string(s$341, 0, r$343, 0, l$342);
-           return r$343;
+    var prerr_newline$324 = _f(function (param$418) { caml_ml_output_char(stderr$191, 10);
+                                                      return caml_ml_flush(stderr$191); });
+    var read_line$325 = _f(function (param$417) { caml_ml_flush(stdout$190);
+                                                  return __(input_line$278, [stdin$189]); });
+    var read_int$326 = _f(function (param$416) { return caml_int_of_string(_(read_line$325, [0])); });
+    var read_float$327 = _f(function (param$415) { return caml_float_of_string(_(read_line$325, [0])); });
+    var LargeFile$334 = $();
+    var $5E$5E$349 = _f(function (fmt1$350, fmt2$351) { return _($5E$152, [fmt1$350, fmt2$351]); });
+    var string_of_format$352 =
+      _f(function (fmt$353) {
+           var s$354 = fmt$353;
+           var l$355 = s$354.length;
+           var r$356 = oc$$cms(l$355);
+           caml_blit_string(s$354, 0, r$356, 0, l$355);
+           return r$356;
          });
-    var exit_function$345 = $(flush_all$209);
-    var at_exit$346 =
-      _f(function (f$347) {
-           var g$348 = exit_function$345[0];
-           return exit_function$345[0] = _f(function (param$401) { _(f$347, [0]);
-                                                                   return __(g$348, [0]); });
+    var exit_function$358 = $(flush_all$222);
+    var at_exit$359 =
+      _f(function (f$360) {
+           var g$361 = exit_function$358[0];
+           return exit_function$358[0] = _f(function (param$414) { _(f$360, [0]);
+                                                                   return __(g$361, [0]); });
          });
-    var do_at_exit$349 = _f(function (param$400) { return __(exit_function$345[0], [0]); });
-    var exit$350 = _f(function (retcode$351) { _(do_at_exit$349, [0]);
-                                               return caml_sys_exit(retcode$351); });
-    caml_register_named_value("Pervasives.do_at_exit", do_at_exit$349);
-    return $(invalid_arg$40, failwith$38, Exit$42, min$50, max$53, abs$71, 
-           max_int$82, min_int$81, lnot$76, infinity$115, neg_infinity$116, 
-           nan$117, max_float$118, min_float$119, epsilon_float$120, 
-           $5E$136, char_of_int$144, string_of_bool$151, bool_of_string$153, 
-           string_of_int$154, string_of_float$164, $40$167, stdin$176, 
-           stdout$177, stderr$178, print_char$290, print_string$292, 
-           print_int$294, print_float$296, print_endline$298, print_newline$300, 
-           prerr_char$301, prerr_string$303, prerr_int$305, prerr_float$307, 
-           prerr_endline$309, prerr_newline$311, read_line$312, read_int$313, 
-           read_float$314, open_out$203, open_out_bin$205, open_out_gen$199,
-           _f(function (prim$368) { return caml_ml_flush(prim$368); }), 
-           flush_all$209, _f(function (prim$370, prim$369) { return caml_ml_output_char(prim$370, prim$369); }), 
-           output_string$215, output$218, _f(function (prim$372, prim$371) { return caml_ml_output_char(prim$372, prim$371); }),
-           _f(function (prim$374, prim$373) { return caml_ml_output_int(prim$374, prim$373); }), 
-           output_value$226, _f(function (prim$376, prim$375) { return caml_ml_seek_out(prim$376, prim$375); }),
-           _f(function (prim$377) { return caml_ml_pos_out(prim$377); }),
-           _f(function (prim$378) { return caml_ml_channel_size(prim$378); }), 
-           close_out$233, close_out_noerr$235,
-           _f(function (prim$380, prim$379) { return caml_ml_set_binary_mode(prim$380, prim$379); }), 
-           open_in$242, open_in_bin$244, open_in_gen$238, _f(function (prim$381) { return caml_ml_input_char(prim$381); }),
-           input_line$265, input$248, really_input$259, _f(function (prim$382) { return caml_ml_input_char(prim$382); }),
-           _f(function (prim$383) { return caml_ml_input_int(prim$383); }),
-           _f(function (prim$384) { return caml_input_value(prim$384); }),
-           _f(function (prim$386, prim$385) { return caml_ml_seek_in(prim$386, prim$385); }),
-           _f(function (prim$387) { return caml_ml_pos_in(prim$387); }),
-           _f(function (prim$388) { return caml_ml_channel_size(prim$388); }),
-           _f(function (prim$389) { return caml_ml_close_channel(prim$389); }), 
-           close_in_noerr$287, _f(function (prim$391, prim$390) { return caml_ml_set_binary_mode(prim$391, prim$390); }),
-           $(_f(function (prim$393, prim$392) { return caml_ml_seek_out_64(prim$393, prim$392); }),
-           _f(function (prim$394) { return caml_ml_pos_out_64(prim$394); }),
-           _f(function (prim$395) { return caml_ml_channel_size_64(prim$395); }),
-           _f(function (prim$397, prim$396) { return caml_ml_seek_in_64(prim$397, prim$396); }),
-           _f(function (prim$398) { return caml_ml_pos_in_64(prim$398); }),
-           _f(function (prim$399) { return caml_ml_channel_size_64(prim$399); })), 
-           string_of_format$339, $5E$5E$336, exit$350, at_exit$346, valid_float_lexem$159, 
-           unsafe_really_input$253, do_at_exit$349);
+    var do_at_exit$362 = _f(function (param$413) { return __(exit_function$358[0], [0]); });
+    var exit$363 = _f(function (retcode$364) { _(do_at_exit$362, [0]);
+                                               return caml_sys_exit(retcode$364); });
+    caml_register_named_value("Pervasives.do_at_exit", do_at_exit$362);
+    return $(invalid_arg$56, failwith$54, Exit$58, min$66, max$69, abs$87, 
+           max_int$98, min_int$97, lnot$92, infinity$131, neg_infinity$132, 
+           nan$133, max_float$134, min_float$135, epsilon_float$136, 
+           $5E$152, char_of_int$157, string_of_bool$164, bool_of_string$166, 
+           string_of_int$167, string_of_float$177, $40$180, stdin$189, 
+           stdout$190, stderr$191, print_char$303, print_string$305, 
+           print_int$307, print_float$309, print_endline$311, print_newline$313, 
+           prerr_char$314, prerr_string$316, prerr_int$318, prerr_float$320, 
+           prerr_endline$322, prerr_newline$324, read_line$325, read_int$326, 
+           read_float$327, open_out$216, open_out_bin$218, open_out_gen$212,
+           _f(function (prim$381) { return caml_ml_flush(prim$381); }), 
+           flush_all$222, _f(function (prim$383, prim$382) { return caml_ml_output_char(prim$383, prim$382); }), 
+           output_string$228, output$231, _f(function (prim$385, prim$384) { return caml_ml_output_char(prim$385, prim$384); }),
+           _f(function (prim$387, prim$386) { return caml_ml_output_int(prim$387, prim$386); }), 
+           output_value$239, _f(function (prim$389, prim$388) { return caml_ml_seek_out(prim$389, prim$388); }),
+           _f(function (prim$390) { return caml_ml_pos_out(prim$390); }),
+           _f(function (prim$391) { return caml_ml_channel_size(prim$391); }), 
+           close_out$246, close_out_noerr$248,
+           _f(function (prim$393, prim$392) { return caml_ml_set_binary_mode(prim$393, prim$392); }), 
+           open_in$255, open_in_bin$257, open_in_gen$251, _f(function (prim$394) { return caml_ml_input_char(prim$394); }),
+           input_line$278, input$261, really_input$272, _f(function (prim$395) { return caml_ml_input_char(prim$395); }),
+           _f(function (prim$396) { return caml_ml_input_int(prim$396); }),
+           _f(function (prim$397) { return caml_input_value(prim$397); }),
+           _f(function (prim$399, prim$398) { return caml_ml_seek_in(prim$399, prim$398); }),
+           _f(function (prim$400) { return caml_ml_pos_in(prim$400); }),
+           _f(function (prim$401) { return caml_ml_channel_size(prim$401); }),
+           _f(function (prim$402) { return caml_ml_close_channel(prim$402); }), 
+           close_in_noerr$300, _f(function (prim$404, prim$403) { return caml_ml_set_binary_mode(prim$404, prim$403); }),
+           $(_f(function (prim$406, prim$405) { return caml_ml_seek_out_64(prim$406, prim$405); }),
+           _f(function (prim$407) { return caml_ml_pos_out_64(prim$407); }),
+           _f(function (prim$408) { return caml_ml_channel_size_64(prim$408); }),
+           _f(function (prim$410, prim$409) { return caml_ml_seek_in_64(prim$410, prim$409); }),
+           _f(function (prim$411) { return caml_ml_pos_in_64(prim$411); }),
+           _f(function (prim$412) { return caml_ml_channel_size_64(prim$412); })), 
+           string_of_format$352, $5E$5E$349, exit$363, at_exit$359, valid_float_lexem$172, 
+           unsafe_really_input$266, do_at_exit$362);
+  }();
+var oc$Array$ =
+  function () {
+    var init$65 =
+      _f(function (l$66, f$67) {
+           if (l$66 === 0) return $();
+           var res$68 = caml_make_vect(l$66, _(f$67, [0]));
+           var i$69;
+           for (i$69 = 1; i$69 <= -1 + l$66; i$69++) { (function (i$69) { res$68[i$69] = _(f$67, [i$69]); }(i$69)); }
+           return res$68;
+         });
+    var make_matrix$70 =
+      _f(function (sx$71, sy$72, init$73) {
+           var res$74 = caml_make_vect(sx$71, $());
+           var x$75;
+           for (x$75 = 0;
+           x$75 <= -1 + sx$71;
+           x$75++) {
+             (function (x$75) { res$74[x$75] = caml_make_vect(sy$72, init$73); }(x$75));
+           }
+           return res$74;
+         });
+    var copy$77 =
+      _f(function (a$78) {
+           var l$79 = a$78.length;
+           if (l$79 === 0) return $();
+           var res$80 = caml_make_vect(l$79, a$78[0]);
+           var i$81;
+           for (i$81 = 1; i$81 <= -1 + l$79; i$81++) { (function (i$81) { res$80[i$81] = a$78[i$81]; }(i$81)); }
+           return res$80;
+         });
+    var append$82 =
+      _f(function (a1$83, a2$84) {
+           var l1$85 = a1$83.length;
+           var l2$86 = a2$84.length;
+           if (l1$85 === 0 && l2$86 === 0) return $();
+           var r$87 = caml_make_vect(l1$85 + l2$86, (l1$85 > 0 ? a1$83 : a2$84)[0]);
+           var i$88;
+           for (i$88 = 0; i$88 <= l1$85 - 1; i$88++) { (function (i$88) { r$87[i$88] = a1$83[i$88]; }(i$88)); }
+           var i$89;
+           for (i$89 = 0; i$89 <= l2$86 - 1; i$89++) { (function (i$89) { r$87[i$89 + l1$85] = a2$84[i$89]; }(i$89)); }
+           return r$87;
+         });
+    var concat_aux$90 =
+      _f(function (init$91, al$92) {
+           var size$93 =
+             _f(function (accu$94, param$262) {
+                  if (param$262) return __(size$93, [accu$94 + (param$262[0]).length, param$262[1]]);
+                  return accu$94;
+                });
+           var res$97 = caml_make_vect(_(size$93, [0, al$92]), init$91);
+           var fill$98 =
+             _f(function (pos$99, param$261) {
+                  if (param$261)
+                  {
+                    var h$100 = param$261[0];
+                    var i$102;
+                    for (i$102 = 0;
+                    i$102 <= h$100.length - 1;
+                    i$102++) {
+                      (function (i$102) { res$97[pos$99 + i$102] = h$100[i$102]; }(i$102));
+                    }
+                    return __(fill$98, [pos$99 + h$100.length, param$261[1]]);
+                  }
+                  return 0;
+                });
+           _(fill$98, [0, al$92]);
+           return res$97;
+         });
+    var concat$103 =
+      _f(function (al$104) {
+           var find_init$105 =
+             _f(function (param$260) {
+                  if (param$260)
+                  {
+                    var a$106 = param$260[0];
+                    if (a$106.length > 0) return __(concat_aux$90, [a$106[0], al$104]);
+                    return __(find_init$105, [param$260[1]]);
+                  }
+                  return $();
+                });
+           return __(find_init$105, [al$104]);
+         });
+    var sub$108 =
+      _f(function (a$109, ofs$110, len$111) {
+           if (ofs$110 < 0 || (len$111 < 0 || ofs$110 > a$109.length - len$111)) return __(oc$Pervasives$[0], ["Array.sub"]);
+           if (len$111 === 0) return $();
+           var r$112 = caml_make_vect(len$111, a$109[ofs$110]);
+           var i$113;
+           for (i$113 = 1; i$113 <= len$111 - 1; i$113++) { (function (i$113) { r$112[i$113] = a$109[ofs$110 + i$113]; }(i$113)); }
+           return r$112;
+         });
+    var fill$114 =
+      _f(function (a$115, ofs$116, len$117, v$118) {
+           if (ofs$116 < 0 || (len$117 < 0 || ofs$116 > a$115.length - len$117)) return __(oc$Pervasives$[0], ["Array.fill"]);
+           var i$119;
+           for (i$119 = ofs$116; i$119 <= ofs$116 + len$117 - 1; i$119++) { (function (i$119) { a$115[i$119] = v$118; }(i$119)); }
+         });
+    var blit$120 =
+      _f(function (a1$121, ofs1$122, a2$123, ofs2$124, len$125) {
+           if (len$125 < 0 ||
+               (ofs1$122 < 0 || (ofs1$122 > a1$121.length - len$125 || (ofs2$124 < 0 || ofs2$124 > a2$123.length - len$125))))
+           return __(oc$Pervasives$[0], ["Array.blit"]);
+           if (ofs1$122 < ofs2$124)
+           {
+             var i$126;
+             for (i$126 = len$125 - 1;
+             i$126 >= 0;
+             i$126--) {
+               (function (i$126) { a2$123[ofs2$124 + i$126] = a1$121[ofs1$122 + i$126]; }(i$126));
+             }
+           }
+           var i$127;
+           for (i$127 = 0;
+           i$127 <= len$125 - 1;
+           i$127++) {
+             (function (i$127) { a2$123[ofs2$124 + i$127] = a1$121[ofs1$122 + i$127]; }(i$127));
+           }
+         });
+    var iter$128 =
+      _f(function (f$129, a$130) {
+           var i$131;
+           for (i$131 = 0; i$131 <= a$130.length - 1; i$131++) { (function (i$131) { _(f$129, [a$130[i$131]]); }(i$131)); }
+         });
+    var map$132 =
+      _f(function (f$133, a$134) {
+           var l$135 = a$134.length;
+           if (l$135 === 0) return $();
+           var r$136 = caml_make_vect(l$135, _(f$133, [a$134[0]]));
+           var i$137;
+           for (i$137 = 1; i$137 <= l$135 - 1; i$137++) { (function (i$137) { r$136[i$137] = _(f$133, [a$134[i$137]]); }(i$137)); }
+           return r$136;
+         });
+    var iteri$138 =
+      _f(function (f$139, a$140) {
+           var i$141;
+           for (i$141 = 0; i$141 <= a$140.length - 1; i$141++) { (function (i$141) { _(f$139, [i$141, a$140[i$141]]); }(i$141)); }
+         });
+    var mapi$142 =
+      _f(function (f$143, a$144) {
+           var l$145 = a$144.length;
+           if (l$145 === 0) return $();
+           var r$146 = caml_make_vect(l$145, _(f$143, [0, a$144[0]]));
+           var i$147;
+           for (i$147 = 1;
+           i$147 <= l$145 - 1;
+           i$147++) {
+             (function (i$147) { r$146[i$147] = _(f$143, [i$147, a$144[i$147]]); }(i$147));
+           }
+           return r$146;
+         });
+    var to_list$148 =
+      _f(function (a$149) {
+           var tolist$150 =
+             _f(function (i$151, res$152) {
+                  if (i$151 < 0) return res$152;
+                  return __(tolist$150, [i$151 - 1, $(a$149[i$151], res$152)]);
+                });
+           return __(tolist$150, [a$149.length - 1, 0]);
+         });
+    var list_length$153 =
+      _f(function (accu$154, param$259) {
+           if (param$259) return __(list_length$153, [1 + accu$154, param$259[1]]);
+           return accu$154;
+         });
+    var of_list$157 =
+      _f(function (l$160) {
+           if (l$160)
+           {
+             var a$161 = caml_make_vect(_(list_length$153, [0, l$160]), l$160[0]);
+             var fill$162 =
+               _f(function (i$163, param$258) {
+                    if (param$258) { a$161[i$163] = param$258[0];
+                                     return __(fill$162, [i$163 + 1, param$258[1]]); }
+                    return a$161;
+                  });
+             return __(fill$162, [1, l$160[1]]);
+           }
+           return $();
+         });
+    var fold_left$166 =
+      _f(function (f$167, x$168, a$169) {
+           var r$170 = x$168;
+           var i$171;
+           for (i$171 = 0;
+           i$171 <= a$169.length - 1;
+           i$171++) {
+             (function (i$171) { r$170 = _(f$167, [r$170, a$169[i$171]]); }(i$171));
+           }
+           return r$170;
+         });
+    var fold_right$172 =
+      _f(function (f$173, a$174, x$175) {
+           var r$176 = x$175;
+           var i$177;
+           for (i$177 = a$174.length - 1;
+           i$177 >= 0;
+           i$177--) {
+             (function (i$177) { r$176 = _(f$173, [a$174[i$177], r$176]); }(i$177));
+           }
+           return r$176;
+         });
+    var Bottom$178 = $("Array.Bottom");
+    var sort$179 =
+      _f(function (cmp$180, a$181) {
+           var maxson$182 =
+             _f(function (l$183, i$184) {
+                  var i31$185 = i$184 + i$184 + i$184 + 1;
+                  var x$186 = i31$185;
+                  if (i31$185 + 2 < l$183)
+                  {
+                    if (_(cmp$180, [oc$$arefs(a$181, i31$185), oc$$arefs(a$181, i31$185 + 1)]) < 0) x$186 = i31$185 + 1; else ;
+                    if (_(cmp$180, [oc$$arefs(a$181, x$186), oc$$arefs(a$181, i31$185 + 2)]) < 0) x$186 = i31$185 + 2; else ;
+                    return x$186;
+                  }
+                  if (i31$185 + 1 < l$183 && _(cmp$180, [oc$$arefs(a$181, i31$185), oc$$arefs(a$181, i31$185 + 1)]) < 0)
+                  return i31$185 + 1;
+                  if (i31$185 < l$183) return i31$185;
+                  throw $(Bottom$178, i$184);
+                });
+           var trickledown$187 =
+             _f(function (l$188, i$189, e$190) {
+                  var j$191 = _(maxson$182, [l$188, i$189]);
+                  if (_(cmp$180, [oc$$arefs(a$181, j$191), e$190]) > 0)
+                  {
+                    oc$$asets(a$181, i$189, oc$$arefs(a$181, j$191));
+                    return __(trickledown$187, [l$188, j$191, e$190]);
+                  }
+                  return oc$$asets(a$181, i$189, e$190);
+                });
+           var trickle$192 =
+             _f(function (l$193, i$194, e$195) {
+                  try {
+                    return _(trickledown$187, [l$193, i$194, e$195]);
+                  } catch (exn$257) {
+                    if (exn$257[0] === Bottom$178) return oc$$asets(a$181, exn$257[1], e$195);
+                    throw exn$257;
+                  }
+                });
+           var bubbledown$197 =
+             _f(function (l$198, i$199) {
+                  var j$200 = _(maxson$182, [l$198, i$199]);
+                  oc$$asets(a$181, i$199, oc$$arefs(a$181, j$200));
+                  return __(bubbledown$197, [l$198, j$200]);
+                });
+           var bubble$201 =
+             _f(function (l$202, i$203) {
+                  try {
+                    return _(bubbledown$197, [l$202, i$203]);
+                  } catch (exn$256) {
+                    if (exn$256[0] === Bottom$178) return exn$256[1];
+                    throw exn$256;
+                  }
+                });
+           var trickleup$205 =
+             _f(function (i$206, e$207) {
+                  var father$208 = (i$206 - 1) / 3 >> 0;
+                  if (i$206 !== father$208) ; else throw $(Assert_failure$26g, $("ocaml/stdlib/array.ml", 208, 4));
+                  if (_(cmp$180, [oc$$arefs(a$181, father$208), e$207]) < 0)
+                  {
+                    oc$$asets(a$181, i$206, oc$$arefs(a$181, father$208));
+                    if (father$208 > 0) return __(trickleup$205, [father$208, e$207]);
+                    return oc$$asets(a$181, 0, e$207);
+                  }
+                  return oc$$asets(a$181, i$206, e$207);
+                });
+           var l$209 = a$181.length;
+           var i$210;
+           for (i$210 = ((l$209 + 1) / 3 >> 0) - 1;
+           i$210 >= 0;
+           i$210--) {
+             (function (i$210) { _(trickle$192, [l$209, i$210, oc$$arefs(a$181, i$210)]); }(i$210));
+           }
+           var i$211;
+           for (i$211 = l$209 - 1;
+           i$211 >= 2;
+           i$211--) {
+             (function (i$211) {
+                var e$212 = oc$$arefs(a$181, i$211);
+                oc$$asets(a$181, i$211, oc$$arefs(a$181, 0));
+                _(trickleup$205, [_(bubble$201, [i$211, 0]), e$212]);
+              }(i$211));
+           }
+           if (l$209 > 1)
+           {
+             var e$213 = oc$$arefs(a$181, 1);
+             oc$$asets(a$181, 1, oc$$arefs(a$181, 0));
+             return oc$$asets(a$181, 0, e$213);
+           }
+           return 0;
+         });
+    var cutoff$214 = 5;
+    var stable_sort$215 =
+      _f(function (cmp$216, a$217) {
+           var merge$218 =
+             _f(function (src1ofs$219, src1len$220, src2$221, src2ofs$222, src2len$223, dst$224, dstofs$225) {
+                  var src1r$226 = src1ofs$219 + src1len$220;
+                  var src2r$227 = src2ofs$222 + src2len$223;
+                  var loop$228 =
+                    _f(function (i1$229, s1$230, i2$231, s2$232, d$233) {
+                         if (_(cmp$216, [s1$230, s2$232]) <= 0)
+                         {
+                           oc$$asets(dst$224, d$233, s1$230);
+                           var i1$234 = i1$229 + 1;
+                           if (i1$234 < src1r$226)
+                           return __(loop$228, [i1$234, oc$$arefs(a$217, i1$234), i2$231, s2$232, d$233 + 1]);
+                           return __(blit$120, [src2$221, i2$231, dst$224, d$233 + 1, src2r$227 - i2$231]);
+                         }
+                         oc$$asets(dst$224, d$233, s2$232);
+                         var i2$235 = i2$231 + 1;
+                         if (i2$235 < src2r$227)
+                         return __(loop$228, [i1$229, s1$230, i2$235, oc$$arefs(src2$221, i2$235), d$233 + 1]);
+                         return __(blit$120, [a$217, i1$229, dst$224, d$233 + 1, src1r$226 - i1$229]);
+                       });
+                  return __(loop$228,
+                         [src1ofs$219, oc$$arefs(a$217, src1ofs$219), src2ofs$222, oc$$arefs(src2$221, src2ofs$222), dstofs$225]);
+                });
+           var isortto$236 =
+             _f(function (srcofs$237, dst$238, dstofs$239, len$240) {
+                  var i$241;
+                  for (i$241 = 0;
+                  i$241 <= len$240 - 1;
+                  i$241++) {
+                    (function (i$241) {
+                       var e$242 = oc$$arefs(a$217, srcofs$237 + i$241);
+                       var j$243 = dstofs$239 + i$241 - 1;
+                       while (j$243 >= dstofs$239 && _(cmp$216, [oc$$arefs(dst$238, j$243), e$242]) > 0)
+                       {
+                         oc$$asets(dst$238, j$243 + 1, oc$$arefs(dst$238, j$243));
+                         j$243 = -1 + j$243;
+                       }
+                       oc$$asets(dst$238, j$243 + 1, e$242);
+                     }(i$241));
+                  }
+                });
+           var sortto$244 =
+             _f(function (srcofs$245, dst$246, dstofs$247, len$248) {
+                  if (len$248 <= cutoff$214) return __(isortto$236, [srcofs$245, dst$246, dstofs$247, len$248]);
+                  var l1$249 = len$248 / 2 >> 0;
+                  var l2$250 = len$248 - l1$249;
+                  _(sortto$244, [srcofs$245 + l1$249, dst$246, dstofs$247 + l1$249, l2$250]);
+                  _(sortto$244, [srcofs$245, a$217, srcofs$245 + l2$250, l1$249]);
+                  return __(merge$218, [srcofs$245 + l2$250, l1$249, dst$246, dstofs$247 + l1$249, l2$250, dst$246, dstofs$247]);
+                });
+           var l$251 = a$217.length;
+           if (l$251 <= cutoff$214) return __(isortto$236, [0, a$217, 0, l$251]);
+           var l1$252 = l$251 / 2 >> 0;
+           var l2$253 = l$251 - l1$252;
+           var t$254 = caml_make_vect(l2$253, oc$$arefs(a$217, 0));
+           _(sortto$244, [l1$252, t$254, 0, l2$253]);
+           _(sortto$244, [0, a$217, l2$253, l1$252]);
+           return __(merge$218, [l2$253, l1$252, t$254, 0, l2$253, a$217, 0]);
+         });
+    return $(init$65, make_matrix$70, make_matrix$70, append$82, concat$103, 
+           sub$108, copy$77, fill$114, blit$120, to_list$148, of_list$157, 
+           iter$128, map$132, iteri$138, mapi$142, fold_left$166, fold_right$172, 
+           sort$179, stable_sort$215, stable_sort$215);
   }();
 var oc$List$ =
   function () {
@@ -1425,363 +1774,6 @@ var oc$List$ =
            remove_assq$223, split$248, combine$254, stable_sort$276, 
            stable_sort$276, stable_sort$276, merge$261);
   }();
-var oc$Array$ =
-  function () {
-    var init$65 =
-      _f(function (l$66, f$67) {
-           if (l$66 === 0) return $();
-           var res$68 = caml_make_vect(l$66, _(f$67, [0]));
-           var i$69;
-           for (i$69 = 1; i$69 <= -1 + l$66; i$69++) { (function (i$69) { res$68[i$69] = _(f$67, [i$69]); }(i$69)); }
-           return res$68;
-         });
-    var make_matrix$70 =
-      _f(function (sx$71, sy$72, init$73) {
-           var res$74 = caml_make_vect(sx$71, $());
-           var x$75;
-           for (x$75 = 0;
-           x$75 <= -1 + sx$71;
-           x$75++) {
-             (function (x$75) { res$74[x$75] = caml_make_vect(sy$72, init$73); }(x$75));
-           }
-           return res$74;
-         });
-    var copy$77 =
-      _f(function (a$78) {
-           var l$79 = a$78.length;
-           if (l$79 === 0) return $();
-           var res$80 = caml_make_vect(l$79, a$78[0]);
-           var i$81;
-           for (i$81 = 1; i$81 <= -1 + l$79; i$81++) { (function (i$81) { res$80[i$81] = a$78[i$81]; }(i$81)); }
-           return res$80;
-         });
-    var append$82 =
-      _f(function (a1$83, a2$84) {
-           var l1$85 = a1$83.length;
-           var l2$86 = a2$84.length;
-           if (l1$85 === 0 && l2$86 === 0) return $();
-           var r$87 = caml_make_vect(l1$85 + l2$86, (l1$85 > 0 ? a1$83 : a2$84)[0]);
-           var i$88;
-           for (i$88 = 0; i$88 <= l1$85 - 1; i$88++) { (function (i$88) { r$87[i$88] = a1$83[i$88]; }(i$88)); }
-           var i$89;
-           for (i$89 = 0; i$89 <= l2$86 - 1; i$89++) { (function (i$89) { r$87[i$89 + l1$85] = a2$84[i$89]; }(i$89)); }
-           return r$87;
-         });
-    var concat_aux$90 =
-      _f(function (init$91, al$92) {
-           var size$93 =
-             _f(function (accu$94, param$262) {
-                  if (param$262) return __(size$93, [accu$94 + (param$262[0]).length, param$262[1]]);
-                  return accu$94;
-                });
-           var res$97 = caml_make_vect(_(size$93, [0, al$92]), init$91);
-           var fill$98 =
-             _f(function (pos$99, param$261) {
-                  if (param$261)
-                  {
-                    var h$100 = param$261[0];
-                    var i$102;
-                    for (i$102 = 0;
-                    i$102 <= h$100.length - 1;
-                    i$102++) {
-                      (function (i$102) { res$97[pos$99 + i$102] = h$100[i$102]; }(i$102));
-                    }
-                    return __(fill$98, [pos$99 + h$100.length, param$261[1]]);
-                  }
-                  return 0;
-                });
-           _(fill$98, [0, al$92]);
-           return res$97;
-         });
-    var concat$103 =
-      _f(function (al$104) {
-           var find_init$105 =
-             _f(function (param$260) {
-                  if (param$260)
-                  {
-                    var a$106 = param$260[0];
-                    if (a$106.length > 0) return __(concat_aux$90, [a$106[0], al$104]);
-                    return __(find_init$105, [param$260[1]]);
-                  }
-                  return $();
-                });
-           return __(find_init$105, [al$104]);
-         });
-    var sub$108 =
-      _f(function (a$109, ofs$110, len$111) {
-           if (ofs$110 < 0 || (len$111 < 0 || ofs$110 > a$109.length - len$111)) return __(oc$Pervasives$[0], ["Array.sub"]);
-           if (len$111 === 0) return $();
-           var r$112 = caml_make_vect(len$111, a$109[ofs$110]);
-           var i$113;
-           for (i$113 = 1; i$113 <= len$111 - 1; i$113++) { (function (i$113) { r$112[i$113] = a$109[ofs$110 + i$113]; }(i$113)); }
-           return r$112;
-         });
-    var fill$114 =
-      _f(function (a$115, ofs$116, len$117, v$118) {
-           if (ofs$116 < 0 || (len$117 < 0 || ofs$116 > a$115.length - len$117)) return __(oc$Pervasives$[0], ["Array.fill"]);
-           var i$119;
-           for (i$119 = ofs$116; i$119 <= ofs$116 + len$117 - 1; i$119++) { (function (i$119) { a$115[i$119] = v$118; }(i$119)); }
-         });
-    var blit$120 =
-      _f(function (a1$121, ofs1$122, a2$123, ofs2$124, len$125) {
-           if (len$125 < 0 ||
-               (ofs1$122 < 0 || (ofs1$122 > a1$121.length - len$125 || (ofs2$124 < 0 || ofs2$124 > a2$123.length - len$125))))
-           return __(oc$Pervasives$[0], ["Array.blit"]);
-           if (ofs1$122 < ofs2$124)
-           {
-             var i$126;
-             for (i$126 = len$125 - 1;
-             i$126 >= 0;
-             i$126--) {
-               (function (i$126) { a2$123[ofs2$124 + i$126] = a1$121[ofs1$122 + i$126]; }(i$126));
-             }
-           }
-           var i$127;
-           for (i$127 = 0;
-           i$127 <= len$125 - 1;
-           i$127++) {
-             (function (i$127) { a2$123[ofs2$124 + i$127] = a1$121[ofs1$122 + i$127]; }(i$127));
-           }
-         });
-    var iter$128 =
-      _f(function (f$129, a$130) {
-           var i$131;
-           for (i$131 = 0; i$131 <= a$130.length - 1; i$131++) { (function (i$131) { _(f$129, [a$130[i$131]]); }(i$131)); }
-         });
-    var map$132 =
-      _f(function (f$133, a$134) {
-           var l$135 = a$134.length;
-           if (l$135 === 0) return $();
-           var r$136 = caml_make_vect(l$135, _(f$133, [a$134[0]]));
-           var i$137;
-           for (i$137 = 1; i$137 <= l$135 - 1; i$137++) { (function (i$137) { r$136[i$137] = _(f$133, [a$134[i$137]]); }(i$137)); }
-           return r$136;
-         });
-    var iteri$138 =
-      _f(function (f$139, a$140) {
-           var i$141;
-           for (i$141 = 0; i$141 <= a$140.length - 1; i$141++) { (function (i$141) { _(f$139, [i$141, a$140[i$141]]); }(i$141)); }
-         });
-    var mapi$142 =
-      _f(function (f$143, a$144) {
-           var l$145 = a$144.length;
-           if (l$145 === 0) return $();
-           var r$146 = caml_make_vect(l$145, _(f$143, [0, a$144[0]]));
-           var i$147;
-           for (i$147 = 1;
-           i$147 <= l$145 - 1;
-           i$147++) {
-             (function (i$147) { r$146[i$147] = _(f$143, [i$147, a$144[i$147]]); }(i$147));
-           }
-           return r$146;
-         });
-    var to_list$148 =
-      _f(function (a$149) {
-           var tolist$150 =
-             _f(function (i$151, res$152) {
-                  if (i$151 < 0) return res$152;
-                  return __(tolist$150, [i$151 - 1, $(a$149[i$151], res$152)]);
-                });
-           return __(tolist$150, [a$149.length - 1, 0]);
-         });
-    var list_length$153 =
-      _f(function (accu$154, param$259) {
-           if (param$259) return __(list_length$153, [1 + accu$154, param$259[1]]);
-           return accu$154;
-         });
-    var of_list$157 =
-      _f(function (l$160) {
-           if (l$160)
-           {
-             var a$161 = caml_make_vect(_(list_length$153, [0, l$160]), l$160[0]);
-             var fill$162 =
-               _f(function (i$163, param$258) {
-                    if (param$258) { a$161[i$163] = param$258[0];
-                                     return __(fill$162, [i$163 + 1, param$258[1]]); }
-                    return a$161;
-                  });
-             return __(fill$162, [1, l$160[1]]);
-           }
-           return $();
-         });
-    var fold_left$166 =
-      _f(function (f$167, x$168, a$169) {
-           var r$170 = x$168;
-           var i$171;
-           for (i$171 = 0;
-           i$171 <= a$169.length - 1;
-           i$171++) {
-             (function (i$171) { r$170 = _(f$167, [r$170, a$169[i$171]]); }(i$171));
-           }
-           return r$170;
-         });
-    var fold_right$172 =
-      _f(function (f$173, a$174, x$175) {
-           var r$176 = x$175;
-           var i$177;
-           for (i$177 = a$174.length - 1;
-           i$177 >= 0;
-           i$177--) {
-             (function (i$177) { r$176 = _(f$173, [a$174[i$177], r$176]); }(i$177));
-           }
-           return r$176;
-         });
-    var Bottom$178 = $("Array.Bottom");
-    var sort$179 =
-      _f(function (cmp$180, a$181) {
-           var maxson$182 =
-             _f(function (l$183, i$184) {
-                  var i31$185 = i$184 + i$184 + i$184 + 1;
-                  var x$186 = i31$185;
-                  if (i31$185 + 2 < l$183)
-                  {
-                    if (_(cmp$180, [oc$$arefs(a$181, i31$185), oc$$arefs(a$181, i31$185 + 1)]) < 0) x$186 = i31$185 + 1; else ;
-                    if (_(cmp$180, [oc$$arefs(a$181, x$186), oc$$arefs(a$181, i31$185 + 2)]) < 0) x$186 = i31$185 + 2; else ;
-                    return x$186;
-                  }
-                  if (i31$185 + 1 < l$183 && _(cmp$180, [oc$$arefs(a$181, i31$185), oc$$arefs(a$181, i31$185 + 1)]) < 0)
-                  return i31$185 + 1;
-                  if (i31$185 < l$183) return i31$185;
-                  throw $(Bottom$178, i$184);
-                });
-           var trickledown$187 =
-             _f(function (l$188, i$189, e$190) {
-                  var j$191 = _(maxson$182, [l$188, i$189]);
-                  if (_(cmp$180, [oc$$arefs(a$181, j$191), e$190]) > 0)
-                  {
-                    oc$$asets(a$181, i$189, oc$$arefs(a$181, j$191));
-                    return __(trickledown$187, [l$188, j$191, e$190]);
-                  }
-                  return oc$$asets(a$181, i$189, e$190);
-                });
-           var trickle$192 =
-             _f(function (l$193, i$194, e$195) {
-                  try {
-                    return _(trickledown$187, [l$193, i$194, e$195]);
-                  } catch (exn$257) {
-                    if (exn$257[0] === Bottom$178) return oc$$asets(a$181, exn$257[1], e$195);
-                    throw exn$257;
-                  }
-                });
-           var bubbledown$197 =
-             _f(function (l$198, i$199) {
-                  var j$200 = _(maxson$182, [l$198, i$199]);
-                  oc$$asets(a$181, i$199, oc$$arefs(a$181, j$200));
-                  return __(bubbledown$197, [l$198, j$200]);
-                });
-           var bubble$201 =
-             _f(function (l$202, i$203) {
-                  try {
-                    return _(bubbledown$197, [l$202, i$203]);
-                  } catch (exn$256) {
-                    if (exn$256[0] === Bottom$178) return exn$256[1];
-                    throw exn$256;
-                  }
-                });
-           var trickleup$205 =
-             _f(function (i$206, e$207) {
-                  var father$208 = (i$206 - 1) / 3 >> 0;
-                  if (i$206 !== father$208) ; else throw $(Assert_failure$26g, $("ocaml/stdlib/array.ml", 208, 4));
-                  if (_(cmp$180, [oc$$arefs(a$181, father$208), e$207]) < 0)
-                  {
-                    oc$$asets(a$181, i$206, oc$$arefs(a$181, father$208));
-                    if (father$208 > 0) return __(trickleup$205, [father$208, e$207]);
-                    return oc$$asets(a$181, 0, e$207);
-                  }
-                  return oc$$asets(a$181, i$206, e$207);
-                });
-           var l$209 = a$181.length;
-           var i$210;
-           for (i$210 = ((l$209 + 1) / 3 >> 0) - 1;
-           i$210 >= 0;
-           i$210--) {
-             (function (i$210) { _(trickle$192, [l$209, i$210, oc$$arefs(a$181, i$210)]); }(i$210));
-           }
-           var i$211;
-           for (i$211 = l$209 - 1;
-           i$211 >= 2;
-           i$211--) {
-             (function (i$211) {
-                var e$212 = oc$$arefs(a$181, i$211);
-                oc$$asets(a$181, i$211, oc$$arefs(a$181, 0));
-                _(trickleup$205, [_(bubble$201, [i$211, 0]), e$212]);
-              }(i$211));
-           }
-           if (l$209 > 1)
-           {
-             var e$213 = oc$$arefs(a$181, 1);
-             oc$$asets(a$181, 1, oc$$arefs(a$181, 0));
-             return oc$$asets(a$181, 0, e$213);
-           }
-           return 0;
-         });
-    var cutoff$214 = 5;
-    var stable_sort$215 =
-      _f(function (cmp$216, a$217) {
-           var merge$218 =
-             _f(function (src1ofs$219, src1len$220, src2$221, src2ofs$222, src2len$223, dst$224, dstofs$225) {
-                  var src1r$226 = src1ofs$219 + src1len$220;
-                  var src2r$227 = src2ofs$222 + src2len$223;
-                  var loop$228 =
-                    _f(function (i1$229, s1$230, i2$231, s2$232, d$233) {
-                         if (_(cmp$216, [s1$230, s2$232]) <= 0)
-                         {
-                           oc$$asets(dst$224, d$233, s1$230);
-                           var i1$234 = i1$229 + 1;
-                           if (i1$234 < src1r$226)
-                           return __(loop$228, [i1$234, oc$$arefs(a$217, i1$234), i2$231, s2$232, d$233 + 1]);
-                           return __(blit$120, [src2$221, i2$231, dst$224, d$233 + 1, src2r$227 - i2$231]);
-                         }
-                         oc$$asets(dst$224, d$233, s2$232);
-                         var i2$235 = i2$231 + 1;
-                         if (i2$235 < src2r$227)
-                         return __(loop$228, [i1$229, s1$230, i2$235, oc$$arefs(src2$221, i2$235), d$233 + 1]);
-                         return __(blit$120, [a$217, i1$229, dst$224, d$233 + 1, src1r$226 - i1$229]);
-                       });
-                  return __(loop$228,
-                         [src1ofs$219, oc$$arefs(a$217, src1ofs$219), src2ofs$222, oc$$arefs(src2$221, src2ofs$222), dstofs$225]);
-                });
-           var isortto$236 =
-             _f(function (srcofs$237, dst$238, dstofs$239, len$240) {
-                  var i$241;
-                  for (i$241 = 0;
-                  i$241 <= len$240 - 1;
-                  i$241++) {
-                    (function (i$241) {
-                       var e$242 = oc$$arefs(a$217, srcofs$237 + i$241);
-                       var j$243 = dstofs$239 + i$241 - 1;
-                       while (j$243 >= dstofs$239 && _(cmp$216, [oc$$arefs(dst$238, j$243), e$242]) > 0)
-                       {
-                         oc$$asets(dst$238, j$243 + 1, oc$$arefs(dst$238, j$243));
-                         j$243 = -1 + j$243;
-                       }
-                       oc$$asets(dst$238, j$243 + 1, e$242);
-                     }(i$241));
-                  }
-                });
-           var sortto$244 =
-             _f(function (srcofs$245, dst$246, dstofs$247, len$248) {
-                  if (len$248 <= cutoff$214) return __(isortto$236, [srcofs$245, dst$246, dstofs$247, len$248]);
-                  var l1$249 = len$248 / 2 >> 0;
-                  var l2$250 = len$248 - l1$249;
-                  _(sortto$244, [srcofs$245 + l1$249, dst$246, dstofs$247 + l1$249, l2$250]);
-                  _(sortto$244, [srcofs$245, a$217, srcofs$245 + l2$250, l1$249]);
-                  return __(merge$218, [srcofs$245 + l2$250, l1$249, dst$246, dstofs$247 + l1$249, l2$250, dst$246, dstofs$247]);
-                });
-           var l$251 = a$217.length;
-           if (l$251 <= cutoff$214) return __(isortto$236, [0, a$217, 0, l$251]);
-           var l1$252 = l$251 / 2 >> 0;
-           var l2$253 = l$251 - l1$252;
-           var t$254 = caml_make_vect(l2$253, oc$$arefs(a$217, 0));
-           _(sortto$244, [l1$252, t$254, 0, l2$253]);
-           _(sortto$244, [0, a$217, l2$253, l1$252]);
-           return __(merge$218, [l2$253, l1$252, t$254, 0, l2$253, a$217, 0]);
-         });
-    return $(init$65, make_matrix$70, make_matrix$70, append$82, concat$103, 
-           sub$108, copy$77, fill$114, blit$120, to_list$148, of_list$157, 
-           iter$128, map$132, iteri$138, mapi$142, fold_left$166, fold_right$172, 
-           sort$179, stable_sort$215, stable_sort$215);
-  }();
 var oc$Int64$ =
   function () {
     var zero$78 = "0";
@@ -1812,7 +1804,7 @@ var oc$Random$ =
     var nativeint$82 = _f(function (b$83) { return Math.floor(Math.random() * b$83); });
     var int64$84 = _f(function (param$120) { return oc$Int64$[0]; });
     var float$85 = _f(function (b$86) { return Math.random() * b$86; });
-    var bool$87 = _f(function (param$119) { return Math.random() < 0; });
+    var bool$87 = _f(function (param$119) { return Math.random() < 0.5; });
     var State$104 =
       function () {
         var make$89 = _f(function (prim$118) { ;
@@ -1865,9 +1857,9 @@ var oc$Ocamljs$ =
     return $(option_of_nullable$74, nullable_of_option$76, is_null$79, 
            jsfun$82, jsfun2$85, jsfun3$89, jsfun4$94, jsfun5$100, Inline$288);
   }();
-var oc$Dom$ = function () { var window$696 = window;
-                            var document$697 = document;
-                            return $(window$696, document$697); }();
+var oc$Dom$ = function () { var window$717 = window;
+                            var document$718 = document;
+                            return $(window$717, document$718); }();
 var oc$Minesweeper$ =
   function () {
     var default_config$65 = $(10, 10, 15);
@@ -1894,19 +1886,19 @@ var oc$Minesweeper$ =
            return cell_list$84;
          });
     var generate_seed$86 =
-      _f(function (param$300) { var t$87 = caml_sys_time(0);
+      _f(function (param$296) { var t$87 = caml_sys_time(0);
                                 var n$88 = t$87 * 1000.0;
                                 return __(oc$Random$[0], [n$88 % 100000]); });
     var valid$89 =
-      _f(function (cf$90, param$299) {
-           var j$92 = param$299[1];
-           var i$91 = param$299[0];
+      _f(function (cf$90, param$295) {
+           var j$92 = param$295[1];
+           var i$91 = param$295[0];
            return i$91 >= 0 && (i$91 < cf$90[0] && (j$92 >= 0 && j$92 < cf$90[1]));
          });
     var neighbours$93 =
-      _f(function (cf$94, param$298) {
-           var y$96 = param$298[1];
-           var x$95 = param$298[0];
+      _f(function (cf$94, param$294) {
+           var y$96 = param$294[1];
+           var x$95 = param$294[0];
            var ngb$97 =
              $($(x$95 - 1, y$96 - 1),
              $($(x$95 - 1, y$96),
@@ -1917,28 +1909,28 @@ var oc$Minesweeper$ =
          });
     var initialize_board$98 =
       _f(function (cf$99) {
-           var cell_init$100 = _f(function (param$296) { return $(0, 0, 0, 0); });
+           var cell_init$100 = _f(function (param$292) { return $(0, 0, 0, 0); });
            var copy_cell_init$101 =
-             _f(function (b$102, param$295) {
-                  return oc$$asets(oc$$arefs(b$102, param$295[0]), param$295[1], _(cell_init$100, [0]));
+             _f(function (b$102, param$291) {
+                  return oc$$asets(oc$$arefs(b$102, param$291[0]), param$291[1], _(cell_init$100, [0]));
                 });
            var set_mined$105 =
              _f(function (b$106, n$107) { return oc$$arefs(oc$$arefs(b$106, n$107 / cf$99[1] >> 0), n$107 % cf$99[1])[0] = 1; });
            var count_mined_adj$108 =
-             _f(function (b$109, param$293) {
+             _f(function (b$109, param$289) {
                   var x$112 = $(0);
                   var inc_if_mined$113 =
-                    _f(function (param$294) {
-                         if (oc$$arefs(oc$$arefs(b$109, param$294[0]), param$294[1])[0]) return x$112[0]++;
+                    _f(function (param$290) {
+                         if (oc$$arefs(oc$$arefs(b$109, param$290[0]), param$290[1])[0]) return x$112[0]++;
                          return 0;
                        });
-                  _(oc$List$[9], [inc_if_mined$113, _(neighbours$93, [cf$99, $(param$293[0], param$293[1])])]);
+                  _(oc$List$[9], [inc_if_mined$113, _(neighbours$93, [cf$99, $(param$289[0], param$289[1])])]);
                   return x$112[0];
                 });
            var set_count$116 =
-             _f(function (b$117, param$292) {
-                  var j$119 = param$292[1];
-                  var i$118 = param$292[0];
+             _f(function (b$117, param$288) {
+                  var j$119 = param$288[1];
+                  var i$118 = param$288[0];
                   if (!oc$$arefs(oc$$arefs(b$117, i$118), j$119)[0])
                   return oc$$arefs(oc$$arefs(b$117, i$118), j$119)[3] = _(count_mined_adj$108, [b$117, $(i$118, j$119)]);
                   return 0;
@@ -1951,24 +1943,24 @@ var oc$Minesweeper$ =
            return board$121;
          });
     var cells_to_see$122 =
-      _f(function (bd$123, cf$124, param$287) {
-           var j$126 = param$287[1];
-           var i$125 = param$287[0];
+      _f(function (bd$123, cf$124, param$283) {
+           var j$126 = param$283[1];
+           var i$125 = param$283[0];
            var visited$127 = _(oc$Array$[1], [cf$124[0], cf$124[1], 0]);
            var relevant$128 =
-             _f(function (param$290) {
-                  if (param$290)
+             _f(function (param$286) {
+                  if (param$286)
                   {
-                    var l$132 = param$290[1];
-                    var c$131 = param$290[0];
+                    var l$132 = param$286[1];
+                    var c$131 = param$286[0];
                     var y$130 = c$131[1];
                     var x$129 = c$131[0];
                     var cell$133 = oc$$arefs(oc$$arefs(bd$123, x$129), y$130);
                     if (cell$133[0] || (cell$133[2] || (cell$133[1] || oc$$arefs(oc$$arefs(visited$127, x$129), y$130))))
                     return __(relevant$128, [l$132]);
-                    var match$291 = _(relevant$128, [l$132]);
-                    var l2$135 = match$291[1];
-                    var l1$134 = match$291[0];
+                    var match$287 = _(relevant$128, [l$132]);
+                    var l2$135 = match$287[1];
+                    var l1$134 = match$287[0];
                     oc$$asets(oc$$arefs(visited$127, x$129), y$130, 1);
                     if (cell$133[3] === 0) return $(l1$134, $(c$131, l2$135));
                     return $($(c$131, l1$134), l2$135);
@@ -1976,16 +1968,16 @@ var oc$Minesweeper$ =
                   return $(0, 0);
                 });
            var cells_to_see_rec$136 =
-             _f(function (param$288) {
-                  if (param$288)
+             _f(function (param$284) {
+                  if (param$284)
                   {
-                    var l$140 = param$288[1];
-                    var c$139 = param$288[0];
+                    var l$140 = param$284[1];
+                    var c$139 = param$284[0];
                     if (oc$$arefs(oc$$arefs(bd$123, c$139[0]), c$139[1])[3] !== 0)
                     return $(c$139, _(cells_to_see_rec$136, [l$140]));
-                    var match$289 = _(relevant$128, [_(neighbours$93, [cf$124, c$139])]);
+                    var match$285 = _(relevant$128, [_(neighbours$93, [cf$124, c$139])]);
                     return __(oc$Pervasives$[21],
-                           [$(c$139, match$289[0]), _(cells_to_see_rec$136, [_(oc$Pervasives$[21], [match$289[1], l$140])])]);
+                           [$(c$139, match$285[0]), _(cells_to_see_rec$136, [_(oc$Pervasives$[21], [match$285[1], l$140])])]);
                   }
                   return 0;
                 });
@@ -2043,9 +2035,9 @@ var oc$Minesweeper$ =
                   (function (x$178) {
                      (oc$$arefs(oc$$arefs(d$176[1], y$177), x$178)).onclick =
                      _(oc$Ocamljs$[3],
-                     [_f(function (param$286) {
-                           (function () { var v$304 = oc$Dom$[0];
-                                          return _m(v$304.alert, v$304, ["GAME OVER"]); }());
+                     [_f(function (param$282) {
+                           (function () { var v$300 = oc$Dom$[0];
+                                          return _m(v$300.alert, v$300, ["GAME OVER"]); }());
                            return 0;
                          })]);
                    }(x$178));
@@ -2069,9 +2061,9 @@ var oc$Minesweeper$ =
     var reveal$183 =
       _f(function (d$184, i$185, j$186) {
            var reveal_cell$187 =
-             _f(function (param$285) {
-                  var j$189 = param$285[1];
-                  var i$188 = param$285[0];
+             _f(function (param$281) {
+                  var j$189 = param$281[1];
+                  var i$188 = param$281[0];
                   oc$$arefs(oc$$arefs(d$184[0], i$188), j$189)[1] = 1;
                   _(draw_cell$168, [oc$$arefs(oc$$arefs(d$184[1], j$189), i$188), oc$$arefs(oc$$arefs(d$184[0], i$188), j$189)]);
                   return d$184[4] = d$184[4] - 1;
@@ -2081,8 +2073,8 @@ var oc$Minesweeper$ =
            {
              _(draw_board$171, [d$184]);
              _(disable_events$175, [d$184]);
-             return function () { var v$303 = oc$Dom$[0];
-                                  return __m(v$303.alert, v$303, ["YOU WIN"]); }();
+             return function () { var v$299 = oc$Dom$[0];
+                                  return __m(v$299.alert, v$299, ["YOU WIN"]); }();
            }
            return 0;
          });
@@ -2096,182 +2088,194 @@ var oc$Minesweeper$ =
            return $(_(initialize_board$98, [cf$197]), caml_make_vect(nbr$195, $()), 
                   cf$197, 0, cf$197[1] * cf$197[0] - cf$197[2], 0);
          });
-    var append$203 = _f(function (n1$204, n2$205) { _m(n1$204.appendChild, n1$204, [n2$205]);
-                                                    return 0; });
-    var init_table$206 =
-      _f(function (d$207, div$208) {
-           var dd$209 = oc$Dom$[1];
-           var board_div$210 = _m(dd$209.getElementById, dd$209, [div$208]);
-           var mode$211 = $(0);
-           var buf$212 = _m(dd$209.createDocumentFragment, dd$209, []);
-           _(append$203, [buf$212, _m(dd$209.createTextNode, dd$209, ["Mode : "])]);
-           var img$213 = _m(dd$209.createElement, dd$209, ["img"]);
-           _(append$203, [buf$212, img$213]);
-           img$213.src = "sprites/bomb.png";
-           img$213.onclick =
+    var init_table$203 =
+      _f(function (d$204, div$205) {
+           var dd$206 = oc$Dom$[1];
+           var board_div$207 = _m(dd$206.getElementById, dd$206, [div$205]);
+           var mode$208 = $(0);
+           var buf$209 = _m(dd$206.createDocumentFragment, dd$206, []);
+           _m(buf$209.appendChild, buf$209, [_m(dd$206.createTextNode, dd$206, ["Mode : "])]);
+           ;
+           var img$210 = _m(dd$206.createElement, dd$206, ["img"]);
+           _m(buf$209.appendChild, buf$209, [img$210]);
+           ;
+           img$210.src = "sprites/bomb.png";
+           img$210.onclick =
            _(oc$Ocamljs$[3],
-           [_f(function (param$281) {
-                 var match$282 = mode$211[0];
-                 if (match$282 !== 0)
+           [_f(function (param$277) {
+                 var match$278 = mode$208[0];
+                 if (match$278 !== 0)
                  {
-                   mode$211[0] = 0;
-                   img$213.src = "sprites/bomb.png";
+                   mode$208[0] = 0;
+                   img$210.src = "sprites/bomb.png";
                  }
                  else {
-                   mode$211[0] = 1;
-                   img$213.src = "sprites/flag.png";
+                   mode$208[0] = 1;
+                   img$210.src = "sprites/flag.png";
                  }
                  return 0;
                })]);
-           _(append$203, [buf$212, _m(dd$209.createElement, dd$209, ["br"])]);
-           var y$214;
-           for (y$214 = 0;
-           y$214 <= d$207[2][1] - 1;
-           y$214++) {
-             (function (y$214) {
-                var imgs$215 = 0;
-                var x$216;
-                for (x$216 = 0;
-                x$216 <= d$207[2][0] - 1;
-                x$216++) {
-                  (function (x$216) {
-                     var img$217 = _m(dd$209.createElement, dd$209, ["img"]);
-                     imgs$215 = $(img$217, imgs$215);
-                     img$217.src = "sprites/normal.png";
-                     img$217.onclick =
+           _m(buf$209.appendChild, buf$209, [_m(dd$206.createElement, dd$206, ["br"])]);
+           ;
+           var y$211;
+           for (y$211 = 0;
+           y$211 <= d$204[2][1] - 1;
+           y$211++) {
+             (function (y$211) {
+                var imgs$212 = 0;
+                var x$213;
+                for (x$213 = 0;
+                x$213 <= d$204[2][0] - 1;
+                x$213++) {
+                  (function (x$213) {
+                     var img$214 = _m(dd$206.createElement, dd$206, ["img"]);
+                     imgs$212 = $(img$214, imgs$212);
+                     img$214.src = "sprites/normal.png";
+                     img$214.onclick =
                      _(oc$Ocamljs$[3],
-                     [_f(function (param$279) {
-                           var match$280 = mode$211[0];
-                           if (match$280 !== 0)
+                     [_f(function (param$275) {
+                           var match$276 = mode$208[0];
+                           if (match$276 !== 0)
                            {
-                             oc$$arefs(oc$$arefs(d$207[0], x$216), y$214)[2] = !oc$$arefs(oc$$arefs(d$207[0], x$216), y$214)[2];
-                             _(draw_cell$168, [img$217, oc$$arefs(oc$$arefs(d$207[0], x$216), y$214)]);
+                             oc$$arefs(oc$$arefs(d$204[0], x$213), y$211)[2] = !oc$$arefs(oc$$arefs(d$204[0], x$213), y$211)[2];
+                             _(draw_cell$168, [img$214, oc$$arefs(oc$$arefs(d$204[0], x$213), y$211)]);
                            }
-                           else if (oc$$arefs(oc$$arefs(d$207[0], x$216), y$214)[1])
+                           else if (oc$$arefs(oc$$arefs(d$204[0], x$213), y$211)[1])
                                 ;
-                                else if (d$207[5])
-                                     _(mark_cell$179, [d$207, x$216, y$214]);
-                                     else if (oc$$arefs(oc$$arefs(d$207[0], x$216), y$214)[2])
+                                else if (d$204[5])
+                                     _(mark_cell$179, [d$204, x$213, y$211]);
+                                     else if (oc$$arefs(oc$$arefs(d$204[0], x$213), y$211)[2])
                                           ;
-                                          else if (oc$$arefs(oc$$arefs(d$207[0], x$216), y$214)[0])
+                                          else if (oc$$arefs(oc$$arefs(d$204[0], x$213), y$211)[0])
                                                {
-                                                 _(draw_board$171, [d$207]);
-                                                 _(disable_events$175, [d$207]);
+                                                 _(draw_board$171, [d$204]);
+                                                 _(disable_events$175, [d$204]);
                                                  (function () {
-                                                    var v$302 = oc$Dom$[0];
-                                                    return _m(v$302.alert, v$302, ["YOU LOSE"]);
+                                                    var v$298 = oc$Dom$[0];
+                                                    return _m(v$298.alert, v$298, ["YOU LOSE"]);
                                                   }());
                                                }
-                                               else _(reveal$183, [d$207, x$216, y$214]);
+                                               else _(reveal$183, [d$204, x$213, y$211]);
                            return 0;
                          })]);
-                     _(append$203, [buf$212, img$217]);
-                   }(x$216));
+                     _m(buf$209.appendChild, buf$209, [img$214]);
+                     ;
+                   }(x$213));
                 }
-                _(append$203, [buf$212, _m(dd$209.createElement, dd$209, ["br"])]);
-                oc$$asets(d$207[1], y$214, _(oc$Array$[10], [_(oc$List$[4], [imgs$215])]));
-              }(y$214));
+                _m(buf$209.appendChild, buf$209, [_m(dd$206.createElement, dd$206, ["br"])]);
+                ;
+                oc$$asets(d$204[1], y$211, _(oc$Array$[10], [_(oc$List$[4], [imgs$212])]));
+              }(y$211));
            }
-           board_div$210.style.lineHeight = "0";
-           return __(append$203, [board_div$210, buf$212]);
+           board_div$207.style.lineHeight = "0";
+           _m(board_div$207.appendChild, board_div$207, [buf$209]);
+           return 0;
          });
-    var run$218 =
-      _f(function (div$219, nbc$220, nbr$221, nbm$222) {
-           var match$278 =
+    var run$215 =
+      _f(function (div$216, nbc$217, nbr$218, nbm$219) {
+           var match$274 =
              function () {
                try {
-                 return $(div$219, caml_int_of_string(nbc$220), caml_int_of_string(nbr$221), caml_int_of_string(nbm$222));
-               } catch (exn$277) {
+                 return $(div$216, caml_int_of_string(nbc$217), caml_int_of_string(nbr$218), caml_int_of_string(nbm$219));
+               } catch (exn$273) {
                  return $("board", 10, 10, 20);
                }
              }();
-           var d$227 = _(create_demin$190, [match$278[1], match$278[2], match$278[3]]);
-           return __(init_table$206, [d$227, match$278[0]]);
+           var d$224 = _(create_demin$190, [match$274[1], match$274[2], match$274[3]]);
+           return __(init_table$203, [d$224, match$274[0]]);
          });
     return $(default_config$65, iter_on_cell$76, random_list_mines$81, 
            generate_seed$86, valid$89, neighbours$93, initialize_board$98, 
            cells_to_see$122, b0$143, l1$144, l1$144, l4$146, l3$147, 
            l5$148, l1$144, h2$150, h3$151, h2$150, h5$153, h6$154, draw_cell$168, 
            draw_board$171, disable_events$175, mark_cell$179, reveal$183, 
-           create_demin$190, append$203, init_table$206, run$218);
+           create_demin$190, init_table$203, run$215);
   }();
 var oc$Main$ =
   function () {
-    var append$58 = _f(function (n1$59, n2$60) { _m(n1$59.appendChild, n1$59, [n2$60]);
-                                                 return 0; });
-    var int_input$61 =
-      _f(function (name$62, value$63) {
-           var d$64 = oc$Dom$[1];
-           var res$65 = _m(d$64.createDocumentFragment, d$64, []);
-           _(append$58, [res$65, _m(d$64.createTextNode, d$64, [name$62])]);
-           var input$66 = _m(d$64.createElement, d$64, ["input"]);
-           _m(input$66.setAttribute, input$66, ["type", "text"]);
-           input$66.value = _(oc$Pervasives$[19], [value$63[0]]);
-           input$66.onchange =
+    var int_input$58 =
+      _f(function (name$59, value$60) {
+           var d$61 = oc$Dom$[1];
+           var res$62 = _m(d$61.createDocumentFragment, d$61, []);
+           _m(res$62.appendChild, res$62, [_m(d$61.createTextNode, d$61, [name$59])]);
+           ;
+           var input$63 = _m(d$61.createElement, d$61, ["input"]);
+           _m(input$63.setAttribute, input$63, ["type", "text"]);
+           input$63.value = _(oc$Pervasives$[19], [value$60[0]]);
+           input$63.onchange =
            _(oc$Ocamljs$[3],
-           [_f(function (param$95) {
-                 value$63[0] =
-                 function () { try { return caml_int_of_string(input$66.value); } catch (exn$96) { return value$63[0]; } }();
-                 return input$66.value = _(oc$Pervasives$[19], [value$63[0]]);
+           [_f(function (param$91) {
+                 value$60[0] =
+                 function () { try { return caml_int_of_string(input$63.value); } catch (exn$92) { return value$60[0]; } }();
+                 return input$63.value = _(oc$Pervasives$[19], [value$60[0]]);
                })]);
-           _(append$58, [res$65, input$66]);
-           return res$65;
+           _m(res$62.appendChild, res$62, [input$63]);
+           ;
+           return res$62;
          });
-    var button$67 =
-      _f(function (name$68, callback$69) {
-           var d$70 = oc$Dom$[1];
-           var res$71 = _m(d$70.createDocumentFragment, d$70, []);
-           var input$72 = _m(d$70.createElement, d$70, ["input"]);
-           _m(input$72.setAttribute, input$72, ["type", "submit"]);
-           input$72.value = name$68;
-           input$72.onclick = _(oc$Ocamljs$[3], [callback$69]);
-           _(append$58, [res$71, input$72]);
-           return res$71;
+    var button$64 =
+      _f(function (name$65, callback$66) {
+           var d$67 = oc$Dom$[1];
+           var res$68 = _m(d$67.createDocumentFragment, d$67, []);
+           var input$69 = _m(d$67.createElement, d$67, ["input"]);
+           _m(input$69.setAttribute, input$69, ["type", "submit"]);
+           input$69.value = name$65;
+           input$69.onclick = _(oc$Ocamljs$[3], [callback$66]);
+           _m(res$68.appendChild, res$68, [input$69]);
+           ;
+           return res$68;
          });
-    var div$73 =
-      _f(function (id$74) {
-           var div$75 = function () { var v$97 = oc$Dom$[1];
-                                      return _m(v$97.createElement, v$97, ["div"]); }();
-           _m(div$75.setAttribute, div$75, ["id", id$74]);
-           return div$75;
+    var div$70 =
+      _f(function (id$71) {
+           var div$72 = function () { var v$93 = oc$Dom$[1];
+                                      return _m(v$93.createElement, v$93, ["div"]); }();
+           _m(div$72.setAttribute, div$72, ["id", id$71]);
+           return div$72;
          });
-    var uid$76 =
+    var uid$73 =
       function () {
-        var uid$77 = $(0);
-        return _f(function (param$94) {
-                    uid$77[0]++;
-                    return __(oc$Pervasives$[15], ["caml__", _(oc$Pervasives$[19], [uid$77[0]])]);
+        var uid$74 = $(0);
+        return _f(function (param$90) {
+                    uid$74[0]++;
+                    return __(oc$Pervasives$[15], ["caml__", _(oc$Pervasives$[19], [uid$74[0]])]);
                   });
       }();
-    var onload$78 =
-      _f(function (param$91) {
-           var d$79 = oc$Dom$[1];
-           var main$80 = _m(d$79.getElementById, d$79, ["main"]);
-           var match$93 = $($(10), $(12), $(15));
-           var nbm$83 = match$93[2];
-           var nbc$82 = match$93[1];
-           var nbr$81 = match$93[0];
-           _(append$58, [main$80, _(int_input$61, ["Number of columns", nbr$81])]);
-           _(append$58, [main$80, _m(d$79.createElement, d$79, ["br"])]);
-           _(append$58, [main$80, _(int_input$61, ["Number of rows", nbc$82])]);
-           _(append$58, [main$80, _m(d$79.createElement, d$79, ["br"])]);
-           _(append$58, [main$80, _(int_input$61, ["Number of mines", nbm$83])]);
-           _(append$58, [main$80, _m(d$79.createElement, d$79, ["br"])]);
-           return __(append$58,
-                  [main$80,
-                  _(button$67,
-                  ["nouvelle partie",
-                  _f(function (param$92) {
-                       var id$84 = _(uid$76, [0]);
-                       _(append$58, [main$80, _(div$73, [id$84])]);
-                       _(oc$Minesweeper$[28],
-                       [id$84, _(oc$Pervasives$[19], [nbc$82[0]]), _(oc$Pervasives$[19], [nbr$81[0]]),
-                       _(oc$Pervasives$[19], [nbm$83[0]])]);
-                       return 0;
-                     })])]);
+    var onload$75 =
+      _f(function (param$87) {
+           var d$76 = oc$Dom$[1];
+           var main$77 = _m(d$76.getElementById, d$76, ["main"]);
+           var match$89 = $($(10), $(12), $(15));
+           var nbm$80 = match$89[2];
+           var nbc$79 = match$89[1];
+           var nbr$78 = match$89[0];
+           _m(main$77.appendChild, main$77, [_(int_input$58, ["Number of columns", nbr$78])]);
+           ;
+           _m(main$77.appendChild, main$77, [_m(d$76.createElement, d$76, ["br"])]);
+           ;
+           _m(main$77.appendChild, main$77, [_(int_input$58, ["Number of rows", nbc$79])]);
+           ;
+           _m(main$77.appendChild, main$77, [_m(d$76.createElement, d$76, ["br"])]);
+           ;
+           _m(main$77.appendChild, main$77, [_(int_input$58, ["Number of mines", nbm$80])]);
+           ;
+           _m(main$77.appendChild, main$77, [_m(d$76.createElement, d$76, ["br"])]);
+           ;
+           _m(main$77.appendChild, main$77,
+           [_(button$64,
+            ["nouvelle partie",
+            _f(function (param$88) {
+                 var id$81 = _(uid$73, [0]);
+                 _m(main$77.appendChild, main$77, [_(div$70, [id$81])]);
+                 ;
+                 _(oc$Minesweeper$[27],
+                 [id$81, _(oc$Pervasives$[19], [nbc$79[0]]), _(oc$Pervasives$[19], [nbr$78[0]]),
+                 _(oc$Pervasives$[19], [nbm$80[0]])]);
+                 return 0;
+               })])]);
+           return 0;
          });
-    (oc$Dom$[0]).onload = _(oc$Ocamljs$[3], [onload$78]);
-    return $(append$58, int_input$61, button$67, div$73, uid$76, onload$78);
+    (oc$Dom$[0]).onload = _(oc$Ocamljs$[3], [onload$75]);
+    return $(int_input$58, button$64, div$70, uid$73, onload$75);
   }();
 var oc$Std_exit$ = (_(oc$Pervasives$[80], [0]), $());
 return caml_named_value;

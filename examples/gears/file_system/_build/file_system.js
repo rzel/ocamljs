@@ -1,4 +1,4 @@
-// compiled by ocamlc 3.10.2, ocamljs 0.1
+// compiled by ocamlc 3.10.2, ocamljs 0.2
 var ocamljs$caml_named_value = (function (){
 var Match_failure$16g = "Match_failure";
 var Out_of_memory$17g = "Out_of_memory";
@@ -14,7 +14,7 @@ var Assert_failure$26g = "Assert_failure";
 var Undefined_recursive_module$27g = "Undefined_recursive_module";
 /*
  * This file is part of ocamljs, OCaml to Javascript compiler
- * Copyright (C) 2007 Skydeck, Inc
+ * Copyright (C) 2007-9 Skydeck, Inc
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -273,7 +273,7 @@ var caml_sys_open = function () { throw "caml_sys_open"; }
 var caml_sys_random_seed = function() { throw "caml_sys_random_seed"; }
 /*
  * This file is part of ocamljs, OCaml to Javascript compiler
- * Copyright (C) 2007 Skydeck, Inc
+ * Copyright (C) 2007-9 Skydeck, Inc
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -811,257 +811,249 @@ window.XMLHttpRequest = function() { return new ActiveXObject('Microsoft.XMLHTTP
 })();
 var oc$Pervasives$ =
   function () {
-    var failwith$38 = _f(function (s$39) { throw $(Failure$19g, s$39); });
-    var invalid_arg$40 = _f(function (s$41) { throw $(Invalid_argument$18g, s$41); });
-    var Exit$42 = $("Pervasives.Exit");
-    var min$50 = _f(function (x$51, y$52) { if (caml_lessequal(x$51, y$52)) return x$51;
-                                            return y$52; });
-    var max$53 = _f(function (x$54, y$55) { if (caml_greaterequal(x$54, y$55)) return x$54;
-                                            return y$55; });
-    var abs$71 = _f(function (x$72) { if (x$72 >= 0) return x$72;
-                                      return -x$72; });
-    var lnot$76 = _f(function (x$77) { return x$77 ^ -1; });
-    var min_int$81 = 1 << (1 << 31 === 0 ? 30 : 62);
-    var max_int$82 = min_int$81 - 1;
-    var infinity$115 = caml_int64_float_of_bits("9218868437227405312");
-    var neg_infinity$116 = caml_int64_float_of_bits("-4503599627370496");
-    var nan$117 = caml_int64_float_of_bits("9218868437227405313");
-    var max_float$118 = caml_int64_float_of_bits("9218868437227405311");
-    var min_float$119 = caml_int64_float_of_bits("4503599627370496");
-    var epsilon_float$120 = caml_int64_float_of_bits("4372995238176751616");
-    var $5E$136 =
-      _f(function (s1$137, s2$138) {
-           var l1$139 = s1$137.length;
-           var l2$140 = s2$138.length;
-           var s$141 = oc$$cms(l1$139 + l2$140);
-           caml_blit_string(s1$137, 0, s$141, 0, l1$139);
-           caml_blit_string(s2$138, 0, s$141, l1$139, l2$140);
-           return s$141;
-         });
-    var char_of_int$144 =
-      _f(function (n$145) { if (n$145 < 0 || n$145 > 255) return __(invalid_arg$40, ["char_of_int"]);
-                            return n$145; });
-    var string_of_bool$151 = _f(function (b$152) { if (b$152) return "true";
+    var failwith$54 = _f(function (s$55) { throw $(Failure$19g, s$55); });
+    var invalid_arg$56 = _f(function (s$57) { throw $(Invalid_argument$18g, s$57); });
+    var Exit$58 = $("Pervasives.Exit");
+    var min$66 = _f(function (x$67, y$68) { if (caml_lessequal(x$67, y$68)) return x$67;
+                                            return y$68; });
+    var max$69 = _f(function (x$70, y$71) { if (caml_greaterequal(x$70, y$71)) return x$70;
+                                            return y$71; });
+    var abs$87 = _f(function (x$88) { if (x$88 >= 0) return x$88;
+                                      return -x$88; });
+    var lnot$92 = _f(function (x$93) { return x$93 ^ -1; });
+    var min_int$97 = 1 << (1 << 31 === 0 ? 30 : 62);
+    var max_int$98 = min_int$97 - 1;
+    var infinity$131 = caml_int64_float_of_bits("9218868437227405312");
+    var neg_infinity$132 = caml_int64_float_of_bits("-4503599627370496");
+    var nan$133 = caml_int64_float_of_bits("9218868437227405313");
+    var max_float$134 = caml_int64_float_of_bits("9218868437227405311");
+    var min_float$135 = caml_int64_float_of_bits("4503599627370496");
+    var epsilon_float$136 = caml_int64_float_of_bits("4372995238176751616");
+    var $5E$152 = _f(function (s1$153, s2$154) { return s1$153.toString() + s2$154.toString(); });
+    var char_of_int$157 =
+      _f(function (n$158) { if (n$158 < 0 || n$158 > 255) return __(invalid_arg$56, ["char_of_int"]);
+                            return n$158; });
+    var string_of_bool$164 = _f(function (b$165) { if (b$165) return "true";
                                                    return "false"; });
-    var bool_of_string$153 =
-      _f(function (param$415) {
-           if (!oc$$sneq(param$415, "false")) return 0;
-           if (oc$$sneq(param$415, "true")) return __(invalid_arg$40, ["bool_of_string"]);
+    var bool_of_string$166 =
+      _f(function (param$428) {
+           if (!oc$$sneq(param$428, "false")) return 0;
+           if (oc$$sneq(param$428, "true")) return __(invalid_arg$56, ["bool_of_string"]);
            return 1;
          });
-    var string_of_int$154 = _f(function (n$155) { return caml_format_int("%d", n$155); });
-    var String$158 = $();
-    var valid_float_lexem$159 =
-      _f(function (s$160) {
-           var l$161 = s$160.length;
-           var loop$162 =
-             _f(function (i$163) {
-                  if (i$163 >= l$161) return __($5E$136, [s$160, "."]);
-                  var match$414 = oc$$srefs(s$160, i$163);
+    var string_of_int$167 = _f(function (n$168) { return caml_format_int("%d", n$168); });
+    var String$171 = $();
+    var valid_float_lexem$172 =
+      _f(function (s$173) {
+           var l$174 = s$173.length;
+           var loop$175 =
+             _f(function (i$176) {
+                  if (i$176 >= l$174) return __($5E$152, [s$173, "."]);
+                  var match$427 = oc$$srefs(s$173, i$176);
                   var $r58 = false;
                   r$58: {
-                    if (!(match$414 >= 48)) { if (!(match$414 !== 45)) { $r58 = true;
+                    if (!(match$427 >= 48)) { if (!(match$427 !== 45)) { $r58 = true;
                                                                     break r$58; }
-                                              return s$160; }
-                    if (!(match$414 >= 58)) { $r58 = true;
+                                              return s$173; }
+                    if (!(match$427 >= 58)) { $r58 = true;
                                               break r$58; }
-                    return s$160;
+                    return s$173;
                   }
-                  if ($r58) return __(loop$162, [i$163 + 1]);
+                  if ($r58) return __(loop$175, [i$176 + 1]);
                 });
-           return __(loop$162, [0]);
+           return __(loop$175, [0]);
          });
-    var string_of_float$164 = _f(function (f$165) { return __(valid_float_lexem$159, [oc$$sprintf("%.12g", f$165)]); });
-    var $40$167 =
-      _f(function (l1$168, l2$169) { if (l1$168) return $(l1$168[0], _($40$167, [l1$168[1], l2$169]));
-                                     return l2$169; });
-    var stdin$176 = caml_ml_open_descriptor_in(0);
-    var stdout$177 = caml_ml_open_descriptor_out(1);
-    var stderr$178 = caml_ml_open_descriptor_out(2);
-    var open_out_gen$199 =
-      _f(function (mode$200, perm$201, name$202) {
-           return caml_ml_open_descriptor_out(caml_sys_open(name$202, mode$200, perm$201));
+    var string_of_float$177 = _f(function (f$178) { return __(valid_float_lexem$172, [oc$$sprintf("%.12g", f$178)]); });
+    var $40$180 =
+      _f(function (l1$181, l2$182) { if (l1$181) return $(l1$181[0], _($40$180, [l1$181[1], l2$182]));
+                                     return l2$182; });
+    var stdin$189 = caml_ml_open_descriptor_in(0);
+    var stdout$190 = caml_ml_open_descriptor_out(1);
+    var stderr$191 = caml_ml_open_descriptor_out(2);
+    var open_out_gen$212 =
+      _f(function (mode$213, perm$214, name$215) {
+           return caml_ml_open_descriptor_out(caml_sys_open(name$215, mode$213, perm$214));
          });
-    var open_out$203 = _f(function (name$204) { return __(open_out_gen$199, [$(1, $(3, $(4, $(7, 0)))), 438, name$204]); });
-    var open_out_bin$205 = _f(function (name$206) { return __(open_out_gen$199, [$(1, $(3, $(4, $(6, 0)))), 438, name$206]); });
-    var flush_all$209 =
-      _f(function (param$411) {
-           var iter$210 =
-             _f(function (param$412) {
-                  if (param$412)
+    var open_out$216 = _f(function (name$217) { return __(open_out_gen$212, [$(1, $(3, $(4, $(7, 0)))), 438, name$217]); });
+    var open_out_bin$218 = _f(function (name$219) { return __(open_out_gen$212, [$(1, $(3, $(4, $(6, 0)))), 438, name$219]); });
+    var flush_all$222 =
+      _f(function (param$424) {
+           var iter$223 =
+             _f(function (param$425) {
+                  if (param$425)
                   {
-                    try { caml_ml_flush(param$412[0]); } catch (exn$413) { ; }
-                    return __(iter$210, [param$412[1]]);
+                    try { caml_ml_flush(param$425[0]); } catch (exn$426) { ; }
+                    return __(iter$223, [param$425[1]]);
                   }
                   return 0;
                 });
-           return __(iter$210, [caml_ml_out_channels_list(0)]);
+           return __(iter$223, [caml_ml_out_channels_list(0)]);
          });
-    var output_string$215 = _f(function (oc$216, s$217) { return caml_ml_output(oc$216, s$217, 0, s$217.length); });
-    var output$218 =
-      _f(function (oc$219, s$220, ofs$221, len$222) {
-           if (ofs$221 < 0 || (len$222 < 0 || ofs$221 > s$220.length - len$222)) return __(invalid_arg$40, ["output"]);
-           return caml_ml_output(oc$219, s$220, ofs$221, len$222);
+    var output_string$228 = _f(function (oc$229, s$230) { return caml_ml_output(oc$229, s$230, 0, s$230.length); });
+    var output$231 =
+      _f(function (oc$232, s$233, ofs$234, len$235) {
+           if (ofs$234 < 0 || (len$235 < 0 || ofs$234 > s$233.length - len$235)) return __(invalid_arg$56, ["output"]);
+           return caml_ml_output(oc$232, s$233, ofs$234, len$235);
          });
-    var output_value$226 = _f(function (chan$227, v$228) { return caml_output_value(chan$227, v$228, 0); });
-    var close_out$233 = _f(function (oc$234) { caml_ml_flush(oc$234);
-                                               return caml_ml_close_channel(oc$234); });
-    var close_out_noerr$235 =
-      _f(function (oc$236) {
-           try { caml_ml_flush(oc$236); } catch (exn$410) { ; }
-           try { return caml_ml_close_channel(oc$236); } catch (exn$409) { return 0; }
+    var output_value$239 = _f(function (chan$240, v$241) { return caml_output_value(chan$240, v$241, 0); });
+    var close_out$246 = _f(function (oc$247) { caml_ml_flush(oc$247);
+                                               return caml_ml_close_channel(oc$247); });
+    var close_out_noerr$248 =
+      _f(function (oc$249) {
+           try { caml_ml_flush(oc$249); } catch (exn$423) { ; }
+           try { return caml_ml_close_channel(oc$249); } catch (exn$422) { return 0; }
          });
-    var open_in_gen$238 =
-      _f(function (mode$239, perm$240, name$241) {
-           return caml_ml_open_descriptor_in(caml_sys_open(name$241, mode$239, perm$240));
+    var open_in_gen$251 =
+      _f(function (mode$252, perm$253, name$254) {
+           return caml_ml_open_descriptor_in(caml_sys_open(name$254, mode$252, perm$253));
          });
-    var open_in$242 = _f(function (name$243) { return __(open_in_gen$238, [$(0, $(7, 0)), 0, name$243]); });
-    var open_in_bin$244 = _f(function (name$245) { return __(open_in_gen$238, [$(0, $(6, 0)), 0, name$245]); });
-    var input$248 =
-      _f(function (ic$249, s$250, ofs$251, len$252) {
-           if (ofs$251 < 0 || (len$252 < 0 || ofs$251 > s$250.length - len$252)) return __(invalid_arg$40, ["input"]);
-           return caml_ml_input(ic$249, s$250, ofs$251, len$252);
+    var open_in$255 = _f(function (name$256) { return __(open_in_gen$251, [$(0, $(7, 0)), 0, name$256]); });
+    var open_in_bin$257 = _f(function (name$258) { return __(open_in_gen$251, [$(0, $(6, 0)), 0, name$258]); });
+    var input$261 =
+      _f(function (ic$262, s$263, ofs$264, len$265) {
+           if (ofs$264 < 0 || (len$265 < 0 || ofs$264 > s$263.length - len$265)) return __(invalid_arg$56, ["input"]);
+           return caml_ml_input(ic$262, s$263, ofs$264, len$265);
          });
-    var unsafe_really_input$253 =
-      _f(function (ic$254, s$255, ofs$256, len$257) {
-           if (len$257 <= 0) return 0;
-           var r$258 = caml_ml_input(ic$254, s$255, ofs$256, len$257);
-           if (r$258 === 0) throw $(End_of_file$22g);
-           return __(unsafe_really_input$253, [ic$254, s$255, ofs$256 + r$258, len$257 - r$258]);
+    var unsafe_really_input$266 =
+      _f(function (ic$267, s$268, ofs$269, len$270) {
+           if (len$270 <= 0) return 0;
+           var r$271 = caml_ml_input(ic$267, s$268, ofs$269, len$270);
+           if (r$271 === 0) throw $(End_of_file$22g);
+           return __(unsafe_really_input$266, [ic$267, s$268, ofs$269 + r$271, len$270 - r$271]);
          });
-    var really_input$259 =
-      _f(function (ic$260, s$261, ofs$262, len$263) {
-           if (ofs$262 < 0 || (len$263 < 0 || ofs$262 > s$261.length - len$263)) return __(invalid_arg$40, ["really_input"]);
-           return __(unsafe_really_input$253, [ic$260, s$261, ofs$262, len$263]);
+    var really_input$272 =
+      _f(function (ic$273, s$274, ofs$275, len$276) {
+           if (ofs$275 < 0 || (len$276 < 0 || ofs$275 > s$274.length - len$276)) return __(invalid_arg$56, ["really_input"]);
+           return __(unsafe_really_input$266, [ic$273, s$274, ofs$275, len$276]);
          });
-    var input_line$265 =
-      _f(function (chan$266) {
-           var build_result$267 =
-             _f(function (buf$268, pos$269, param$408) {
-                  if (param$408)
+    var input_line$278 =
+      _f(function (chan$279) {
+           var build_result$280 =
+             _f(function (buf$281, pos$282, param$421) {
+                  if (param$421)
                   {
-                    var hd$270 = param$408[0];
-                    var len$272 = hd$270.length;
-                    caml_blit_string(hd$270, 0, buf$268, pos$269 - len$272, len$272);
-                    return __(build_result$267, [buf$268, pos$269 - len$272, param$408[1]]);
+                    var hd$283 = param$421[0];
+                    var len$285 = hd$283.length;
+                    caml_blit_string(hd$283, 0, buf$281, pos$282 - len$285, len$285);
+                    return __(build_result$280, [buf$281, pos$282 - len$285, param$421[1]]);
                   }
-                  return buf$268;
+                  return buf$281;
                 });
-           var scan$273 =
-             _f(function (accu$274, len$275) {
-                  var n$276 = caml_ml_input_scan_line(chan$266);
-                  if (!(n$276 === 0))
+           var scan$286 =
+             _f(function (accu$287, len$288) {
+                  var n$289 = caml_ml_input_scan_line(chan$279);
+                  if (!(n$289 === 0))
                   {
-                    if (n$276 > 0)
+                    if (n$289 > 0)
                     {
-                      var res$277 = oc$$cms(n$276 - 1);
-                      caml_ml_input(chan$266, res$277, 0, n$276 - 1);
+                      var res$290 = oc$$cms(n$289 - 1);
+                      caml_ml_input(chan$279, res$290, 0, n$289 - 1);
                       ;
-                      caml_ml_input_char(chan$266);
+                      caml_ml_input_char(chan$279);
                       ;
-                      if (accu$274)
+                      if (accu$287)
                       {
-                        var len$278 = len$275 + n$276 - 1;
-                        return __(build_result$267, [oc$$cms(len$278), len$278, $(res$277, accu$274)]);
+                        var len$291 = len$288 + n$289 - 1;
+                        return __(build_result$280, [oc$$cms(len$291), len$291, $(res$290, accu$287)]);
                       }
-                      return res$277;
+                      return res$290;
                     }
-                    var beg$279 = oc$$cms(-n$276);
-                    caml_ml_input(chan$266, beg$279, 0, -n$276);
+                    var beg$292 = oc$$cms(-n$289);
+                    caml_ml_input(chan$279, beg$292, 0, -n$289);
                     ;
-                    return __(scan$273, [$(beg$279, accu$274), len$275 - n$276]);
+                    return __(scan$286, [$(beg$292, accu$287), len$288 - n$289]);
                   }
-                  if (accu$274) return __(build_result$267, [oc$$cms(len$275), len$275, accu$274]);
+                  if (accu$287) return __(build_result$280, [oc$$cms(len$288), len$288, accu$287]);
                   throw $(End_of_file$22g);
                 });
-           return __(scan$273, [0, 0]);
+           return __(scan$286, [0, 0]);
          });
-    var close_in_noerr$287 = _f(function (ic$288) { try { return caml_ml_close_channel(ic$288); } catch (exn$407) { return 0; } });
-    var print_char$290 = _f(function (c$291) { return caml_ml_output_char(stdout$177, c$291); });
-    var print_string$292 = _f(function (s$293) { return __(output_string$215, [stdout$177, s$293]); });
-    var print_int$294 = _f(function (i$295) { return __(output_string$215, [stdout$177, _(string_of_int$154, [i$295])]); });
-    var print_float$296 = _f(function (f$297) { return __(output_string$215, [stdout$177, _(string_of_float$164, [f$297])]); });
-    var print_endline$298 =
-      _f(function (s$299) {
-           _(output_string$215, [stdout$177, s$299]);
-           caml_ml_output_char(stdout$177, 10);
-           return caml_ml_flush(stdout$177);
+    var close_in_noerr$300 = _f(function (ic$301) { try { return caml_ml_close_channel(ic$301); } catch (exn$420) { return 0; } });
+    var print_char$303 = _f(function (c$304) { return caml_ml_output_char(stdout$190, c$304); });
+    var print_string$305 = _f(function (s$306) { return __(output_string$228, [stdout$190, s$306]); });
+    var print_int$307 = _f(function (i$308) { return __(output_string$228, [stdout$190, _(string_of_int$167, [i$308])]); });
+    var print_float$309 = _f(function (f$310) { return __(output_string$228, [stdout$190, _(string_of_float$177, [f$310])]); });
+    var print_endline$311 =
+      _f(function (s$312) {
+           _(output_string$228, [stdout$190, s$312]);
+           caml_ml_output_char(stdout$190, 10);
+           return caml_ml_flush(stdout$190);
          });
-    var print_newline$300 = _f(function (param$406) { caml_ml_output_char(stdout$177, 10);
-                                                      return caml_ml_flush(stdout$177); });
-    var prerr_char$301 = _f(function (c$302) { return caml_ml_output_char(stderr$178, c$302); });
-    var prerr_string$303 = _f(function (s$304) { return __(output_string$215, [stderr$178, s$304]); });
-    var prerr_int$305 = _f(function (i$306) { return __(output_string$215, [stderr$178, _(string_of_int$154, [i$306])]); });
-    var prerr_float$307 = _f(function (f$308) { return __(output_string$215, [stderr$178, _(string_of_float$164, [f$308])]); });
-    var prerr_endline$309 =
-      _f(function (s$310) {
-           _(output_string$215, [stderr$178, s$310]);
-           caml_ml_output_char(stderr$178, 10);
-           return caml_ml_flush(stderr$178);
+    var print_newline$313 = _f(function (param$419) { caml_ml_output_char(stdout$190, 10);
+                                                      return caml_ml_flush(stdout$190); });
+    var prerr_char$314 = _f(function (c$315) { return caml_ml_output_char(stderr$191, c$315); });
+    var prerr_string$316 = _f(function (s$317) { return __(output_string$228, [stderr$191, s$317]); });
+    var prerr_int$318 = _f(function (i$319) { return __(output_string$228, [stderr$191, _(string_of_int$167, [i$319])]); });
+    var prerr_float$320 = _f(function (f$321) { return __(output_string$228, [stderr$191, _(string_of_float$177, [f$321])]); });
+    var prerr_endline$322 =
+      _f(function (s$323) {
+           _(output_string$228, [stderr$191, s$323]);
+           caml_ml_output_char(stderr$191, 10);
+           return caml_ml_flush(stderr$191);
          });
-    var prerr_newline$311 = _f(function (param$405) { caml_ml_output_char(stderr$178, 10);
-                                                      return caml_ml_flush(stderr$178); });
-    var read_line$312 = _f(function (param$404) { caml_ml_flush(stdout$177);
-                                                  return __(input_line$265, [stdin$176]); });
-    var read_int$313 = _f(function (param$403) { return caml_int_of_string(_(read_line$312, [0])); });
-    var read_float$314 = _f(function (param$402) { return caml_float_of_string(_(read_line$312, [0])); });
-    var LargeFile$321 = $();
-    var $5E$5E$336 = _f(function (fmt1$337, fmt2$338) { return _($5E$136, [fmt1$337, fmt2$338]); });
-    var string_of_format$339 =
-      _f(function (fmt$340) {
-           var s$341 = fmt$340;
-           var l$342 = s$341.length;
-           var r$343 = oc$$cms(l$342);
-           caml_blit_string(s$341, 0, r$343, 0, l$342);
-           return r$343;
+    var prerr_newline$324 = _f(function (param$418) { caml_ml_output_char(stderr$191, 10);
+                                                      return caml_ml_flush(stderr$191); });
+    var read_line$325 = _f(function (param$417) { caml_ml_flush(stdout$190);
+                                                  return __(input_line$278, [stdin$189]); });
+    var read_int$326 = _f(function (param$416) { return caml_int_of_string(_(read_line$325, [0])); });
+    var read_float$327 = _f(function (param$415) { return caml_float_of_string(_(read_line$325, [0])); });
+    var LargeFile$334 = $();
+    var $5E$5E$349 = _f(function (fmt1$350, fmt2$351) { return _($5E$152, [fmt1$350, fmt2$351]); });
+    var string_of_format$352 =
+      _f(function (fmt$353) {
+           var s$354 = fmt$353;
+           var l$355 = s$354.length;
+           var r$356 = oc$$cms(l$355);
+           caml_blit_string(s$354, 0, r$356, 0, l$355);
+           return r$356;
          });
-    var exit_function$345 = $(flush_all$209);
-    var at_exit$346 =
-      _f(function (f$347) {
-           var g$348 = exit_function$345[0];
-           return exit_function$345[0] = _f(function (param$401) { _(f$347, [0]);
-                                                                   return __(g$348, [0]); });
+    var exit_function$358 = $(flush_all$222);
+    var at_exit$359 =
+      _f(function (f$360) {
+           var g$361 = exit_function$358[0];
+           return exit_function$358[0] = _f(function (param$414) { _(f$360, [0]);
+                                                                   return __(g$361, [0]); });
          });
-    var do_at_exit$349 = _f(function (param$400) { return __(exit_function$345[0], [0]); });
-    var exit$350 = _f(function (retcode$351) { _(do_at_exit$349, [0]);
-                                               return caml_sys_exit(retcode$351); });
-    caml_register_named_value("Pervasives.do_at_exit", do_at_exit$349);
-    return $(invalid_arg$40, failwith$38, Exit$42, min$50, max$53, abs$71, 
-           max_int$82, min_int$81, lnot$76, infinity$115, neg_infinity$116, 
-           nan$117, max_float$118, min_float$119, epsilon_float$120, 
-           $5E$136, char_of_int$144, string_of_bool$151, bool_of_string$153, 
-           string_of_int$154, string_of_float$164, $40$167, stdin$176, 
-           stdout$177, stderr$178, print_char$290, print_string$292, 
-           print_int$294, print_float$296, print_endline$298, print_newline$300, 
-           prerr_char$301, prerr_string$303, prerr_int$305, prerr_float$307, 
-           prerr_endline$309, prerr_newline$311, read_line$312, read_int$313, 
-           read_float$314, open_out$203, open_out_bin$205, open_out_gen$199,
-           _f(function (prim$368) { return caml_ml_flush(prim$368); }), 
-           flush_all$209, _f(function (prim$370, prim$369) { return caml_ml_output_char(prim$370, prim$369); }), 
-           output_string$215, output$218, _f(function (prim$372, prim$371) { return caml_ml_output_char(prim$372, prim$371); }),
-           _f(function (prim$374, prim$373) { return caml_ml_output_int(prim$374, prim$373); }), 
-           output_value$226, _f(function (prim$376, prim$375) { return caml_ml_seek_out(prim$376, prim$375); }),
-           _f(function (prim$377) { return caml_ml_pos_out(prim$377); }),
-           _f(function (prim$378) { return caml_ml_channel_size(prim$378); }), 
-           close_out$233, close_out_noerr$235,
-           _f(function (prim$380, prim$379) { return caml_ml_set_binary_mode(prim$380, prim$379); }), 
-           open_in$242, open_in_bin$244, open_in_gen$238, _f(function (prim$381) { return caml_ml_input_char(prim$381); }),
-           input_line$265, input$248, really_input$259, _f(function (prim$382) { return caml_ml_input_char(prim$382); }),
-           _f(function (prim$383) { return caml_ml_input_int(prim$383); }),
-           _f(function (prim$384) { return caml_input_value(prim$384); }),
-           _f(function (prim$386, prim$385) { return caml_ml_seek_in(prim$386, prim$385); }),
-           _f(function (prim$387) { return caml_ml_pos_in(prim$387); }),
-           _f(function (prim$388) { return caml_ml_channel_size(prim$388); }),
-           _f(function (prim$389) { return caml_ml_close_channel(prim$389); }), 
-           close_in_noerr$287, _f(function (prim$391, prim$390) { return caml_ml_set_binary_mode(prim$391, prim$390); }),
-           $(_f(function (prim$393, prim$392) { return caml_ml_seek_out_64(prim$393, prim$392); }),
-           _f(function (prim$394) { return caml_ml_pos_out_64(prim$394); }),
-           _f(function (prim$395) { return caml_ml_channel_size_64(prim$395); }),
-           _f(function (prim$397, prim$396) { return caml_ml_seek_in_64(prim$397, prim$396); }),
-           _f(function (prim$398) { return caml_ml_pos_in_64(prim$398); }),
-           _f(function (prim$399) { return caml_ml_channel_size_64(prim$399); })), 
-           string_of_format$339, $5E$5E$336, exit$350, at_exit$346, valid_float_lexem$159, 
-           unsafe_really_input$253, do_at_exit$349);
+    var do_at_exit$362 = _f(function (param$413) { return __(exit_function$358[0], [0]); });
+    var exit$363 = _f(function (retcode$364) { _(do_at_exit$362, [0]);
+                                               return caml_sys_exit(retcode$364); });
+    caml_register_named_value("Pervasives.do_at_exit", do_at_exit$362);
+    return $(invalid_arg$56, failwith$54, Exit$58, min$66, max$69, abs$87, 
+           max_int$98, min_int$97, lnot$92, infinity$131, neg_infinity$132, 
+           nan$133, max_float$134, min_float$135, epsilon_float$136, 
+           $5E$152, char_of_int$157, string_of_bool$164, bool_of_string$166, 
+           string_of_int$167, string_of_float$177, $40$180, stdin$189, 
+           stdout$190, stderr$191, print_char$303, print_string$305, 
+           print_int$307, print_float$309, print_endline$311, print_newline$313, 
+           prerr_char$314, prerr_string$316, prerr_int$318, prerr_float$320, 
+           prerr_endline$322, prerr_newline$324, read_line$325, read_int$326, 
+           read_float$327, open_out$216, open_out_bin$218, open_out_gen$212,
+           _f(function (prim$381) { return caml_ml_flush(prim$381); }), 
+           flush_all$222, _f(function (prim$383, prim$382) { return caml_ml_output_char(prim$383, prim$382); }), 
+           output_string$228, output$231, _f(function (prim$385, prim$384) { return caml_ml_output_char(prim$385, prim$384); }),
+           _f(function (prim$387, prim$386) { return caml_ml_output_int(prim$387, prim$386); }), 
+           output_value$239, _f(function (prim$389, prim$388) { return caml_ml_seek_out(prim$389, prim$388); }),
+           _f(function (prim$390) { return caml_ml_pos_out(prim$390); }),
+           _f(function (prim$391) { return caml_ml_channel_size(prim$391); }), 
+           close_out$246, close_out_noerr$248,
+           _f(function (prim$393, prim$392) { return caml_ml_set_binary_mode(prim$393, prim$392); }), 
+           open_in$255, open_in_bin$257, open_in_gen$251, _f(function (prim$394) { return caml_ml_input_char(prim$394); }),
+           input_line$278, input$261, really_input$272, _f(function (prim$395) { return caml_ml_input_char(prim$395); }),
+           _f(function (prim$396) { return caml_ml_input_int(prim$396); }),
+           _f(function (prim$397) { return caml_input_value(prim$397); }),
+           _f(function (prim$399, prim$398) { return caml_ml_seek_in(prim$399, prim$398); }),
+           _f(function (prim$400) { return caml_ml_pos_in(prim$400); }),
+           _f(function (prim$401) { return caml_ml_channel_size(prim$401); }),
+           _f(function (prim$402) { return caml_ml_close_channel(prim$402); }), 
+           close_in_noerr$300, _f(function (prim$404, prim$403) { return caml_ml_set_binary_mode(prim$404, prim$403); }),
+           $(_f(function (prim$406, prim$405) { return caml_ml_seek_out_64(prim$406, prim$405); }),
+           _f(function (prim$407) { return caml_ml_pos_out_64(prim$407); }),
+           _f(function (prim$408) { return caml_ml_channel_size_64(prim$408); }),
+           _f(function (prim$410, prim$409) { return caml_ml_seek_in_64(prim$410, prim$409); }),
+           _f(function (prim$411) { return caml_ml_pos_in_64(prim$411); }),
+           _f(function (prim$412) { return caml_ml_channel_size_64(prim$412); })), 
+           string_of_format$352, $5E$5E$349, exit$363, at_exit$359, valid_float_lexem$172, 
+           unsafe_really_input$266, do_at_exit$362);
   }();
 var oc$Array$ =
   function () {
@@ -1447,9 +1439,9 @@ var oc$Ocamljs$ =
     return $(option_of_nullable$74, nullable_of_option$76, is_null$79, 
            jsfun$82, jsfun2$85, jsfun3$89, jsfun4$94, jsfun5$100, Inline$288);
   }();
-var oc$Dom$ = function () { var window$696 = window;
-                            var document$697 = document;
-                            return $(window$696, document$697); }();
+var oc$Dom$ = function () { var window$717 = window;
+                            var document$718 = document;
+                            return $(window$717, document$718); }();
 var oc$Gears$ = function () { var factory$67 = google.gears.factory;
                               return $(factory$67); }();
 var oc$Javascript$ =
@@ -1457,78 +1449,76 @@ var oc$Javascript$ =
     var typeof$78 = _f(function (o$79) { return typeof o$79; });
     var true_$80 = true;
     var false_$81 = false;
-    var new_Date$119 = _f(function (param$143) { return new Date(); });
-    var Js_string$140 = $();
-    var Math$142 = function () { var pi$141 = Math.PI;
-                                 return $(pi$141); }();
-    return $(typeof$78, true_$80, false_$81, new_Date$119, Js_string$140, Math$142);
+    var new_Date$119 = _f(function (param$147) { return new Date(); });
+    var Js_string$144 = $();
+    var Math$146 = function () { var pi$145 = Math.PI;
+                                 return $(pi$145); }();
+    return $(typeof$78, true_$80, false_$81, new_Date$119, Js_string$144, Math$146);
   }();
 var oc$Sample$ =
   function () {
-    var console$79 = console;
-    var isDefined$80 = _f(function (type_$81) { return oc$$sneq(type_$81, "undefined") && oc$$sneq(type_$81, "unknown"); });
-    var childNodes$82 =
-      _f(function (element$83) {
-           if (_(isDefined$80, [typeof element$83.childNodes])) return element$83.childNodes;
-           if (_(isDefined$80, [typeof element$83.children])) return element$83.children;
+    var isDefined$74 = _f(function (type_$75) { return oc$$sneq(type_$75, "undefined") && oc$$sneq(type_$75, "unknown"); });
+    var childNodes$76 =
+      _f(function (element$77) {
+           if (_(isDefined$74, [typeof element$77.childNodes])) return element$77.childNodes;
+           if (_(isDefined$74, [typeof element$77.children])) return element$77.children;
            throw $(Not_found$20g);
          });
-    var getElementById$84 =
-      _f(function (element_name$85) {
-           if (_(isDefined$80, [typeof document.getElementById])) return document.getElementById(element_name$85);
-           if (_(isDefined$80, [typeof document.all])) return document.all[element_name$85];
+    var getElementById$78 =
+      _f(function (element_name$79) {
+           if (_(isDefined$74, [typeof document.getElementById])) return document.getElementById(element_name$79);
+           if (_(isDefined$74, [typeof document.all])) return document.all[element_name$79];
            throw $(Not_found$20g);
          });
-    var setTextContent$86 =
-      _f(function (elem$87, content$88) {
-           if (_(isDefined$80, [typeof elem$87.innerText])) return elem$87.innerText = content$88;
-           if (_(isDefined$80, [typeof elem$87.textContent])) return elem$87.textContent = content$88;
+    var setTextContent$80 =
+      _f(function (elem$81, content$82) {
+           if (_(isDefined$74, [typeof elem$81.innerText])) return elem$81.innerText = content$82;
+           if (_(isDefined$74, [typeof elem$81.textContent])) return elem$81.textContent = content$82;
            throw $(Not_found$20g);
          });
-    var setupSample$89 =
-      _f(function (param$113) {
+    var setupSample$83 =
+      _f(function (param$103) {
            if ((!window.google || !google.gears) &&
                function () {
-                 var v$114 = oc$Dom$[0];
-                 return _m(v$114.confirm, v$114, ["This demo requires Gears to be installed. Install now?"]);
+                 var v$104 = oc$Dom$[0];
+                 return _m(v$104.confirm, v$104, ["This demo requires Gears to be installed. Install now?"]);
                }())
            return (oc$Dom$[0]).location.href = "http://code.google.com/apis/gears/install.html";
            return 0;
          });
-    var addStatus$90 =
-      _f(function (clas$91, message$92) {
-           var elm$93 = _(getElementById$84, ["status"]);
-           if (!_(oc$Ocamljs$[2], [elm$93]))
+    var addStatus$84 =
+      _f(function (clas$85, message$86) {
+           var elm$87 = _(getElementById$78, ["status"]);
+           if (!_(oc$Ocamljs$[2], [elm$87]))
            {
-             var id$94 = _(oc$Pervasives$[15], ["statusEntry", _(oc$Pervasives$[19], [(_(childNodes$82, [elm$93])).length + 1])]);
-             elm$93.innerHTML =
+             var id$88 = _(oc$Pervasives$[15], ["statusEntry", _(oc$Pervasives$[19], [(_(childNodes$76, [elm$87])).length + 1])]);
+             elm$87.innerHTML =
              _(oc$Pervasives$[15],
-             [elm$93.innerHTML,
-             clas$91 ?
+             [elm$87.innerHTML,
+             clas$85 ?
              _(oc$Pervasives$[15],
              ["<span id=\"",
              _(oc$Pervasives$[15],
-             [id$94, _(oc$Pervasives$[15], ["\" class=\"", _(oc$Pervasives$[15], [clas$91[0], "\"></span>"])])])]) :
-             _(oc$Pervasives$[15], ["<span id=\"", _(oc$Pervasives$[15], [id$94, "\"></span>"])])]);
-             elm$93.innerHTML = _(oc$Pervasives$[15], [elm$93.innerHTML, "<br>"]);
-             return __(setTextContent$86, [_(getElementById$84, [id$94]), message$92]);
+             [id$88, _(oc$Pervasives$[15], ["\" class=\"", _(oc$Pervasives$[15], [clas$85[0], "\"></span>"])])])]) :
+             _(oc$Pervasives$[15], ["<span id=\"", _(oc$Pervasives$[15], [id$88, "\"></span>"])])]);
+             elm$87.innerHTML = _(oc$Pervasives$[15], [elm$87.innerHTML, "<br>"]);
+             return __(setTextContent$80, [_(getElementById$78, [id$88]), message$86]);
            }
            return 0;
          });
-    var clearStatus$96 = _f(function (param$112) { var elm$97 = _(getElementById$84, ["status"]);
-                                                   return elm$97.innerHTML = ""; });
-    var setError$98 = _f(function (s$99) { _(clearStatus$96, [0]);
-                                           return __(addStatus$90, [$("error"), s$99]); });
-    _(setupSample$89, [0]);
-    return $(console$79, isDefined$80, childNodes$82, getElementById$84, 
-           setTextContent$86, setupSample$89, addStatus$90, clearStatus$96, 
-           setError$98);
+    var clearStatus$90 = _f(function (param$102) { var elm$91 = _(getElementById$78, ["status"]);
+                                                   return elm$91.innerHTML = ""; });
+    var setError$92 = _f(function (s$93) { _(clearStatus$90, [0]);
+                                           return __(addStatus$84, [$("error"), s$93]); });
+    _(setupSample$83, [0]);
+    return $(isDefined$74, childNodes$76, getElementById$78, setTextContent$80, 
+           setupSample$83, addStatus$84, clearStatus$90, setError$92);
   }();
 var oc$File_system$ =
   function () {
     var init$74 =
       _f(function (param$83) {
-           if (!window.google || !google.gears) return __(oc$Sample$[6], [$("error"), "Gears is not installed"]);
+           if (!window.google || !google.gears) return __(oc$Sample$[5], [$("error"), "Gears is not installed"]);
            return 0;
          });
     var browse$75 =
@@ -1538,9 +1528,9 @@ var oc$File_system$ =
            _m(desktop$76.openFiles, desktop$76,
            [_(oc$Ocamljs$[3],
             [_f(function (files$77) {
-                  _(oc$Sample$[7], [0]);
-                  _(oc$Sample$[6], [0, "You picked the following files:"]);
-                  return __(oc$Array$[11], [_f(function (f$78) { return __(oc$Sample$[6], [0, f$78.name]); }), files$77]);
+                  _(oc$Sample$[6], [0]);
+                  _(oc$Sample$[5], [0, "You picked the following files:"]);
+                  return __(oc$Array$[11], [_f(function (f$78) { return __(oc$Sample$[5], [0, f$78.name]); }), files$77]);
                 })]),
            {filter: ["text/plain", ".html"]}]);
            return 1;
@@ -1548,7 +1538,7 @@ var oc$File_system$ =
     _(init$74, [0]);
     (oc$Dom$[0]).onload =
     _(oc$Ocamljs$[3],
-    [_f(function (param$81) { return (_(oc$Sample$[3], ["browseButton"])).onclick = _(oc$Ocamljs$[3], [browse$75]); })]);
+    [_f(function (param$81) { return (_(oc$Sample$[2], ["browseButton"])).onclick = _(oc$Ocamljs$[3], [browse$75]); })]);
     return $(init$74, browse$75);
   }();
 var oc$Std_exit$ = (_(oc$Pervasives$[80], [0]), $());

@@ -15,11 +15,6 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Index of module types" rel=Appendix href="index_module_types.html">
 <link title="Dom" rel="Chapter" href="Dom.html">
-<link title="Froc" rel="Chapter" href="Froc.html">
-<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
-<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
-<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
-<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
 <link title="Gears" rel="Chapter" href="Gears.html">
 <link title="Javascript" rel="Chapter" href="Javascript.html">
 <link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
@@ -27,8 +22,10 @@
 <link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
 <link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
 <link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_dom" rel="Chapter" href="Lwt_dom.html">
 <link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
 <link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_timeout" rel="Chapter" href="Lwt_timeout.html">
 <link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
 <link title="Mozilla" rel="Chapter" href="Mozilla.html">
 <link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Javascript</title>
@@ -40,5 +37,8 @@
 </div>
 <center><h1>Module <a href="type_Javascript.html">Javascript</a></h1></center>
 <br>
-<pre><span class="keyword">module</span> Javascript: <code class="code">sig</code> <a href="Javascript.html">..</a> <code class="code">end</code></pre><hr width="100%">
+<pre><span class="keyword">module</span> Javascript: <code class="code">sig</code> <a href="Javascript.html">..</a> <code class="code">end</code></pre>Javascript standard library binding<br>
+<hr width="100%">
+<br>
+<code class="code">Javascript</code> is a partial binding of the Javascript standard library.<br>
 <pre><span class="keyword">val</span> <a name="VALencodeURIComponent"></a>encodeURIComponent : <code class="type">string -> string</code></pre><pre><span class="keyword">val</span> <a name="VALdecodeURIComponent"></a>decodeURIComponent : <code class="type">string -> string</code></pre><pre><span class="keyword">val</span> <a name="VALdump"></a>dump : <code class="type">string -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALeval"></a>eval : <code class="type">string -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALtypeof"></a>typeof : <code class="type">'a -> string</code></pre><pre><span class="keyword">val</span> <a name="VALtrue_"></a>true_ : <code class="type">bool</code></pre><pre><span class="keyword">val</span> <a name="VALfalse_"></a>false_ : <code class="type">bool</code></pre><pre><span class="keyword">class type</span> <a name="TYPEjs_array"></a><code class="type">['a]</code> <a href="Javascript.js_array.html">js_array</a> = <code class="code">object</code> <a href="Javascript.js_array.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALnew_Array"></a>new_Array : <code class="type">unit -> 'a <a href="Javascript.js_array.html">js_array</a></code></pre><pre><span class="keyword">val</span> <a name="VALnew_Array_length"></a>new_Array_length : <code class="type">int -> 'a <a href="Javascript.js_array.html">js_array</a></code></pre><pre><span class="keyword">class type</span> <a name="TYPEdate"></a><a href="Javascript.date.html">date</a> = <code class="code">object</code> <a href="Javascript.date.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALnew_Date"></a>new_Date : <code class="type">unit -> <a href="Javascript.date.html">date</a></code></pre><pre><span class="keyword">val</span> <a name="VALnew_Date_milliseconds"></a>new_Date_milliseconds : <code class="type">float -> <a href="Javascript.date.html">date</a></code></pre><pre><span class="keyword">val</span> <a name="VALnew_Date_parts"></a>new_Date_parts : <code class="type">int -> int -> int -> int -> int -> int -> int -> <a href="Javascript.date.html">date</a></code></pre><pre><span class="keyword">class type</span> <a name="TYPEregexp"></a><a href="Javascript.regexp.html">regexp</a> = <code class="code">object</code> <a href="Javascript.regexp.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALnew_RegExp"></a>new_RegExp : <code class="type">string -> <a href="Javascript.regexp.html">regexp</a></code></pre><pre><span class="keyword">val</span> <a name="VALnew_RegExp_attributes"></a>new_RegExp_attributes : <code class="type">string -> string -> <a href="Javascript.regexp.html">regexp</a></code></pre><pre><span class="keyword">class type</span> <a name="TYPEjs_string"></a><a href="Javascript.js_string.html">js_string</a> = <code class="code">object</code> <a href="Javascript.js_string.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALjs_string_of_string"></a>js_string_of_string : <code class="type">string -> <a href="Javascript.js_string.html">js_string</a></code></pre><pre><span class="keyword">module</span> <a href="Javascript.Js_string.html">Js_string</a>: <code class="code">sig</code> <a href="Javascript.Js_string.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">module</span> <a href="Javascript.Math.html">Math</a>: <code class="code">sig</code> <a href="Javascript.Math.html">..</a> <code class="code">end</code></pre></body></html>

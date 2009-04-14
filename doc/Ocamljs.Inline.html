@@ -13,11 +13,6 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Index of module types" rel=Appendix href="index_module_types.html">
 <link title="Dom" rel="Chapter" href="Dom.html">
-<link title="Froc" rel="Chapter" href="Froc.html">
-<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
-<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
-<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
-<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
 <link title="Gears" rel="Chapter" href="Gears.html">
 <link title="Javascript" rel="Chapter" href="Javascript.html">
 <link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
@@ -25,8 +20,10 @@
 <link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
 <link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
 <link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_dom" rel="Chapter" href="Lwt_dom.html">
 <link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
 <link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_timeout" rel="Chapter" href="Lwt_timeout.html">
 <link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
 <link title="Mozilla" rel="Chapter" href="Mozilla.html">
 <link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Ocamljs.Inline</title>
@@ -37,4 +34,4 @@
 <center><h1>Module <a href="type_Ocamljs.Inline.html">Ocamljs.Inline</a></h1></center>
 <br>
 <pre><span class="keyword">module</span> Inline: <code class="code">sig</code> <a href="Ocamljs.Inline.html">..</a> <code class="code">end</code></pre><hr width="100%">
-<pre><span class="keyword">module</span> <a href="Ocamljs.Inline.Jslib_ast.html">Jslib_ast</a>: <code class="code">sig</code> <a href="Ocamljs.Inline.Jslib_ast.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALinline_exp"></a>inline_exp : <code class="type"><a href="Ocamljs.Inline.Jslib_ast.html#TYPEexp">Jslib_ast.exp</a> -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALinline_stmt"></a>inline_stmt : <code class="type"><a href="Ocamljs.Inline.Jslib_ast.html#TYPEstmt">Jslib_ast.stmt</a> -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALinline_antiexp"></a>inline_antiexp : <code class="type">'a -> <a href="Ocamljs.Inline.Jslib_ast.html#TYPEexp">Jslib_ast.exp</a></code></pre><pre><span class="keyword">val</span> <a name="VALinline_antistmt"></a>inline_antistmt : <code class="type">'a -> <a href="Ocamljs.Inline.Jslib_ast.html#TYPEstmt">Jslib_ast.stmt</a></code></pre><pre><span class="keyword">val</span> <a name="VAL_loc"></a>_loc : <code class="type"><a href="Ocamljs.Inline.Jslib_ast.html#TYPEloc">Jslib_ast.loc</a></code></pre></body></html>
+<pre><span class="keyword">module</span> <a href="Ocamljs.Inline.Jslib_ast.html">Jslib_ast</a>: <code class="code">sig</code> <a href="Ocamljs.Inline.Jslib_ast.html">..</a> <code class="code">end</code></pre><pre><span class="keyword">val</span> <a name="VALinline_exp"></a>inline_exp : <code class="type"><a href="Ocamljs.Inline.Jslib_ast.html#TYPEexp">Jslib_ast.exp</a> -> 'a</code></pre><pre><span class="keyword">val</span> <a name="VALinline_stmt"></a>inline_stmt : <code class="type"><a href="Ocamljs.Inline.Jslib_ast.html#TYPEstmt">Jslib_ast.stmt</a> -> unit</code></pre><pre><span class="keyword">val</span> <a name="VALinline_antiexp"></a>inline_antiexp : <code class="type">'a -> <a href="Ocamljs.Inline.Jslib_ast.html#TYPEexp">Jslib_ast.exp</a></code></pre><pre><span class="keyword">val</span> <a name="VALinline_antistmt"></a>inline_antistmt : <code class="type">'a -> <a href="Ocamljs.Inline.Jslib_ast.html#TYPEstmt">Jslib_ast.stmt</a></code></pre><pre><span class="keyword">val</span> <a name="VAL_loc"></a>_loc : <code class="type"><a href="Ocamljs.Inline.Jslib_ast.html#TYPEloc">Jslib_ast.loc</a></code></pre></body></html>

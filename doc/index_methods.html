@@ -11,11 +11,6 @@
 <link title="Index of modules" rel=Appendix href="index_modules.html">
 <link title="Index of module types" rel=Appendix href="index_module_types.html">
 <link title="Dom" rel="Chapter" href="Dom.html">
-<link title="Froc" rel="Chapter" href="Froc.html">
-<link title="Froc_afp" rel="Chapter" href="Froc_afp.html">
-<link title="Froc_ddg" rel="Chapter" href="Froc_ddg.html">
-<link title="Froc_dom" rel="Chapter" href="Froc_dom.html">
-<link title="Froc_dom_anim" rel="Chapter" href="Froc_dom_anim.html">
 <link title="Gears" rel="Chapter" href="Gears.html">
 <link title="Javascript" rel="Chapter" href="Javascript.html">
 <link title="Jslib_ast" rel="Chapter" href="Jslib_ast.html">
@@ -23,8 +18,10 @@
 <link title="Jslib_parse" rel="Chapter" href="Jslib_parse.html">
 <link title="Jslib_pp" rel="Chapter" href="Jslib_pp.html">
 <link title="Lwt" rel="Chapter" href="Lwt.html">
+<link title="Lwt_dom" rel="Chapter" href="Lwt_dom.html">
 <link title="Lwt_mutex" rel="Chapter" href="Lwt_mutex.html">
 <link title="Lwt_pool" rel="Chapter" href="Lwt_pool.html">
+<link title="Lwt_timeout" rel="Chapter" href="Lwt_timeout.html">
 <link title="Lwt_util" rel="Chapter" href="Lwt_util.html">
 <link title="Mozilla" rel="Chapter" href="Mozilla.html">
 <link title="Ocamljs" rel="Chapter" href="Ocamljs.html"><title>Index of class methods</title>
@@ -59,11 +56,7 @@
 <td></td></tr>
 <tr><td><a href="Dom.input.html#METHOD_get_accept">_get_accept</a> [<a href="Dom.input.html">Dom.input</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_get_accessKey">_get_accessKey</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_get_accessKey">_get_accessKey</a> [<a href="Dom.button.html">Dom.button</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHOD_get_accessKey">_get_accessKey</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_get_accessKey">_get_accessKey</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.position.html#METHOD_get_accuracy">_get_accuracy</a> [<a href="Gears.position.html">Gears.position</a>]</td>
 <td></td></tr>
@@ -169,6 +162,8 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_childNodes">_get_childNodes</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_childNodes">_get_childNodes</a> [<a href="Dom.node.html">Dom.node</a>]</td>
+<td></td></tr>
 <tr><td><a href="Gears.address.html#METHOD_get_city">_get_city</a> [<a href="Gears.address.html">Gears.address</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.element.html#METHOD_get_className">_get_className</a> [<a href="Dom.element.html">Dom.element</a>]</td>
@@ -239,13 +234,7 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.button.html#METHOD_get_disabled">_get_disabled</a> [<a href="Mozilla.DOM.button.html">Mozilla.DOM.button</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.select.html#METHOD_get_disabled">_get_disabled</a> [<a href="Dom.select.html">Dom.select</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.option.html#METHOD_get_disabled">_get_disabled</a> [<a href="Dom.option.html">Dom.option</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_get_disabled">_get_disabled</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_get_disabled">_get_disabled</a> [<a href="Dom.button.html">Dom.button</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_get_disabled">_get_disabled</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.style.html#METHOD_get_display">_get_display</a> [<a href="Mozilla.DOM.style.html">Mozilla.DOM.style</a>]</td>
 <td></td></tr>
@@ -278,6 +267,8 @@
 <tr><td><a href="Gears.openFileOptions.html#METHOD_get_filter">_get_filter</a> [<a href="Gears.openFileOptions.html">Gears.openFileOptions</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_firstChild">_get_firstChild</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_firstChild">_get_firstChild</a> [<a href="Dom.node.html">Dom.node</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.canvasRenderingContext2D.html#METHOD_get_font">_get_font</a> [<a href="Dom.canvasRenderingContext2D.html">Dom.canvasRenderingContext2D</a>]</td>
 <td></td></tr>
@@ -361,17 +352,25 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.loginInfo.html#METHOD_get_httpRealm">_get_httpRealm</a> [<a href="Mozilla.XPCOM.loginInfo.html">Mozilla.XPCOM.loginInfo</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_id">_get_id</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Dom.option.html#METHOD_get_index">_get_index</a> [<a href="Dom.option.html">Dom.option</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.element.html#METHOD_get_innerHTML">_get_innerHTML</a> [<a href="Mozilla.DOM.element.html">Mozilla.DOM.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.element.html#METHOD_get_innerHTML">_get_innerHTML</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHOD_get_inputGenerated">_get_inputGenerated</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHOD_get_keyVal">_get_keyVal</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.DOM.button.html#METHOD_get_label">_get_label</a> [<a href="Mozilla.DOM.button.html">Mozilla.DOM.button</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.option.html#METHOD_get_label">_get_label</a> [<a href="Dom.option.html">Dom.option</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_lastChild">_get_lastChild</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_lastChild">_get_lastChild</a> [<a href="Dom.node.html">Dom.node</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.managedResourceStore.html#METHOD_get_lastErrorMessage">_get_lastErrorMessage</a> [<a href="Gears.managedResourceStore.html">Gears.managedResourceStore</a>]</td>
 <td></td></tr>
@@ -477,11 +476,27 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_nextSibling">_get_nextSibling</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_nextSibling">_get_nextSibling</a> [<a href="Dom.node.html">Dom.node</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_nodeName">_get_nodeName</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_nodeName">_get_nodeName</a> [<a href="Dom.node.html">Dom.node</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_nodeType">_get_nodeType</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_nodeType">_get_nodeType</a> [<a href="Dom.node.html">Dom.node</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_nodeValue">_get_nodeValue</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_nodeValue">_get_nodeValue</a> [<a href="Dom.node.html">Dom.node</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHOD_get_numPad">_get_numPad</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_offsetHeight">_get_offsetHeight</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_offsetLeft">_get_offsetLeft</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_offsetTop">_get_offsetTop</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.element.html#METHOD_get_offsetWidth">_get_offsetWidth</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
@@ -516,6 +531,8 @@
 <tr><td><a href="Dom.style.html#METHOD_get_outlineStyle">_get_outlineStyle</a> [<a href="Dom.style.html">Dom.style</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.style.html#METHOD_get_outlineWidth">_get_outlineWidth</a> [<a href="Dom.style.html">Dom.style</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHOD_get_outputString">_get_outputString</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.style.html#METHOD_get_overflow">_get_overflow</a> [<a href="Dom.style.html">Dom.style</a>]</td>
 <td></td></tr>
@@ -556,6 +573,8 @@
 <tr><td><a href="Gears.address.html#METHOD_get_premises">_get_premises</a> [<a href="Gears.address.html">Gears.address</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMNode.html#METHOD_get_previousSibling">_get_previousSibling</a> [<a href="Mozilla.XPCOM.dOMNode.html">Mozilla.XPCOM.dOMNode</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_get_previousSibling">_get_previousSibling</a> [<a href="Dom.node.html">Dom.node</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.location.html#METHOD_get_protocol">_get_protocol</a> [<a href="Dom.location.html">Dom.location</a>]</td>
 <td></td></tr>
@@ -605,9 +624,17 @@
 <td></td></tr>
 <tr><td><a href="Dom.mouseEvent.html#METHOD_get_screenY">_get_screenY</a> [<a href="Dom.mouseEvent.html">Dom.mouseEvent</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_scrollHeight">_get_scrollHeight</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Dom.body.html#METHOD_get_scrollLeft">_get_scrollLeft</a> [<a href="Dom.body.html">Dom.body</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_scrollLeft">_get_scrollLeft</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Dom.body.html#METHOD_get_scrollTop">_get_scrollTop</a> [<a href="Dom.body.html">Dom.body</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_scrollTop">_get_scrollTop</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_get_scrollWidth">_get_scrollWidth</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.location.html#METHOD_get_search">_get_search</a> [<a href="Dom.location.html">Dom.location</a>]</td>
 <td></td></tr>
@@ -687,13 +714,9 @@
 <td></td></tr>
 <tr><td><a href="Dom.document.html#METHOD_get_styleSheets">_get_styleSheets</a> [<a href="Dom.document.html">Dom.document</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.select.html#METHOD_get_tabIndex">_get_tabIndex</a> [<a href="Dom.select.html">Dom.select</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_get_tabIndex">_get_tabIndex</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_get_tabIndex">_get_tabIndex</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_get_tabIndex">_get_tabIndex</a> [<a href="Dom.button.html">Dom.button</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHOD_get_tabIndex">_get_tabIndex</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_get_tagName">_get_tagName</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.anchor.html#METHOD_get_target">_get_target</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
 <td></td></tr>
@@ -779,6 +802,8 @@
 <td></td></tr>
 <tr><td><a href="Dom.uIEvent.html#METHOD_get_view">_get_view</a> [<a href="Dom.uIEvent.html">Dom.uIEvent</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHOD_get_virtKeyVal">_get_virtKeyVal</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.DOM.style.html#METHOD_get_visibility">_get_visibility</a> [<a href="Mozilla.DOM.style.html">Mozilla.DOM.style</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.style.html#METHOD_get_visibility">_get_visibility</a> [<a href="Dom.style.html">Dom.style</a>]</td>
@@ -807,11 +832,7 @@
 <td></td></tr>
 <tr><td><a href="Dom.input.html#METHOD_set_accept">_set_accept</a> [<a href="Dom.input.html">Dom.input</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_set_accessKey">_set_accessKey</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_set_accessKey">_set_accessKey</a> [<a href="Dom.button.html">Dom.button</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHOD_set_accessKey">_set_accessKey</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_set_accessKey">_set_accessKey</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.form.html#METHOD_set_action">_set_action</a> [<a href="Mozilla.DOM.form.html">Mozilla.DOM.form</a>]</td>
 <td></td></tr>
@@ -913,13 +934,7 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.button.html#METHOD_set_disabled">_set_disabled</a> [<a href="Mozilla.DOM.button.html">Mozilla.DOM.button</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.select.html#METHOD_set_disabled">_set_disabled</a> [<a href="Dom.select.html">Dom.select</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.option.html#METHOD_set_disabled">_set_disabled</a> [<a href="Dom.option.html">Dom.option</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_set_disabled">_set_disabled</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_set_disabled">_set_disabled</a> [<a href="Dom.button.html">Dom.button</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_set_disabled">_set_disabled</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.style.html#METHOD_set_display">_set_display</a> [<a href="Mozilla.DOM.style.html">Mozilla.DOM.style</a>]</td>
 <td></td></tr>
@@ -987,6 +1002,8 @@
 <td></td></tr>
 <tr><td><a href="Dom.anchor.html#METHOD_set_hreflang">_set_hreflang</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_id">_set_id</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.DOM.element.html#METHOD_set_innerHTML">_set_innerHTML</a> [<a href="Mozilla.DOM.element.html">Mozilla.DOM.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.element.html#METHOD_set_innerHTML">_set_innerHTML</a> [<a href="Dom.element.html">Dom.element</a>]</td>
@@ -1053,31 +1070,51 @@
 <td></td></tr>
 <tr><td><a href="Dom.anchor.html#METHOD_set_name">_set_name</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.node.html#METHOD_set_nodeValue">_set_nodeValue</a> [<a href="Dom.node.html">Dom.node</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.channel.html#METHOD_set_notificationCallbacks">_set_notificationCallbacks</a> [<a href="Mozilla.XPCOM.channel.html">Mozilla.XPCOM.channel</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.window.html#METHOD_set_onbeforeunload">_set_onbeforeunload</a> [<a href="Dom.window.html">Dom.window</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onblur">_set_onblur</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Dom.input.html#METHOD_set_onchange">_set_onchange</a> [<a href="Dom.input.html">Dom.input</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.image.html#METHOD_set_onclick">_set_onclick</a> [<a href="Dom.image.html">Dom.image</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_set_onclick">_set_onclick</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_set_onclick">_set_onclick</a> [<a href="Dom.button.html">Dom.button</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHOD_set_onclick">_set_onclick</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_set_onclick">_set_onclick</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.managedResourceStore.html#METHOD_set_oncomplete">_set_oncomplete</a> [<a href="Gears.managedResourceStore.html">Gears.managedResourceStore</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_oncontextmenu">_set_oncontextmenu</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_ondblclick">_set_ondblclick</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.workerPool.html#METHOD_set_onerror">_set_onerror</a> [<a href="Gears.workerPool.html">Gears.workerPool</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.managedResourceStore.html#METHOD_set_onerror">_set_onerror</a> [<a href="Gears.managedResourceStore.html">Gears.managedResourceStore</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onfocus">_set_onfocus</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onkeydown">_set_onkeydown</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onkeypress">_set_onkeypress</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onkeyup">_set_onkeyup</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.xMLHttpRequest.html#METHOD_set_onload">_set_onload</a> [<a href="Mozilla.XPCOM.xMLHttpRequest.html">Mozilla.XPCOM.xMLHttpRequest</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.window.html#METHOD_set_onload">_set_onload</a> [<a href="Dom.window.html">Dom.window</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.workerPool.html#METHOD_set_onmessage">_set_onmessage</a> [<a href="Gears.workerPool.html">Gears.workerPool</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onmousedown">_set_onmousedown</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onmousemove">_set_onmousemove</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onmouseout">_set_onmouseout</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onmouseover">_set_onmouseover</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onmouseup">_set_onmouseup</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.managedResourceStore.html#METHOD_set_onprogress">_set_onprogress</a> [<a href="Gears.managedResourceStore.html">Gears.managedResourceStore</a>]</td>
 <td></td></tr>
@@ -1090,6 +1127,8 @@
 <tr><td><a href="Gears.httpRequest.html#METHOD_set_onreadystatechange">_set_onreadystatechange</a> [<a href="Gears.httpRequest.html">Gears.httpRequest</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.xMLHttpRequest.html#METHOD_set_onreadystatechange">_set_onreadystatechange</a> [<a href="Dom.xMLHttpRequest.html">Dom.xMLHttpRequest</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHOD_set_onresize">_set_onresize</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.form.html#METHOD_set_onsubmit">_set_onsubmit</a> [<a href="Dom.form.html">Dom.form</a>]</td>
 <td></td></tr>
@@ -1185,13 +1224,7 @@
 <td></td></tr>
 <tr><td><a href="Dom.canvasRenderingContext2D.html#METHOD_set_strokeStyle_canvasPattern_">_set_strokeStyle_canvasPattern_</a> [<a href="Dom.canvasRenderingContext2D.html">Dom.canvasRenderingContext2D</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.select.html#METHOD_set_tabIndex">_set_tabIndex</a> [<a href="Dom.select.html">Dom.select</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.input.html#METHOD_set_tabIndex">_set_tabIndex</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.button.html#METHOD_set_tabIndex">_set_tabIndex</a> [<a href="Dom.button.html">Dom.button</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHOD_set_tabIndex">_set_tabIndex</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHOD_set_tabIndex">_set_tabIndex</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.anchor.html#METHOD_set_target">_set_target</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
 <td></td></tr>
@@ -1274,11 +1307,11 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMEventTarget.html#METHODaddEventListener">addEventListener</a> [<a href="Mozilla.XPCOM.dOMEventTarget.html">Mozilla.XPCOM.dOMEventTarget</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.eventTarget.html#METHODaddEventListener">addEventListener</a> [<a href="Dom.eventTarget.html">Dom.eventTarget</a>]</td>
+<tr><td><a href="Dom.element.html#METHODaddEventListener">addEventListener</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMEventTarget.html#METHODaddEventListener_fun_">addEventListener_fun_</a> [<a href="Mozilla.XPCOM.dOMEventTarget.html">Mozilla.XPCOM.dOMEventTarget</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.eventTarget.html#METHODaddEventListener_mouseEvent_">addEventListener_mouseEvent_</a> [<a href="Dom.eventTarget.html">Dom.eventTarget</a>]</td>
+<tr><td><a href="Dom.element.html#METHODaddEventListener_mouseEvent_">addEventListener_mouseEvent_</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.mIMEInputStream.html#METHODaddHeader">addHeader</a> [<a href="Mozilla.XPCOM.mIMEInputStream.html">Mozilla.XPCOM.mIMEInputStream</a>]</td>
 <td></td></tr>
@@ -1327,11 +1360,7 @@
 <td></td></tr>
 <tr><td><a href="Dom.canvasRenderingContext2D.html#METHODbezierCurveTo">bezierCurveTo</a> [<a href="Dom.canvasRenderingContext2D.html">Dom.canvasRenderingContext2D</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.select.html#METHODblur">blur</a> [<a href="Dom.select.html">Dom.select</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.input.html#METHODblur">blur</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHODblur">blur</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHODblur">blur</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td align="left"><br>C</td></tr>
 <tr><td><a href="Mozilla.XPCOM.uRIContentListener.html#METHODcanHandleContent">canHandleContent</a> [<a href="Mozilla.XPCOM.uRIContentListener.html">Mozilla.XPCOM.uRIContentListener</a>]</td>
@@ -1349,6 +1378,8 @@
 <tr><td><a href="Gears.resourceStore.html#METHODcapture_array_">capture_array_</a> [<a href="Gears.resourceStore.html">Gears.resourceStore</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.managedResourceStore.html#METHODcheckForUpdate">checkForUpdate</a> [<a href="Gears.managedResourceStore.html">Gears.managedResourceStore</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHODcheckModifier">checkModifier</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMJSWindow.html#METHODclearInterval">clearInterval</a> [<a href="Mozilla.XPCOM.dOMJSWindow.html">Mozilla.XPCOM.dOMJSWindow</a>]</td>
 <td></td></tr>
@@ -1368,7 +1399,7 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.DOM.input_image.html#METHODclick">click</a> [<a href="Mozilla.DOM.input_image.html">Mozilla.DOM.input_image</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.input.html#METHODclick">click</a> [<a href="Dom.input.html">Dom.input</a>]</td>
+<tr><td><a href="Dom.element.html#METHODclick">click</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.canvasRenderingContext2D.html#METHODclip">clip</a> [<a href="Dom.canvasRenderingContext2D.html">Dom.canvasRenderingContext2D</a>]</td>
 <td></td></tr>
@@ -1429,6 +1460,8 @@
 <tr><td align="left"><br>D</td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMEventTarget.html#METHODdispatchEvent">dispatchEvent</a> [<a href="Mozilla.XPCOM.dOMEventTarget.html">Mozilla.XPCOM.dOMEventTarget</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHODdispatchEvent">dispatchEvent</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.uRIContentListener.html#METHODdoContent">doContent</a> [<a href="Mozilla.XPCOM.uRIContentListener.html">Mozilla.XPCOM.uRIContentListener</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.canvasRenderingContext2D.html#METHODdrawImage">drawImage</a> [<a href="Dom.canvasRenderingContext2D.html">Dom.canvasRenderingContext2D</a>]</td>
@@ -1483,11 +1516,7 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.passwordManagerInternal.html#METHODfindPasswordEntry">findPasswordEntry</a> [<a href="Mozilla.XPCOM.passwordManagerInternal.html">Mozilla.XPCOM.passwordManagerInternal</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.select.html#METHODfocus">focus</a> [<a href="Dom.select.html">Dom.select</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.input.html#METHODfocus">focus</a> [<a href="Dom.input.html">Dom.input</a>]</td>
-<td></td></tr>
-<tr><td><a href="Dom.anchor.html#METHODfocus">focus</a> [<a href="Dom.anchor.html">Dom.anchor</a>]</td>
+<tr><td><a href="Dom.element.html#METHODfocus">focus</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td align="left"><br>G</td></tr>
 <tr><td><a href="Mozilla.XPCOM.properties.html#METHODget">get</a> [<a href="Mozilla.XPCOM.properties.html">Mozilla.XPCOM.properties</a>]</td>
@@ -1529,6 +1558,8 @@
 <tr><td><a href="Mozilla.XPCOM.dOMDocument.html#METHODgetElementById">getElementById</a> [<a href="Mozilla.XPCOM.dOMDocument.html">Mozilla.XPCOM.dOMDocument</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.document.html#METHODgetElementById">getElementById</a> [<a href="Dom.document.html">Dom.document</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.element.html#METHODgetElementsByTagName">getElementsByTagName</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.windowMediator.html#METHODgetEnumerator">getEnumerator</a> [<a href="Mozilla.XPCOM.windowMediator.html">Mozilla.XPCOM.windowMediator</a>]</td>
 <td></td></tr>
@@ -1604,6 +1635,10 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMKeyEvent.html#METHODinitKeyEvent">initKeyEvent</a> [<a href="Mozilla.XPCOM.dOMKeyEvent.html">Mozilla.XPCOM.dOMKeyEvent</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHODinitKeyEvent">initKeyEvent</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.keyEvent.html#METHODinitModifier">initModifier</a> [<a href="Dom.keyEvent.html">Dom.keyEvent</a>]</td>
+<td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMMouseEvent.html#METHODinitMouseEvent">initMouseEvent</a> [<a href="Mozilla.XPCOM.dOMMouseEvent.html">Mozilla.XPCOM.dOMMouseEvent</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.mouseEvent.html#METHODinitMouseEvent">initMouseEvent</a> [<a href="Dom.mouseEvent.html">Dom.mouseEvent</a>]</td>
@@ -1611,6 +1646,8 @@
 <tr><td><a href="Mozilla.XPCOM.dOMUIEvent.html#METHODinitUIEvent">initUIEvent</a> [<a href="Mozilla.XPCOM.dOMUIEvent.html">Mozilla.XPCOM.dOMUIEvent</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.uIEvent.html#METHODinitUIEvent">initUIEvent</a> [<a href="Dom.uIEvent.html">Dom.uIEvent</a>]</td>
+<td></td></tr>
+<tr><td><a href="Dom.node.html#METHODinsertBefore">insertBefore</a> [<a href="Dom.node.html">Dom.node</a>]</td>
 <td></td></tr>
 <tr><td><a href="Gears.resourceStore.html#METHODisCaptured">isCaptured</a> [<a href="Gears.resourceStore.html">Gears.resourceStore</a>]</td>
 <td></td></tr>
@@ -1643,7 +1680,7 @@
 <tr><td><a href="Mozilla.XPCOM.dOMXPathNSResolver.html#METHODlookupNamespaceURI">lookupNamespaceURI</a> [<a href="Mozilla.XPCOM.dOMXPathNSResolver.html">Mozilla.XPCOM.dOMXPathNSResolver</a>]</td>
 <td></td></tr>
 <tr><td align="left"><br>M</td></tr>
-<tr><td><a href="Javascript.js_string.html#METHODmatch__">match__</a> [<a href="Javascript.js_string.html">Javascript.js_string</a>]</td>
+<tr><td><a href="Javascript.js_string.html#METHODmatch_">match_</a> [<a href="Javascript.js_string.html">Javascript.js_string</a>]</td>
 <td></td></tr>
 <tr><td><a href="Dom.canvasRenderingContext2D.html#METHODmeasureText">measureText</a> [<a href="Dom.canvasRenderingContext2D.html">Dom.canvasRenderingContext2D</a>]</td>
 <td></td></tr>
@@ -1687,11 +1724,11 @@
 <td></td></tr>
 <tr><td><a href="Gears.localServer.html#METHODopenStore_requiredCookie_">openStore_requiredCookie_</a> [<a href="Gears.localServer.html">Gears.localServer</a>]</td>
 <td></td></tr>
-<tr><td><a href="Gears.httpRequest.html#METHODopen__">open__</a> [<a href="Gears.httpRequest.html">Gears.httpRequest</a>]</td>
+<tr><td><a href="Gears.httpRequest.html#METHODopen_">open_</a> [<a href="Gears.httpRequest.html">Gears.httpRequest</a>]</td>
 <td></td></tr>
-<tr><td><a href="Gears.database.html#METHODopen__">open__</a> [<a href="Gears.database.html">Gears.database</a>]</td>
+<tr><td><a href="Gears.database.html#METHODopen_">open_</a> [<a href="Gears.database.html">Gears.database</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.xMLHttpRequest.html#METHODopen__">open__</a> [<a href="Dom.xMLHttpRequest.html">Dom.xMLHttpRequest</a>]</td>
+<tr><td><a href="Dom.xMLHttpRequest.html#METHODopen_">open_</a> [<a href="Dom.xMLHttpRequest.html">Dom.xMLHttpRequest</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.xMLHttpRequest.html#METHODoverrideMimeType">overrideMimeType</a> [<a href="Mozilla.XPCOM.xMLHttpRequest.html">Mozilla.XPCOM.xMLHttpRequest</a>]</td>
 <td></td></tr>
@@ -1738,15 +1775,17 @@
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.commandLine.html#METHODremoveAruguments">removeAruguments</a> [<a href="Mozilla.XPCOM.commandLine.html">Mozilla.XPCOM.commandLine</a>]</td>
 <td></td></tr>
+<tr><td><a href="Dom.element.html#METHODremoveAttribute">removeAttribute</a> [<a href="Dom.element.html">Dom.element</a>]</td>
+<td></td></tr>
 <tr><td><a href="Dom.node.html#METHODremoveChild">removeChild</a> [<a href="Dom.node.html">Dom.node</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMEventTarget.html#METHODremoveEventListener">removeEventListener</a> [<a href="Mozilla.XPCOM.dOMEventTarget.html">Mozilla.XPCOM.dOMEventTarget</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.eventTarget.html#METHODremoveEventListener">removeEventListener</a> [<a href="Dom.eventTarget.html">Dom.eventTarget</a>]</td>
+<tr><td><a href="Dom.element.html#METHODremoveEventListener">removeEventListener</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.dOMEventTarget.html#METHODremoveEventListener_fun_">removeEventListener_fun_</a> [<a href="Mozilla.XPCOM.dOMEventTarget.html">Mozilla.XPCOM.dOMEventTarget</a>]</td>
 <td></td></tr>
-<tr><td><a href="Dom.eventTarget.html#METHODremoveEventListener_mouseEvent_">removeEventListener_mouseEvent_</a> [<a href="Dom.eventTarget.html">Dom.eventTarget</a>]</td>
+<tr><td><a href="Dom.element.html#METHODremoveEventListener_mouseEvent_">removeEventListener_mouseEvent_</a> [<a href="Dom.element.html">Dom.element</a>]</td>
 <td></td></tr>
 <tr><td><a href="Mozilla.XPCOM.loginManager.html#METHODremoveLogin">removeLogin</a> [<a href="Mozilla.XPCOM.loginManager.html">Mozilla.XPCOM.loginManager</a>]</td>
 <td></td></tr>
