@@ -1577,7 +1577,7 @@ var oc$Database$ =
                                           return _m(v$106.create, v$106, ["beta.database"]); }();
                  if (_(oc$Ocamljs$[2], [db$74[0]])) return 0;
                  (function () { var v$105 = db$74[0];
-                                return _m(v$105.ope, v$105, ["database-demo"]); }());
+                                return _m(v$105.open, v$105, ["database-demo"]); }());
                  (function () {
                     var v$104 = db$74[0];
                     return _m(v$104.execute, v$104, ["create table if not exists Demo (Phrase varchar(255), Timestamp int)"]);
