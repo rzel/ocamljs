@@ -63,8 +63,8 @@ the time you don't want to mutate your strings anyway, so OCaml
 strings may also be represented by immutable Javascript strings. If
 you write a literal string in OCaml, you get a literal string in
 Javascript, but if you create a string with `String.create` (that is,
-with the `caml_create_string` primitive) you get an array representing a
-mutable string. You can read the elements of either string as usual,
+with the `caml_create_string` primitive) you get an array representing
+a mutable string. You can read the elements of either string as usual,
 but writing to an immutable string fails (at present with an
-inscrutable error). Note that `Pervasives.(^)` calls
-`caml_create_string`. At some point we should do something better here.
+inscrutable error). `Pervasives.(^)` calls the Javascript `+`, and
+`Buffer.contents` yields an immutable string.

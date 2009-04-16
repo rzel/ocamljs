@@ -1,0 +1,6 @@
+#summary binding to Mozilla API
+
+A very partial binding to the myriad of Mozilla / XPCOM APIs. It also
+includes a Mozilla-specific DOM binding, similar but not identical to
+the one in [Dom]. See the
+[http://ocamljs.googlecode.com/svn/doc/Mozilla.html Ocamldoc].

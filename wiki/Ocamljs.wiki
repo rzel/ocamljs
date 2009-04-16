@@ -1,0 +1,4 @@
+#summary ocamljs support library
+
+Needs documentation, but see [Interfacing]. See the
+[http://ocamljs.googlecode.com/svn/doc/Ocamljs.html Ocamldoc].

@@ -3,7 +3,9 @@
 Ocamljs is a system for compiling OCaml to Javascript. It includes a
 Javascript back-end for the OCaml compiler, as well as several support
 libraries, such as bindings to the browser DOM. It also works with
-orpc for RPC over HTTP to an OCaml server.
+[http://code.google.com/p/orpc2 orpc] for RPC over HTTP to an OCaml
+server, and [http://code.google.com/p/froc froc] for functional
+reactive programming.
 
 Ocamljs is written by Jake Donham, with contributions from Mike Wells
 and Haoyang Wang.
@@ -14,16 +16,13 @@ and Haoyang Wang.
   * [Findlib findlib support]
 
   * [Ocamljs] ocamljs support library
-  * [Stdlib] OCaml standard library in ocamljs
+  * [Stdlib] support for the OCaml standard library
   * [Javascript] binding to built-in Javascript libraries
   * [Dom] binding to browser DOM
   * [Mozilla] binding to Mozilla API
-  * [Froc] library for functional reactive OCaml
-  * [Froc_dom] library to use Froc with browser DOM
   * [Lwt_js] library for cooperative threading
   * [Jslib] library for working with Javascript using Camlp4
-
-  * [Plans plans for the future]
+  * [Gears] Google Gears binding
 
 ===Contributing===
 

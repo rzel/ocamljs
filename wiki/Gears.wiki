@@ -1,0 +1,6 @@
+#summary binding to Google Gears API
+
+This library wraps the [http://code.google.com/apis/gears/ Google
+Gears API]. See the [http://ocamljs.googlecode.com/svn/doc/Gears.html
+Ocamldoc] and [http://ocamljs.googlecode.com/svn/examples/index.html
+some examples].

@@ -1,0 +1,4 @@
+#summary library for working with Javascript using Camlp4.
+
+This needs more documentation. See the
+[http://ocamljs.googlecode.com/svn/doc/index.html Ocamldoc].

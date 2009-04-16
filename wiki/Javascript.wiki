@@ -1,0 +1,4 @@
+#summary binding to built-in Javascript libraries
+
+An incomplete binding to the built-in Javascript libraries. See the
+[http://ocamljs.googlecode.com/svn/doc/Javascript.html Ocamldoc].
