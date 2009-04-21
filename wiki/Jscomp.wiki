@@ -25,7 +25,7 @@ Xavier Leroy's talk
 [http://pauillac.inria.fr/~xleroy/talks/zam-kazam05.pdf From Krivine's machine to the Caml implementations].
 
 This apply method is also where tail-recursion is implemented,
-using trampolines. See `src/ocamljs/support.js` for details.
+using trampolines. See `src/stdlib/support.js` for details.
 
 Much of standard OCaml is implemented by a library of C primitives;
 Javascript implementations of these (insofar as they have been
@@ -53,7 +53,7 @@ OCaml heap blocks (used in OCaml to represent records, variants,
 polymorphic variants, exceptions, and arrays) are represented by
 Javascript arrays. Blocks may have a tag (used to distinguish branches
 of variants), which is represented as an extra slot on the array
-object. See `src/ocamljs/support.js` for functions on blocks.
+object. See `src/stdlib/support.js` for functions on blocks.
 
 OCaml strings are mutable, but Javascript strings are immutable, so a
 direct representation is not possible. Ocamljs represents mutable

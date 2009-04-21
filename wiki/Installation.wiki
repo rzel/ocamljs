@@ -2,11 +2,12 @@
 
 ===Installing ocamljs===
 
-  # Prerequisites: OCaml 3.10.2, findlib, ulex
-  # Unpack the OCaml 3.10.2 distribution and run ./configure only, with the same options you gave when you built OCaml, then symlink it to ocamljs-0.2/ocaml
+  # Prerequisites: OCaml 3.10.2 or 3.11.0, [http://projects.camlcity.org/projects/findlib.html Findlib], [http://www.cduce.org/download.html#side ulex]
+  # Unpack the OCaml distribution into SRCDIR.
+  # In the ocamljs directory, run ./configure -srcdir SRCDIR
   # 'make' builds ocamljs and the associated libraries
-  # 'make test' runs the test suite; you will need SpiderMonkey or other Javascript interpreter
   # 'make install' installs ocamljs and the associated libraries
+  # 'make test' runs the test suite; you will need SpiderMonkey or other Javascript interpreter
   # 'make examples' builds all the examples
 
 ===Using ocamljs===
