@@ -1,4 +1,0 @@
-name="Ocamljs"
-description="Ocamljs support"
-version="0.2"
-archive(js) = "ocamljs.cmjs"
