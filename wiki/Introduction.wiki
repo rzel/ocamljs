@@ -25,6 +25,9 @@ and Haoyang Wang.
   * [Jslib] library for working with Javascript using Camlp4
   * [Gears] Google Gears binding
 
+See the [http://ocamljs.googlecode.com/svn/doc/index.html Ocamldoc]
+and some [http://ocamljs.googlecode.com/svn/examples/index.html examples].
+
 ===Contributing===
 
 If you find a bug, it would be very helpful to get a test case that
