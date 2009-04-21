@@ -1,4 +1,5 @@
 #summary How to install and use ocamljs
+#labels Featured
 
 ===Installing ocamljs===
 
